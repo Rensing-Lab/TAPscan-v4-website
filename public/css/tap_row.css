@@ -1,0 +1,14 @@
+#stuff:nth-of-type(odd) {
+    background-color: #EEF0F0;
+}
+#stuff:nth-of-type(even) {
+    background-color: #EEFFFF;
+}
+/* .striped:nth-of-type(odd) {
+    background-color: #0000AF;
+} */
+
+.jumbotron {
+  padding-top: 1%;
+  padding-bottom: 0%;
+}

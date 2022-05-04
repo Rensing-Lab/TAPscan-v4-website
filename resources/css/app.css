@@ -1,0 +1,7 @@
+/* @import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities'; */
+
+@import 'jstree/dist/themes/default/style.min.css';
+
+@import "phylotree/dist/phylotree.css";

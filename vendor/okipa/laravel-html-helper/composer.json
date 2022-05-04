@@ -1,0 +1,62 @@
+{
+    "name": "okipa/laravel-html-helper",
+    "description": "Useful helpers to dynamically generate clean HTML with Laravel.",
+    "type": "library",
+    "keywords": [
+        "okipa",
+        "package",
+        "laravel",
+        "php",
+        "html",
+        "helper",
+        "generate",
+        "generator",
+        "generation"
+    ],
+    "homepage": "https://github.com/Okipa/laravel-html-helper",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Arthur LORENT",
+            "email": "arthur.lorent@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4||^8.0",
+        "illuminate/support": "^7.0||^8.0"
+    },
+    "require-dev": {
+        "nunomaduro/larastan": "^0.6",
+        "orchestra/testbench": "^5.0||^6.0",
+        "phpmd/phpmd": "^2.8",
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Okipa\\LaravelHtmlHelper\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Okipa\\LaravelHtmlHelper\\Test\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": [
+            "vendor/bin/phpcbf",
+            "vendor/bin/phpcs",
+            "vendor/bin/phpmd src text phpmd.xml",
+            "vendor/bin/phpstan analyse --memory-limit=-1 --error-format=table",
+            "vendor/bin/phpunit -d memory_limit=-1 --testdox --coverage-text"
+        ]
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

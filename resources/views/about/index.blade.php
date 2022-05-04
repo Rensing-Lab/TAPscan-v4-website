@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+@extends('layout')
+
+@section('content')
+
+  <div class="card">
+    <div class="card-header text-center">
+       About TAPscan
+    </div>
+    <div class="card-body">
+
+      <p style="text-align:justify;">
+            The TAPscan (v1) tool was published 2010 (Lang et al. in <a class="awith" target="_blank" href="https://academic.oup.com/gbe/article/573786/">GBE</a>).
+            It combined the rule sets of three previous resources,
+            <a class="awith" target="_blank" href="http://www.cosmoss.org/bm/plantapdb">PlanTAPDB</a> (Richardt et al. 2007
+            <a class="awith" target="_blank" href="http://www.plantphysiol.org/content/143/4/1452?keytype=ref&amp;ijkey=tASgZ4CU0p04UJ6">Plant Physiol</a>),
+            <a class="awith" target="_blank" href="http://planttfdb.cbi.pku.edu.cn/">PlantTFDB</a> (Guo et al. 2008
+            <a class="awith" target="_blank" href="https://academic.oup.com/nar/article-lookup/doi/10.1093/nar/gkm841">NAR</a>) and
+            <a class="awith" target="_blank" href="http://plntfdb.bio.uni-potsdam.de/v3.0/">PlnTFDB</a> (Riano-Pachon et al. 2009
+            <a class="awith" target="_blank" href="https://academic.oup.com/nar/article-lookup/doi/10.1093/nar/gkp805">NAR</a>).
+            The TAPscan (v2) web interface makes the genome-wide annotation of TAPs available for the community.
+            TAPscan V2 was published in 2017 (Wilhelmsson et al.
+            <a class="awith" target="_blank" href="https://academic.oup.com/gbe/advance-article/doi/10.1093/gbe/evx258/4693820?guestAccessKey=fc717224-f2bb-452b-91a2-982f5fbd7489">GBE</a>).
+            <br><br>
+
+            Transcriptional regulation is carried out by transcription associated proteins (<b>TAP</b>s), comprising transcription factors
+            (<b class="green-light">TF</b>s, binding in sequence-specific manner to cis-regulatory elements to enhance or repress transcription), transcriptional
+            regulators (<b style="color:#e36c09"; class="yellow-light">TR</b>s, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction
+            or chromatin modification) and putative TAPs (<b style="color:#ffc000"; class="yellow-light">PT</b>s), the role of which needs to be determined.
+
+            <br><br>
+            Protein names (e.g. in download and phylogenetic trees) are extended by a (typically five) letter code abbreviating the species,
+            e.g. ORYSA = <i>ORYza SAtiva</i>. Please see <a class="awith" href="/species/table">this table</a> for the alphabetically sorted codes.
+        </p>
+      {{-- <h5 class="card-title">fdsafsafa</h5> --}}
+    </div>
+    <div class="card-footer text-muted text-center">
+      Last updated 2017
+    </div>
+  </div>
+  <br>
+
+
+@endsection
