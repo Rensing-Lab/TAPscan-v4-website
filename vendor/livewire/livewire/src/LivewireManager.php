@@ -27,6 +27,9 @@ class LivewireManager
     ];
 
     public static $isLivewireRequestTestingOverride = false;
+    
+    public static $currentCompilingViewPath;
+    public static $currentCompilingChildCounter;
 
     public function component($alias, $viewClass = null)
     {
@@ -190,7 +193,7 @@ class LivewireManager
 
         return <<<HTML
 <style {$nonce}>
-    [wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid] {
+    [wire\:loading], [wire\:loading\.delay], [wire\:loading\.inline-block], [wire\:loading\.inline], [wire\:loading\.block], [wire\:loading\.flex], [wire\:loading\.table], [wire\:loading\.grid], [wire\:loading\.inline-flex] {
         display: none;
     }
 
@@ -369,7 +372,7 @@ HTML;
                 return str(request('fingerprint')['url'])->after(request()->root());
             }
 
-            return request('fingerprint')['path'];
+            return request('fingerprint.path');
         }
 
         return request()->path();
@@ -386,7 +389,7 @@ HTML;
                 return 'GET';
             }
 
-            return request('fingerprint')['method'];
+            return request('fingerprint.method', 'POST');
         }
 
         return request()->method();
@@ -456,6 +459,10 @@ HTML;
 
     public function flushState()
     {
+        static::$isLivewireRequestTestingOverride = false;
+        static::$currentCompilingChildCounter = null;
+        static::$currentCompilingViewPath = null;
+        
         $this->shouldDisableBackButtonCache = false;
 
         $this->dispatch('flush-state');

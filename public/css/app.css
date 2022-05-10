@@ -6181,6 +6181,7 @@ button.bg-danger:focus {
 
 .bg-light {
   background-color: #f8f9fa !important;
+  /* background-color: #f8f9fa !important; */
 }
 
 a.bg-light:hover, a.bg-light:focus,
@@ -16178,15 +16179,15 @@ font: 10px sans-serif;
 }
 
 .node-selected {
-fill: #f00 !important;     
+fill: #f00 !important;
 }
 
 .node-collapsed circle, .node-collapsed ellipse, .node-collapsed rect{
-fill: black !important;     
+fill: black !important;
 }
 
 .node-tagged {
-fill: #00f; 
+fill: #00f;
 }
 
 .branch {
@@ -16203,7 +16204,7 @@ opacity: 0.5;
 }
 
 .branch-selected {
-stroke: #f00 !important; 
+stroke: #f00 !important;
 stroke-width: 3px;
 }
 
@@ -16239,4 +16240,3 @@ stroke: #CCC;
 /* @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities'; */
-

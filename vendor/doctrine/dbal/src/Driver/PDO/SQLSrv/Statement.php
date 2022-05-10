@@ -2,16 +2,15 @@
 
 namespace Doctrine\DBAL\Driver\PDO\SQLSrv;
 
+use Doctrine\DBAL\Driver\Middleware\AbstractStatementMiddleware;
 use Doctrine\DBAL\Driver\PDO\Statement as PDOStatement;
-use Doctrine\DBAL\Driver\Result;
-use Doctrine\DBAL\Driver\Statement as StatementInterface;
 use Doctrine\DBAL\ParameterType;
 use Doctrine\Deprecations\Deprecation;
 use PDO;
 
 use function func_num_args;
 
-final class Statement implements StatementInterface
+final class Statement extends AbstractStatementMiddleware
 {
     /** @var PDOStatement */
     private $statement;
@@ -21,6 +20,8 @@ final class Statement implements StatementInterface
      */
     public function __construct(PDOStatement $statement)
     {
+        parent::__construct($statement);
+
         $this->statement = $statement;
     }
 
@@ -33,8 +34,13 @@ final class Statement implements StatementInterface
      * @param int|null   $length
      * @param mixed      $driverOptions The usage of the argument is deprecated.
      */
-    public function bindParam($param, &$variable, $type = ParameterType::STRING, $length = null, $driverOptions = null)
-    {
+    public function bindParam(
+        $param,
+        &$variable,
+        $type = ParameterType::STRING,
+        $length = null,
+        $driverOptions = null
+    ): bool {
         if (func_num_args() > 4) {
             Deprecation::triggerIfCalledFromOutside(
                 'doctrine/dbal',
@@ -59,22 +65,14 @@ final class Statement implements StatementInterface
                 break;
         }
 
-        return $this->statement->bindParam($param, $variable, $type, $length, $driverOptions);
+        return $this->statement->bindParam($param, $variable, $type, $length ?? 0, $driverOptions);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function bindValue($param, $value, $type = ParameterType::STRING)
+    public function bindValue($param, $value, $type = ParameterType::STRING): bool
     {
         return $this->bindParam($param, $value, $type);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function execute($params = null): Result
-    {
-        return $this->statement->execute($params);
     }
 }

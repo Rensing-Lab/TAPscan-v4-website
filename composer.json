@@ -19,7 +19,6 @@
         "laravel/ui": "^3.3",
         "livewire/livewire": "^2.5",
         "maatwebsite/excel": "^3.1",
-        "meilisearch/meilisearch-php": "^0.21.0",
         "okipa/laravel-table": "^4.0",
         "spatie/laravel-searchable": "^1.11"
     },

@@ -4,7 +4,7 @@
         {{-- <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" /> --}}
         <head>
             <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-            <title>TapScan - ???</title>
+            <title>TapScan - v4</title>
             {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" /> --}}
               {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --}}
               {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> --}}
@@ -13,11 +13,17 @@
                 <script src="{{ mix('js/app.js') }}"></script>
               <!-- Bootstrap Css -->
               <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-                  <link rel="stylesheet"       href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css" />
+              {{-- <link rel="stylesheet" href="{{ asset('css/tapscan.css') }}"> --}}
+              <link rel="stylesheet" type="text/css" href="{{ asset('css/tap_row.css') }}" >
+              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css" />
+              <link rel="icon" href="{{ asset('img/favicon.ico') }}">
               <meta name="csrf-token" content="{{ csrf_token() }}">
         </head>
 
-        <div>
+        <div class="container">
+          <div class="container-fluid">
+            <img src="{{ asset('img/TAPscan_logo.png') }}" class="img-fluid" alt="Responsive image">
+          </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <a class="navbar-brand" href="/">TAPscan</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,9 +41,10 @@
               @auth
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Datatables
+                  Admin
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item {{ (request()->is('upload')) ? 'active' : '' }}" href="/taps/table">Data Upload</a>
                   <a class="dropdown-item {{ (request()->is('taps')) ? 'active' : '' }}" href="/taps/table">TAPs</a>
                   <a class="dropdown-item {{ (request()->is('rules')) ? 'active' : '' }}" href="/rules/table">TAP Rules</a>
                   <a class="dropdown-item {{ (request()->is('species/table')) ? 'active' : '' }}" href="/species/table">Species</a>
@@ -45,7 +52,7 @@
                 </div>
               </li>
             @endauth
-              <li class="nav-item dropdown">
+              {{-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="/tools" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Tools
                 </a>
@@ -55,13 +62,16 @@
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Other</a>
                 </div>
-              </li>
+              </li> --}}
+              {{-- <li class="nav-item">
+                <a class="nav-link {{ (request()->is('trees*')) ? 'active' : '' }}" href="/visualization">Trees</a>
+              </li> --}}
               <li class="nav-item {{ (request()->is('news*')) ? 'active' : '' }}">
                 <a class="nav-link" href="/news">News</a>
               </li>
-              <li class="nav-item {{ (request()->is('search*')) ? 'active' : '' }}">
+              {{-- <li class="nav-item {{ (request()->is('search*')) ? 'active' : '' }}">
                 <a class="nav-link" href="/search">Search</a>
-              </li>
+              </li> --}}
               <li class="nav-item">
                 <a class="nav-link {{ (request()->is('contact*')) ? 'active' : '' }}" href="/contact">Contact</a>
               </li>

@@ -6,25 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 use Illuminate\Testing\Constraints\SeeInOrder;
+use Livewire\Component;
 use Livewire\Features\SupportRootElementTracking;
 use PHPUnit\Framework\Assert as PHPUnit;
 
 trait MakesAssertions
 {
-    public function assertSet($name, $value)
+    public function assertSet($name, $value, $strict = false)
     {
+        $actual = $this->get($name);
+
         if (! is_string($value) && is_callable($value)) {
-            PHPUnit::assertTrue($value($this->get($name)));
+            PHPUnit::assertTrue($value($actual));
         } else {
-            PHPUnit::assertEquals($value, $this->get($name));
+            $strict ? PHPUnit::assertSame($value, $actual) : PHPUnit::assertEquals($value, $actual);
         }
 
         return $this;
     }
 
-    public function assertNotSet($name, $value)
+    public function assertNotSet($name, $value, $strict = false)
     {
-        PHPUnit::assertNotEquals($value, $this->get($name));
+        $actual = $this->get($name);
+
+        $strict ? PHPUnit::assertNotSame($value, $actual) : PHPUnit::assertNotEquals($value, $actual);
 
         return $this;
     }
@@ -82,22 +87,26 @@ trait MakesAssertions
         return $this;
     }
 
-    public function assertSeeHtml($value)
+    public function assertSeeHtml($values)
     {
-        PHPUnit::assertStringContainsString(
-            $value,
-            $this->stripOutInitialData($this->lastRenderedDom)
-        );
+        foreach (Arr::wrap($values) as $value) {
+            PHPUnit::assertStringContainsString(
+                $value,
+                $this->stripOutInitialData($this->lastRenderedDom)
+            );
+        }
 
         return $this;
     }
 
-    public function assertDontSeeHtml($value)
+    public function assertDontSeeHtml($values)
     {
-        PHPUnit::assertStringNotContainsString(
-            $value,
-            $this->stripOutInitialData($this->lastRenderedDom)
-        );
+        foreach (Arr::wrap($values) as $value) {
+            PHPUnit::assertStringNotContainsString(
+                $value,
+                $this->stripOutInitialData($this->lastRenderedDom)
+            );
+        }
 
         return $this;
     }
@@ -147,13 +156,33 @@ trait MakesAssertions
         return $this;
     }
 
+    public function assertEmittedTo($target, $value, ...$params)
+    {
+        $this->assertEmitted($value, ...$params);
+        $result = $this->testEmittedTo($target, $value);
+
+        PHPUnit::assertTrue($result, "Failed asserting that an event [{$value}] was fired to {$target}.");
+
+        return $this;
+    }
+
+    public function assertEmittedUp($value, ...$params)
+    {
+        $this->assertEmitted($value, ...$params);
+        $result = $this->testEmittedUp($value);
+
+        PHPUnit::assertTrue($result, "Failed asserting that an event [{$value}] was fired up.");
+
+        return $this;
+    }
+
     protected function testEmitted($value, $params)
     {
         $assertionSuffix = '.';
 
         if (empty($params)) {
             $test = collect(data_get($this->payload, 'effects.emits'))->contains('event', '=', $value);
-        } elseif (is_callable($params[0])) {
+        } elseif (! is_string($params[0]) && is_callable($params[0])) {
             $event = collect(data_get($this->payload, 'effects.emits'))->first(function ($item) use ($value) {
                 return $item['event'] === $value;
             });
@@ -164,6 +193,7 @@ trait MakesAssertions
                 return $item['event'] === $value
                     && $item['params'] === $params;
             });
+
             $encodedParams = json_encode($params);
             $assertionSuffix = " with parameters: {$encodedParams}";
         }
@@ -174,20 +204,41 @@ trait MakesAssertions
         ];
     }
 
+    protected function testEmittedTo($target, $value)
+    {
+        $target = is_subclass_of($target, Component::class)
+            ? $target::getName()
+            : $target;
+
+        return (bool) collect(data_get($this->payload, 'effects.emits'))->first(function ($item) use ($target, $value) {
+            return $item['event'] === $value
+                && $item['to'] === $target;
+        });
+
+    }
+
+    protected function testEmittedUp($value)
+    {
+        return (bool) collect(data_get($this->payload, 'effects.emits'))->first(function ($item) use ($value) {
+            return $item['event'] === $value
+                && $item['ancestorsOnly'] === true;
+        });
+    }
+
     public function assertDispatchedBrowserEvent($name, $data = null)
     {
         $assertionSuffix = '.';
 
         if (is_null($data)) {
-            $test = collect($this->payload['effects']['dispatches'])->contains('event', '=', $name);
+            $test = collect(data_get($this->payload, 'effects.dispatches'))->contains('event', '=', $name);
         } elseif (is_callable($data)) {
-            $event = collect($this->payload['effects']['dispatches'])->first(function ($item) use ($name) {
+            $event = collect(data_get($this->payload, 'effects.dispatches'))->first(function ($item) use ($name) {
                 return $item['event'] === $name;
             });
 
             $test = $event && $data($event['event'], $event['data']);
         } else {
-            $test = (bool) collect($this->payload['effects']['dispatches'])->first(function ($item) use ($name, $data) {
+            $test = (bool) collect(data_get($this->payload, 'effects.dispatches'))->first(function ($item) use ($name, $data) {
                 return $item['event'] === $name
                     && $item['data'] === $data;
             });
@@ -199,6 +250,20 @@ trait MakesAssertions
 
         return $this;
     }
+
+    public function assertNotDispatchedBrowserEvent($name)
+    {
+        if (! array_key_exists('dispatches', $this->payload['effects'])){
+            $test = false;
+        } else {
+            $test = collect($this->payload['effects']['dispatches'])->contains('event', '=', $name);
+        }
+
+        PHPUnit::assertFalse($test, "Failed asserting that an event [{$name}] was not fired");
+
+        return $this;
+    }
+
 
     public function assertHasErrors($keys = [])
     {
@@ -216,6 +281,10 @@ trait MakesAssertions
                 $rules = array_keys(Arr::get($failed, $key, []));
 
                 foreach ((array) $value as $rule) {
+                    if (Str::contains($rule, ':')){
+                        $rule = Str::before($rule, ':');
+                    }
+
                     PHPUnit::assertContains(Str::studly($rule), $rules, "Component has no [{$rule}] errors for [{$key}] attribute.");
                 }
             }
@@ -244,6 +313,10 @@ trait MakesAssertions
                 $rules = array_keys(Arr::get($failed, $key, []));
 
                 foreach ((array) $value as $rule) {
+                    if (Str::contains($rule, ':')){
+                        $rule = Str::before($rule, ':');
+                    }
+
                     PHPUnit::assertNotContains(Str::studly($rule), $rules, "Component has [{$rule}] errors for [{$key}] attribute.");
                 }
             }

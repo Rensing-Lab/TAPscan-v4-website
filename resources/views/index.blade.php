@@ -155,8 +155,6 @@ Transcriptional regulation is carried out by transcription associated proteins (
     </script>
 
 @endauth --}}
-<link rel="stylesheet" type="text/css" href="{{ asset('css/tap_row.css') }}" >
-
 
 
 <div class="container">

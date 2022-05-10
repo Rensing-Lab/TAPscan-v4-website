@@ -66,6 +66,10 @@ class Livewire {
         this.components.on(event, callback)
     }
 
+    addHeaders(headers) {
+        this.connection.headers = { ...this.connection.headers, ...headers}
+    }
+
     devTools(enableDevtools) {
         this.devToolsEnabled = enableDevtools
     }
@@ -106,6 +110,10 @@ class Livewire {
 
             this.components.addComponent(new Component(el, this.connection))
         })
+    }
+
+    onPageExpired(callback) {
+        this.components.sessionHasExpiredCallback = callback
     }
 }
 

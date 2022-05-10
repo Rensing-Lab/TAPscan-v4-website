@@ -1,8 +1,10 @@
 #stuff:nth-of-type(odd) {
     background-color: #EEF0F0;
+    /* background-color: #004d00; */
 }
 #stuff:nth-of-type(even) {
     background-color: #EEFFFF;
+    /* background-color: #006600; */
 }
 /* .striped:nth-of-type(odd) {
     background-color: #0000AF;

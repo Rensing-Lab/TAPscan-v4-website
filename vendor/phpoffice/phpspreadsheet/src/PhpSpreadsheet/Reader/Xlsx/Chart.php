@@ -2,7 +2,7 @@
 
 namespace PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 
-use PhpOffice\PhpSpreadsheet\Calculation\Functions;
+use PhpOffice\PhpSpreadsheet\Calculation\Information\ExcelError;
 use PhpOffice\PhpSpreadsheet\Chart\DataSeries;
 use PhpOffice\PhpSpreadsheet\Chart\DataSeriesValues;
 use PhpOffice\PhpSpreadsheet\Chart\Layout;
@@ -31,7 +31,9 @@ class Chart
             } elseif ($format == 'integer') {
                 return (int) $attributes[$name];
             } elseif ($format == 'boolean') {
-                return (bool) ($attributes[$name] === '0' || $attributes[$name] !== 'true') ? false : true;
+                $value = (string) $attributes[$name];
+
+                return $value === 'true' || $value === '1';
             }
 
             return (float) $attributes[$name];
@@ -412,7 +414,7 @@ class Chart
                     $pointVal = self::getAttribute($seriesValue, 'idx', 'integer');
                     if ($dataType == 's') {
                         $seriesVal[$pointVal] = (string) $seriesValue->v;
-                    } elseif ($seriesValue->v === Functions::NA()) {
+                    } elseif ($seriesValue->v === ExcelError::NA()) {
                         $seriesVal[$pointVal] = null;
                     } else {
                         $seriesVal[$pointVal] = (float) $seriesValue->v;
@@ -450,7 +452,7 @@ class Chart
                         $pointVal = self::getAttribute($seriesValue, 'idx', 'integer');
                         if ($dataType == 's') {
                             $seriesVal[$pointVal][] = (string) $seriesValue->v;
-                        } elseif ($seriesValue->v === Functions::NA()) {
+                        } elseif ($seriesValue->v === ExcelError::NA()) {
                             $seriesVal[$pointVal] = null;
                         } else {
                             $seriesVal[$pointVal][] = (float) $seriesValue->v;
@@ -482,7 +484,7 @@ class Chart
                 }
 
                 $fontSize = (self::getAttribute($titleDetailElement->rPr, 'sz', 'integer'));
-                if ($fontSize !== null) {
+                if (is_int($fontSize)) {
                     $objText->getFont()->setSize(floor($fontSize / 100));
                 }
 

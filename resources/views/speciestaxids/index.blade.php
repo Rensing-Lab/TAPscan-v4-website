@@ -4,13 +4,22 @@
 
 @section('content')
 
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container">
+    <h1 class="display-6">TAPscan - Families</h1>
+    <p class="lead">This is a list of all TAPs covered by the TAPscan web page. Clicking them will lead you to a list of species in which these TAP families occur. The number of proteins containing the respective TAP is written in brackets after its name.</p>
+    <hr class="my-1">
+    <p>The colour code corresponds to TAP classes:
+Transcriptional regulation is carried out by transcription associated proteins (TAPs), comprising transcription factors (TFs, binding in sequence-specific manner to cis-regulatory elements to enhance or repress transcription), transcriptional regulators (TRs, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction or chromatin modification) and putative TAPs (PTs), the role of which needs to be determined. </p>
+  </div>
+</div>
+
   <!-- 3 setup a container element -->
 
   <input type="text" id="jstree_q" value="" class="input" style="margin:0em auto 1em auto; display:left; padding:4px; border-radius:4px; border:1px solid silver;">
   <div id="jstree">
 
   </div>
-  <button>demo button</button>
 
   <script>
   $(function () {

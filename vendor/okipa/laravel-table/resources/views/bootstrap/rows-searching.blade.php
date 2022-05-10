@@ -4,8 +4,8 @@
             <input type="hidden" name="{{ $table->getRowsNumberField() }}" value="{{ $table->getRequest()->get($table->getRowsNumberField()) }}">
             <input type="hidden" name="{{ $table->getSortByField() }}" value="{{ $table->getRequest()->get($table->getSortByField()) }}">
             <input type="hidden" name="{{ $table->getSortDirField() }}" value="{{ $table->getRequest()->get($table->getSortDirField()) }}">
-            @foreach($table->getGeneratedHiddenFields() as $appendedKey => $appendedValue)
-                <input type="hidden" name="{{ $appendedKey }}" value="{{ $appendedValue }}">
+            @foreach($table->getGeneratedHiddenFields() as $name => $value)
+                <input type="hidden" name="{{ $name }}" value="{{ $value }}">
             @endforeach
             <div class="input-group">
                 <div class="input-group-prepend">

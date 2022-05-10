@@ -81,7 +81,7 @@ class LivewireServiceProvider extends ServiceProvider
                 // If the app overrode "TrimStrings".
                 \App\Http\Middleware\TrimStrings::class,
             ]);
-        }   
+        }
     }
 
     protected function registerLivewireSingleton()
@@ -243,7 +243,7 @@ class LivewireServiceProvider extends ServiceProvider
         // Early versions of Laravel 7.x don't have this method.
         if (method_exists(ComponentAttributeBag::class, 'macro')) {
             ComponentAttributeBag::macro('wire', function ($name) {
-                $entries = head($this->whereStartsWith('wire:'.$name));
+                $entries = head((array) $this->whereStartsWith('wire:'.$name));
 
                 $directive = head(array_keys($entries));
                 $value = head(array_values($entries));
@@ -332,6 +332,7 @@ class LivewireServiceProvider extends ServiceProvider
         Features\SupportBrowserHistory::init();
         Features\SupportComponentTraits::init();
         Features\SupportRootElementTracking::init();
+        Features\SupportPostDeploymentInvalidation::init();
     }
 
     protected function registerHydrationMiddleware()
@@ -420,11 +421,10 @@ class LivewireServiceProvider extends ServiceProvider
 
         $kernel = $this->app->make(\Illuminate\Contracts\Http\Kernel::class);
 
-        $openKernel = new ObjectPrybar($kernel);
-
-        $middleware = $openKernel->getProperty('middleware');
-
-        $openKernel->setProperty('middleware', array_diff($middleware, $middlewareToExclude));
+        invade($kernel)->middleware = array_diff(
+            invade($kernel)->middleware,
+            $middlewareToExclude
+        );
     }
 
     protected function publishesToGroups(array $paths, $groups = null)
