@@ -30,9 +30,9 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
   return view('contact.index');
 });
-Route::get('/search', function () {
-  return view('search.index');
-});
+// Route::get('/search', function () {
+//   return view('search.index');
+// });
 
 Route::get('/search', [TapController::class, 'search'])->name('search');
 

@@ -21,7 +21,7 @@
         </head>
 
         <div class="container">
-          <div class="container-fluid">
+          <div class="col-md-10 offset-md-1">
             <img src="{{ asset('img/TAPscan_logo.png') }}" class="img-fluid" alt="Responsive image">
           </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -103,7 +103,7 @@
         <div class="dropdown">
 
           <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            Login
           </button>
 
 
@@ -131,11 +131,11 @@
 
           <form method="POST" action="{{ route('login') }}">
               @csrf
-
+            <div class="container">
               <div class="form-group row">
                   <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
-                  <div class="col-md-6">
+                  <div class="col-md-8">
                       <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                       @error('email')
@@ -149,7 +149,7 @@
               <div class="form-group row">
                   <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
-                  <div class="col-md-6">
+                  <div class="col-md-8">
                       <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                       @error('password')
@@ -160,7 +160,7 @@
                   </div>
               </div>
 
-              <div class="form-group row">
+              {{-- <div class="form-group row">
                   <div class="col-md-6 offset-md-4">
                       <div class="form-check">
                           <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
@@ -170,26 +170,29 @@
                           </label>
                       </div>
                   </div>
-              </div>
+              </div> --}}
 
-              <div class="form-group row mb-0">
-                  <div class="col-md-8 offset-md-4">
+              <div class="form-group row">
+                  <div class="col-md-8"></div>
+                  <div class="col-md-4">
                       <button type="submit" class="btn btn-primary">
                           {{ __('Login') }}
                       </button>
 
-                      @if (Route::has('password.request'))
+                      {{-- @if (Route::has('password.request'))
                           <a class="btn btn-link" href="{{ route('password.request') }}">
                               {{ __('Forgot Your Password?') }}
                           </a>
-                      @endif
+                      @endif --}}
                   </div>
+                  <div class="col-md-4"></div>
               </div>
+            </div>
           </form>
 
-          <div class="dropdown-divider"></div>
+          {{-- <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">New around here? Sign up</a>
-          <a class="dropdown-item" href="#">Forgot password?</a>
+          <a class="dropdown-item" href="#">Forgot password?</a> --}}
         </div>
         @endguest
 
