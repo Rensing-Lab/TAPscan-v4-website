@@ -112,9 +112,59 @@ public function table(): View
 
 public function index()
 {
-  $fasta = Storage::get('private/fasta/CHOCR.fa');
+
+
+// function fas_check($x) { // Check FASTA File Format
+//  $gt = substr($x, 0, 1);
+//  if ($gt != ">") {
+//   print "Not FASTA File!!";
+//   exit();
+//  } else {
+//   return $x;
+//  }
+// }
+#https://www.biob.in/2017/09/extracting-multiple-fasta-sequences.html
+function get_seq($x) { // Get Sequence and Sequence Name
+ $fl = explode(PHP_EOL, $x);
+ $sh = trim(array_shift($fl));
+ if($sh == null) {
+  $sh = "UNKNOWN SEQUENCE";
+ }
+ $fl = array_filter($fl);
+ $seq = "";
+ foreach($fl as $str) {
+  $seq .= trim($str);
+ }
+ $seq = strtoupper($seq);
+ $seq = preg_replace("/[^ACDEFGHIKLMNPQRSTVWY]/i", "", $seq);
+ if ((count($fl) < 1) || (strlen($seq) == 0)) {
+  print "Sequence is Empty!!";
+  exit();
+ } else {
+  return array($sh, $seq);
+ }
+}
+
+function fas_get($x) { // Read Multiple FASTA Sequences
+ $gtr = substr($x, 1);
+ $sqs = explode(">", $gtr);
+ if (count($sqs) > 1) {
+  foreach ($sqs as $sq) {
+   $spair = get_seq($sq);
+   $spairs[$spair[0]] = $spair[1];
+  }
+  return $spairs;
+ } else {
+  $spair = get_seq($gtr);
+  return array($spair[0] => $spair[1]);
+ }
+}
+  $fasta = Storage::get('/public/fasta/CAMSA.fa');
+  $test = fas_get($fasta);
+  dd($test);
+
   # hier muss eine Schleife hin die die fa. nach den IDs der TAP durchsucht und diese zurück gibt um damit eine Liste herzustellen.
-  return view('taps.index', ['fasta' => $fasta]);
+  return view('taps.index', []);
 }
 
 /**
