@@ -16,4 +16,9 @@ class Tap extends Model
     {
       return $this->belongsTo(SpeciesTaxId::class, 'code', 'code_id');
     }
+
+    public function sequenceId()
+    {
+      return $this->hasMany(Sequence::class);
+    }
 }

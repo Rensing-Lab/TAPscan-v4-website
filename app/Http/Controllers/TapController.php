@@ -160,8 +160,91 @@ function fas_get($x) { // Read Multiple FASTA Sequences
  }
 }
   $fasta = Storage::get('/public/fasta/CAMSA.fa');
+  $fasta_path = '/public/fasta/CAMSA.fa';
+  $fasta_name1 = explode('/', $fasta_path)[3];
+  $fasta_name2 = explode('.', $fasta_name1)[0];
   $test = fas_get($fasta);
-  dd($test);
+  $test2 = collect($test);
+  $test3 = SpeciesTaxId::find(33)->taps;
+  dd($fasta_name2);
+  foreach ($test3 as $user) {
+    echo $user->tap_id;
+  }
+  #dd($test3);
+  #dd($test2);
+
+  # hier muss eine Schleife hin die die fa. nach den IDs der TAP durchsucht und diese zurück gibt um damit eine Liste herzustellen.
+  return view('taps.index', []);
+}
+
+public function show($id)
+{
+
+
+// function fas_check($x) { // Check FASTA File Format
+//  $gt = substr($x, 0, 1);
+//  if ($gt != ">") {
+//   print "Not FASTA File!!";
+//   exit();
+//  } else {
+//   return $x;
+//  }
+// }
+#https://www.biob.in/2017/09/extracting-multiple-fasta-sequences.html
+function get_seq($x) { // Get Sequence and Sequence Name
+ $fl = explode(PHP_EOL, $x);
+ $sh = trim(array_shift($fl));
+ if($sh == null) {
+  $sh = "UNKNOWN SEQUENCE";
+ }
+ $fl = array_filter($fl);
+ $seq = "";
+ foreach($fl as $str) {
+  $seq .= trim($str);
+ }
+ $seq = strtoupper($seq);
+ $seq = preg_replace("/[^ACDEFGHIKLMNPQRSTVWY]/i", "", $seq);
+ if ((count($fl) < 1) || (strlen($seq) == 0)) {
+  print "Sequence is Empty!!";
+  exit();
+ } else {
+  return array($sh, $seq);
+ }
+}
+
+function fas_get($x) { // Read Multiple FASTA Sequences
+ $gtr = substr($x, 1);
+ $sqs = explode(">", $gtr);
+ if (count($sqs) > 1) {
+  foreach ($sqs as $sq) {
+   $spair = get_seq($sq);
+   $spairs[$spair[0]] = $spair[1];
+  }
+  return $spairs;
+ } else {
+  $spair = get_seq($gtr);
+  return array($spair[0] => $spair[1]);
+ }
+}
+  $species_name = SpeciesTaxId::find($id)->code;
+  $fasta = Storage::get('/public/fasta/' . $species_name . '.fa');
+  $fasta_path = '/public/fasta/' . $species_name . '.fa';
+  $test = fas_get($fasta);
+  $test2 = collect($test);
+  $test3 = SpeciesTaxId::find($id)->taps;
+  dd($test3);
+
+  $intersect = $test2->intersectByKeys($test3);
+  $intersect->all();
+  dd($intersect);
+  dd($test3);
+
+  dd($test3);
+  foreach ($test3 as $user) {
+    echo $user->tap_id;
+  }
+  #dd($test3);
+  #dd($test2);
 
   # hier muss eine Schleife hin die die fa. nach den IDs der TAP durchsucht und diese zurück gibt um damit eine Liste herzustellen.
   return view('taps.index', []);
