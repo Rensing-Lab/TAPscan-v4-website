@@ -193,7 +193,9 @@ public function show($id)
 #https://www.biob.in/2017/09/extracting-multiple-fasta-sequences.html
 function get_seq($x) { // Get Sequence and Sequence Name
  $fl = explode(PHP_EOL, $x);
- $sh = trim(array_shift($fl));
+ $sh1 = trim(array_shift($fl));
+ $sh2 = explode(" ", $sh1);
+ $sh = $sh2[0];
  if($sh == null) {
   $sh = "UNKNOWN SEQUENCE";
  }
@@ -205,8 +207,9 @@ function get_seq($x) { // Get Sequence and Sequence Name
  $seq = strtoupper($seq);
  $seq = preg_replace("/[^ACDEFGHIKLMNPQRSTVWY]/i", "", $seq);
  if ((count($fl) < 1) || (strlen($seq) == 0)) {
-  print "Sequence is Empty!!";
-  exit();
+  #print "Sequence is Empty!!";
+  #exit();
+  return array($sh, $seq);
  } else {
   return array($sh, $seq);
  }
@@ -227,22 +230,36 @@ function fas_get($x) { // Read Multiple FASTA Sequences
  }
 }
   $species_name = SpeciesTaxId::find($id)->code;
-  $fasta = Storage::get('/public/fasta/' . $species_name . '.fa');
   $fasta_path = '/public/fasta/' . $species_name . '.fa';
+  $fasta = Storage::get($fasta_path);
   $test = fas_get($fasta);
   $test2 = collect($test);
-  $test3 = SpeciesTaxId::find($id)->taps;
-  dd($test3);
 
-  $intersect = $test2->intersectByKeys($test3);
+
+  # dd($test2);
+  $test2->each(function ($item, $key) {
+    echo $key;
+  });
+
+  $test3 = SpeciesTaxId::find($id)->taps;
+  # dd($test3[0]->tap_id);
+  $test3->each(function ($item, $key) {
+    echo $item->tap_id;
+  });
+
+  $intersect = $test2->intersect($test3);
   $intersect->all();
   dd($intersect);
-  dd($test3);
 
-  dd($test3);
-  foreach ($test3 as $user) {
-    echo $user->tap_id;
+  echo($test3);
+  foreach ($test3 as $taps) {
+    echo $taps->tap_id . "<br>";
   }
+
+
+  #dd($intersect);
+  #dd($test3);
+
   #dd($test3);
   #dd($test2);
 
