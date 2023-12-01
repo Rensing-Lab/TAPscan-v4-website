@@ -12,3 +12,5 @@ npm-debug.log
 yarn-error.log
 .env
 .env.backup
+*.swp
+_data/import-v3/TAPscan.sql
