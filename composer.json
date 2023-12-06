@@ -20,7 +20,8 @@
         "livewire/livewire": "^2.5",
         "maatwebsite/excel": "^3.1",
         "okipa/laravel-table": "^4.0",
-        "spatie/laravel-searchable": "^1.11"
+        "spatie/laravel-searchable": "^1.11",
+        "yajra/laravel-datatables": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

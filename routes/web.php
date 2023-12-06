@@ -6,6 +6,8 @@ use App\Http\Controllers\SpeciesController;
 use App\Http\Controllers\TapRulesController;
 use App\Http\Controllers\TapController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\TapInfoController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -54,12 +56,14 @@ Route::get('rules/export', [TapRulesController::class, 'export'])->middleware(['
 Route::post('tap/import', [TapController::class, 'import'])->middleware(['auth'])->name('tap.import');
 Route::get('tap/export', [TapController::class, 'export'])->middleware(['auth'])->name('tap.export');
 
+Route::post('tapinfo/import', [TapInfoController::class, 'import'])->middleware(['auth'])->name('tapinfo.import');
+
 Route::get('/tap/{id}', [TapController::class, 'tap_show'])->where('id', '.*'); // ab damit in den resource controller
 
-Route::get('/news/table', [NewsController::class, 'table'])->middleware(['auth']);
-Route::get('/species/table', [SpeciesController::class, 'table'])->middleware(['auth']);
-Route::get('/taps/table', [TapController::class, 'table'])->middleware(['auth']);
-Route::get('/rules/table', [TapRulesController::class, 'table'])->middleware(['auth']);
+Route::get('/news/table', [NewsController::class, 'table'])->middleware(['auth'])->name('news.table');
+Route::get('/species/table', [SpeciesController::class, 'table'])->middleware(['auth'])->name('species.table');
+Route::get('/taps/table', [TapController::class, 'table'])->middleware(['auth'])->name('taps.table');
+Route::get('/rules/table', [TapRulesController::class, 'table'])->middleware(['auth'])->name('rules.table');
 // Route::get('/rules', [TapRulesController::class, 'index'])->middleware(['auth'])->name('rulestable.index'); //auch beides in ressource
 // Route::get('/taps', [TapController::class, 'index'])->middleware(['auth'])->name('taptable.index'); // dies auch
 
@@ -67,9 +71,14 @@ Route::get('/ajax-autocomplete-search', [TapController::class, 'selectSearch']);
 
 // Route::resource('datatable/species', [SpeciesController::class, 'datatable']);
 Route::resource('species', SpeciesController::class);
+#Route::get('/species/{species_id}/tap/{tap_name}', [SpeciesController::class, 'show_tap'])->name('speciestaxid.show_tap');
 Route::resource('rules', TapRulesController::class);
 Route::resource('taps', TapController::class);
+Route::get('/species/{species_id}/tap/{tap_name}', [TapController::class, 'show_species'])->where('tap_name', '.*')->name('taps.species');
 Route::resource('news', NewsController::class);
+
+Route::get('data-upload', [TapController::class, 'initialization'])->middleware(['auth'])->name('tap.data-upload');
+
 
 // Route::get('/species', [SpeciesController::class, 'index'])->middleware(['auth'])->name('speciestaxids.index');
 // Route::get('/species/{id}/edit', [SpeciesController::class, 'edit'])->middleware(['auth'])->name('speciestaxid.edit');

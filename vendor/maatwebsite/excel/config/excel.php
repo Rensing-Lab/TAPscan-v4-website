@@ -49,6 +49,7 @@ return [
             'include_separator_line' => false,
             'excel_compatibility'    => false,
             'output_encoding'        => '',
+            'test_auto_detect'       => true,
         ],
 
         /*
@@ -219,7 +220,7 @@ return [
         | By default PhpSpreadsheet keeps all cell values in memory, however when
         | dealing with large files, this might result into memory issues. If you
         | want to mitigate that, you can configure a cell caching driver here.
-        | When using the illuminate driver, it will store each value in a the
+        | When using the illuminate driver, it will store each value in the
         | cache store. This can slow down the process, because it needs to
         | store each value. You can use the "batch" store if you want to
         | only persist to the store when the memory limit is reached.
@@ -258,6 +259,20 @@ return [
         'illuminate' => [
             'store' => null,
         ],
+
+        /*
+        |--------------------------------------------------------------------------
+        | Cache Time-to-live (TTL)
+        |--------------------------------------------------------------------------
+        |
+        | The TTL of items written to cache. If you want to keep the items cached
+        | indefinitely, set this to null.  Otherwise, set a number of seconds,
+        | a \DateInterval, or a callable.
+        |
+        | Allowable types: callable|\DateInterval|int|null
+        |
+         */
+        'default_ttl' => 10800,
     ],
 
     /*
@@ -291,9 +306,26 @@ return [
         |
         | When exporting and importing files, we use a temporary file, before
         | storing reading or downloading. Here you can customize that path.
+        | permissions is an array with the permission flags for the directory (dir)
+        | and the create file (file).
         |
         */
-        'local_path'          => storage_path('framework/cache/laravel-excel'),
+        'local_path'        => storage_path('framework/cache/laravel-excel'),
+
+        /*
+        |--------------------------------------------------------------------------
+        | Local Temporary Path Permissions
+        |--------------------------------------------------------------------------
+        |
+        | Permissions is an array with the permission flags for the directory (dir)
+        | and the create file (file).
+        | If omitted the default permissions of the filesystem will be used.
+        |
+        */
+        'local_permissions' => [
+            // 'dir'  => 0755,
+            // 'file' => 0644,
+        ],
 
         /*
         |--------------------------------------------------------------------------
@@ -309,8 +341,8 @@ return [
         | in conjunction with queued imports and exports.
         |
         */
-        'remote_disk'         => null,
-        'remote_prefix'       => null,
+        'remote_disk'   => null,
+        'remote_prefix' => null,
 
         /*
         |--------------------------------------------------------------------------

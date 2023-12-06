@@ -19,6 +19,7 @@ class TapRules extends Model implements Searchable
     return new SearchResult(
         $this,
         $this->tap_1,
+        $this->id
         // $url
      );
 }

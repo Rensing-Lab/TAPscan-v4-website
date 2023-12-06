@@ -18,7 +18,7 @@ class NewsTable extends AbstractTable
     {
         return (new Table())->model(News::class)
             ->routes([
-                'index'   => ['name' => 'news.index'],
+                'index'   => ['name' => 'news.table'],
                 'create'  => ['name' => 'news.create'],
                 'show' => ['name' => 'news.show'],
                 'edit'    => ['name' => 'news.edit'],

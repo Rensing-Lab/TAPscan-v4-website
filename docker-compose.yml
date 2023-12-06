@@ -8,37 +8,39 @@ services:
             args:
                 WWWGROUP: '${WWWGROUP}'
         image: sail-8.0/app
-        # ports:
-        #     - '80:80'
+        ports:
+             - '8000:80'
         environment:
             WWWUSER: '${WWWUSER}'
             LARAVEL_SAIL: 1
         volumes:
             - '.:/var/www/html'
-        network_mode: host
-#         networks:
-#             - sail
-#         depends_on:
-#             - mysql
-#     mysql:
-#         image: 'mysql:8.0'
-#         ports:
-#             - '${FORWARD_DB_PORT:-3306}:3306'
-#         environment:
-#             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
-#             MYSQL_DATABASE: '${DB_DATABASE}'
-#             MYSQL_USER: '${DB_USERNAME}'
-#             MYSQL_PASSWORD: '${DB_PASSWORD}'
-#             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-#         volumes:
-#             - 'sailmysql:/var/lib/mysql'
-#         networks:
-#             - sail
-#         healthcheck:
-#           test: ["CMD", "mysqladmin", "ping"]
-# networks:
-#     sail:
-#         driver: bridge
-# volumes:
-#     sailmysql:
-#         driver: local
+        # network_mode: host
+        networks:
+            - sail
+        depends_on:
+            - mysql
+    mysql:
+        image: 'mysql:8.0'
+        ports:
+            # - '${FORWARD_DB_PORT:-3306}:3306'
+            - '3307:3306'
+        environment:
+            MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        volumes:
+            - 'sailmysql:/var/lib/mysql'
+            - '/home/deepti/TAPscan-v4-main/tmpdb:/home/deepti'
+        networks:
+            - sail
+        healthcheck:
+          test: ["CMD", "mysqladmin", "ping"]
+networks:
+    sail:
+        driver: bridge
+volumes:
+    sailmysql:
+        driver: local

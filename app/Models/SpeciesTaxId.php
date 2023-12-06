@@ -55,7 +55,7 @@ class SpeciesTaxId extends Model implements Searchable
     return new SearchResult(
         $this,
         $this->name,
-        // $url
+        $this->id
      );
 }
 }

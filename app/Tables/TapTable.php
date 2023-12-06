@@ -18,11 +18,11 @@ class TapTable extends AbstractTable
     {
         return (new Table())->model(Tap::class)
             ->routes([
-              'index'   => ['name' => 'tap.index'],
-              // 'create'  => ['name' => 'tap.create'],
-              // 'show' => ['name' => 'tap.show'],
-              // 'edit'    => ['name' => 'tap.edit'],
-              // 'destroy' => ['name' => 'tap.destroy'],
+              'index'   => ['name' => 'taps.table'],
+              // 'create'  => ['name' => 'taps.create'],
+              // 'show' => ['name' => 'taps.show'],
+              // 'edit'    => ['name' => 'taps.edit'],
+              // 'destroy' => ['name' => 'taps.destroy'],
             ])
             ->destroyConfirmationHtmlAttributes(fn(Tap $tap) => [
                 'data-confirm' => __('Are you sure you want to delete the entry :entry?', [

@@ -19,7 +19,7 @@ class TapRulesTable extends AbstractTable
     {
         return (new Table())->model(TapRules::class)
             ->routes([
-              'index'   => ['name' => 'rules.index'],
+              'index'   => ['name' => 'rules.table'],
               // 'create'  => ['name' => 'rules.create'],
               // 'show' => ['name' => 'rules.show'],
               // 'edit'    => ['name' => 'rules.edit'],

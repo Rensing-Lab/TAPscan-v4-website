@@ -24,14 +24,6 @@ public function export()
     return Excel::download(new TapRulesExport(), 'products.xlsx');
 }
 
-    // public function index(): View
-    // {
-    //     $table = (new TapRulesTable())->setup();
-    //
-    //     return view('datatable', compact('table'));
-    // }
-    //
-
 
 /**
  * Display a listing of the resource.
@@ -79,12 +71,6 @@ public function store(Request $request)
  * @param  \App\Models\TapRules  $tapRules
  * @return \Illuminate\Http\Response
  */
-// public function show(TapRules $tapRules, $specie)
-// {
-//   $flight = $tapRules::findOrFail($specie);
-//   return $flight;
-//     //
-// }
 
 public function show(TapRules $tapRules, $rule)
 {

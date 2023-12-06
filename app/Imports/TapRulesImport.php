@@ -34,11 +34,6 @@ class TapRulesImport implements ToCollection,WithCustomCsvSettings
       }
     }
 
-    // public function uniqueBy()
-    // {
-    //     return 'name';
-    // }
-
     public function getCsvSettings(): array
 {
     return [

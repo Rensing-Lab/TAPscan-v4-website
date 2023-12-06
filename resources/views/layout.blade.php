@@ -11,12 +11,16 @@
               {{-- <script src="{{ asset('js/app.js') }}" defer></script>  --}}
               {{-- remove defer for jquery for jstree --}}
                 <script src="{{ mix('js/app.js') }}"></script>
+                <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+                <script src="https://cdn.datatables.net/fixedcolumns/4.2.1/js/dataTables.fixedColumns.min.js"></script>
+                    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
               <!-- Bootstrap Css -->
               <link href="{{ mix('css/app.css') }}" rel="stylesheet">
               {{-- <link rel="stylesheet" href="{{ asset('css/tapscan.css') }}"> --}}
               <link rel="stylesheet" type="text/css" href="{{ asset('css/tap_row.css') }}" >
               <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css" />
               <link rel="icon" href="{{ asset('img/favicon.ico') }}">
+              <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
               <meta name="csrf-token" content="{{ csrf_token() }}">
         </head>
 
@@ -32,9 +36,9 @@
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-              <li class="nav-item {{ (request()->is('taps*')) ? 'active' : '' }}">
+              {{-- <li class="nav-item {{ (request()->is('taps*')) ? 'active' : '' }}">
                 <a class="nav-link" href="/taps">TAPs <span class="sr-only">(current)</span></a>
-              </li>
+              </li> --}}
               <li class="nav-item {{ (request()->is('species*')) ? 'active' : '' }}">
                 <a class="nav-link" href="/species">Species</a>
               </li>
@@ -44,7 +48,7 @@
                   Admin
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item {{ (request()->is('upload')) ? 'active' : '' }}" href="/taps/table">Data Upload</a>
+                  <a class="dropdown-item {{ (request()->is('upload')) ? 'active' : '' }}" href="/data-upload">Data Upload</a>
                   <a class="dropdown-item {{ (request()->is('taps')) ? 'active' : '' }}" href="/taps/table">TAPs</a>
                   <a class="dropdown-item {{ (request()->is('rules')) ? 'active' : '' }}" href="/rules/table">TAP Rules</a>
                   <a class="dropdown-item {{ (request()->is('species/table')) ? 'active' : '' }}" href="/species/table">Species</a>
@@ -72,9 +76,9 @@
               {{-- <li class="nav-item {{ (request()->is('search*')) ? 'active' : '' }}">
                 <a class="nav-link" href="/search">Search</a>
               </li> --}}
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link {{ (request()->is('contact*')) ? 'active' : '' }}" href="/contact">Contact</a>
-              </li>
+              </li> -->
               <li class="nav-item">
                 <a class="nav-link {{ (request()->is('about*')) ? 'active' : '' }}" href="/about">About</a>
               </li>
@@ -234,3 +238,22 @@
                                     <img alt="plantco.de logo" id="plogo" src="img/plantco_logo.png">
                                 </a>
                             </div> --}}
+
+                            <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+                    <div class="text-center text-sm text-gray-500 sm:text-left">
+                        <div class="flex items-center">
+
+                        <a href="https://www.plantco.de/impressum.php">Impressum</a>
+                &#x2022
+                        <a href="https://www.plantco.de/Datenschutz.php">Datenschutzerklärung</a>
+                        </div>
+                    </div>
+
+                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                    All data and services offered on this site are © copyrighted. Distribution via internet or other media is prohibited.<br/>
+                TAPscan logo created by Debbie Maizels
+                <br><br>
+                    </div>
+                </div>
+            </div>
+        </div>

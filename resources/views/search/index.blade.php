@@ -15,13 +15,13 @@
                               <h2>{{ ucfirst($type) }}</h2>
 
                               @foreach($modelSearchResults as $searchResult)
-                                @if ($type == "Species_tax_ids")
+                                @if ($type == "species_tax_ids")
                                   <ul>
-                                      <li><a href="/species/{{ $searchResult->searchable->code }}">{{ $searchResult->title }}</a></li>
+                                      <li><a target="_blank" href="/species/{{ $searchResult->searchable->id }}">{{ $searchResult->title }}</a></li>
                                   </ul>
                                 @else
                                   <ul>
-                                      <li><a href="/tap/{{ $searchResult->searchable->tap_1 }}">{{ $searchResult->title }}</a></li>
+                                      <li><a target="_blank" href="/tap/{{ $searchResult->searchable->tap_1 }}">{{ $searchResult->title }}</a></li>
                                   </ul>
                                 @endif
                               @endforeach

@@ -94,11 +94,6 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
       }
     }
 
-    // public function uniqueBy()
-    // {
-    //     return 'name';
-    // }
-
     public function getCsvSettings(): array
 {
     return [
@@ -108,9 +103,3 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
 
 }
 
-
-// return new SpeciesTaxId([
-//   'name'     => $row[0],
-//   'taxid'    => $row[1],
-//     //
-// ]);

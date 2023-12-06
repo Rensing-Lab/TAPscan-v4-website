@@ -19,7 +19,7 @@ class SpeciesTable extends AbstractTable
     {
         return (new Table())->model(SpeciesTaxId::class)
             ->routes([
-                'index'   => ['name' => 'species.index'],
+                'index'   => ['name' => 'species.table'],
                 // 'create'  => ['name' => 'species.create'],
                 'show' => ['name' => 'species.show'],
                 'edit'    => ['name' => 'species.edit'],

@@ -23,10 +23,8 @@
 
   <div class="card-body">
     <h5 class="card-title">TaxID: {{ $species->taxid }}</h5>
-    <p class="card-text">Graphen, weitere links zu TAPs etc.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-
-    put here all the information for the species.
+    <!-- <p class="card-text">Graphen, weitere links zu TAPs etc.</p> -->
+    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
   </div>
 </div>
 
@@ -37,8 +35,7 @@
         @foreach ($tap_count as $tap => $value)
               @if ($loop->index)
                 <span class="border rounded" id="stuff">
-                 <div class="col justify-content-between align-items-center d-flex"><a href='/tap/{{ $tap }}'> {{ $tap }} </a>
-                <span class="badge badge-warning badge-pill">2</span>
+                 <div class="col justify-content-between align-items-center d-flex"><a href='/species/{{ $id }}/tap/{{ $tap }}'> {{ $tap }} </a>
                  <span class="badge badge-success badge-pill">{{ $value }}</span>
                  </div>
                  </span>

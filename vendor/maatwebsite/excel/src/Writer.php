@@ -166,11 +166,12 @@ class Writer
         );
 
         $writer->save(
-            $path = $temporaryFile->getLocalPath()
+            $temporaryFile->getLocalPath()
         );
 
         if ($temporaryFile instanceof RemoteTemporaryFile) {
             $temporaryFile->updateRemote();
+            $temporaryFile->deleteLocalCopy();
         }
 
         $this->clearListeners();

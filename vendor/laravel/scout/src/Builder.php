@@ -5,7 +5,6 @@ namespace Laravel\Scout;
 use Illuminate\Container\Container;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
-use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Laravel\Scout\Contracts\PaginatesEloquentModels;
 
@@ -75,6 +74,13 @@ class Builder
      * @var array
      */
     public $orders = [];
+
+    /**
+     * Extra options that should be applied to the search.
+     *
+     * @var int
+     */
+    public $options = [];
 
     /**
      * Create a new search builder instance.
@@ -187,6 +193,19 @@ class Builder
             'column' => $column,
             'direction' => strtolower($direction) == 'asc' ? 'asc' : 'desc',
         ];
+
+        return $this;
+    }
+
+    /**
+     * Set extra options for the search query.
+     *
+     * @param  array  $options
+     * @return $this
+     */
+    public function options(array $options)
+    {
+        $this->options = $options;
 
         return $this;
     }
@@ -444,7 +463,7 @@ class Builder
 
         $ids = $engine->mapIdsFrom(
             $results,
-            Str::afterLast($this->model->getScoutKeyName(), '.')
+            $this->model->getUnqualifiedScoutKeyName()
         )->all();
 
         if (count($ids) < $totalCount) {

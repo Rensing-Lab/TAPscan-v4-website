@@ -5,12 +5,13 @@ namespace App\Imports;
 use App\Models\Tap;
 use App\Models\SpeciesTaxId;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithBatchInserts;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 use Illuminate\Support\Collection;
 
-class TapImport implements ToCollection,WithCustomCsvSettings
+class TapImport implements ToCollection,WithCustomCsvSettings,WithBatchInserts
 {
     /**
     * @param array $row
@@ -39,10 +40,10 @@ class TapImport implements ToCollection,WithCustomCsvSettings
       }
     }
 
-    // public function uniqueBy()
-    // {
-    //     return 'name';
-    // }
+    public function batchSize(): int
+    {
+        return 1000;
+    }
 
     public function getCsvSettings(): array
 {

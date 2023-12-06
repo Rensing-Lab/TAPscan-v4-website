@@ -13,14 +13,18 @@ use \App\Tables\TapTable;
 use Illuminate\Support\Facades\Storage;
 use App\Models\SpeciesTaxId;
 use App\Models\TapRules;
+use App\Models\Tap;
 use Spatie\Searchable\Search;
+use Illuminate\Support\Arr;
+use Yajra\DataTables\Facades\DataTables;
 
 class TapController extends Controller
 {
 
   public function import(Request $request)
 {
-    Excel::import(new TapImport(), $request->file('file'));return redirect()->route('tap.index')
+    set_time_limit(300);
+    Excel::import(new TapImport, $request->file('file'));return redirect()->route('tap.index')
         ->with('success', 'Products has been imported');
 }
   public function export()
@@ -31,13 +35,18 @@ class TapController extends Controller
   public function tap_count()
 {
   $tap_count = DB::table('taps')
-                ->selectRaw('tap_1,count(*) as num')
-                ->groupBy('tap_1')
-                ->get();
-  $download_buttons = ["tap","rules","species"];
+                ->select('tap_1', DB::raw('count(*) as num'))
+                ->groupBy('tap_1');
 
-                // ->dump();
-    return view('index', ['tap_count' => $tap_count, "download_buttons" => $download_buttons]);
+  $tap_infos = DB::table('tap_infos')
+  ->rightJoinSub($tap_count, 'tap_count', function ($join) {
+      $join->on('tap_infos.tap', '=', 'tap_count.tap_1');
+  })
+  ->select('tap_1','num', 'type')
+  ->get();
+
+
+    return view('index', ['tap_count' => $tap_infos]);
 }
 
 public function circle_viz()
@@ -56,7 +65,10 @@ $circle_viz = DB::table('taps')
       $tap_rules = TapController::tap_rules($id);
       $tap_species_number = TapController::tap_species_number($id);
       $tap_distribution = TapController::tap_distribution($id);
-      // $tap_distribution_metrics = TapController::tap_distribution_metrics($tap_distribution);
+      $tap_info = TapController::tap_info($id);
+      $tap_count = TapController::tap_count_proteins($id);
+      $tap_array = $tap_info[0]->reference;
+
       $tap_show = DB::table('taps')
                   ->where('tap_1','=', $id)
                   ->get();
@@ -65,7 +77,19 @@ $circle_viz = DB::table('taps')
                           'tap_rules' => $tap_rules,
                           'id' => $id,
                           'tap_species_number' => $tap_species_number->count(),
-                          'tap_distribution' => $tap_distribution]);
+                          'tap_distribution' => $tap_distribution,
+                          'tap_info' => $tap_info,
+                          'tap_count' => $tap_count]);
+}
+
+public function tap_count_proteins($id)
+{
+  $tap_count = DB::table('taps')
+                ->select('tap_1', '=', $id)
+                ->count();
+
+
+    return $tap_count;
 }
 
 public function tap_rules($id)
@@ -74,8 +98,13 @@ public function tap_rules($id)
                   ->where('tap_1', '=', $id)
                   ->orderBy('rule','asc')
                   ->get();
-                  // ->dump();
       return $tap_rules;
+}
+
+public function tap_info($id)
+{
+  $tap_info = DB::table('tap_infos')->where('tap', '=', $id)->get();
+      return $tap_info;
 }
 
 public function tap_species_number($id)
@@ -85,7 +114,6 @@ public function tap_species_number($id)
                 ->where('tap_1','=', $id)
                 ->distinct()
                 ->get();
-                // ->dump();
     return $tap_species_number;
 }
 
@@ -96,10 +124,7 @@ public function tap_distribution($id)
               ->where('tap_1','=', $id)
               ->groupBy('name')
               ->orderBy('test')
-              // ->dump();
-              // ->count();
               ->get();
-              // ->dump();
   return $tap_distribution;
 }
 
@@ -112,84 +137,19 @@ public function table(): View
 
 public function index()
 {
-
-
-// function fas_check($x) { // Check FASTA File Format
-//  $gt = substr($x, 0, 1);
-//  if ($gt != ">") {
-//   print "Not FASTA File!!";
-//   exit();
-//  } else {
-//   return $x;
-//  }
-// }
-#https://www.biob.in/2017/09/extracting-multiple-fasta-sequences.html
-function get_seq($x) { // Get Sequence and Sequence Name
- $fl = explode(PHP_EOL, $x);
- $sh = trim(array_shift($fl));
- if($sh == null) {
-  $sh = "UNKNOWN SEQUENCE";
- }
- $fl = array_filter($fl);
- $seq = "";
- foreach($fl as $str) {
-  $seq .= trim($str);
- }
- $seq = strtoupper($seq);
- $seq = preg_replace("/[^ACDEFGHIKLMNPQRSTVWY]/i", "", $seq);
- if ((count($fl) < 1) || (strlen($seq) == 0)) {
-  print "Sequence is Empty!!";
-  exit();
- } else {
-  return array($sh, $seq);
- }
+  return view('taps.index');
 }
 
-function fas_get($x) { // Read Multiple FASTA Sequences
- $gtr = substr($x, 1);
- $sqs = explode(">", $gtr);
- if (count($sqs) > 1) {
-  foreach ($sqs as $sq) {
-   $spair = get_seq($sq);
-   $spairs[$spair[0]] = $spair[1];
-  }
-  return $spairs;
- } else {
-  $spair = get_seq($gtr);
-  return array($spair[0] => $spair[1]);
- }
-}
-  $fasta = Storage::get('/public/fasta/CAMSA.fa');
-  $fasta_path = '/public/fasta/CAMSA.fa';
-  $fasta_name1 = explode('/', $fasta_path)[3];
-  $fasta_name2 = explode('.', $fasta_name1)[0];
-  $test = fas_get($fasta);
-  $test2 = collect($test);
-  $test3 = SpeciesTaxId::find(33)->taps;
-  dd($fasta_name2);
-  foreach ($test3 as $user) {
-    echo $user->tap_id;
-  }
-  #dd($test3);
-  #dd($test2);
+public function initialization()
+{
+$download_buttons = ["species","rules","tap","tapinfo"];
 
-  # hier muss eine Schleife hin die die fa. nach den IDs der TAP durchsucht und diese zurück gibt um damit eine Liste herzustellen.
-  return view('taps.index', []);
+return view('taps.data-upload', ["download_buttons" => $download_buttons]);
 }
 
-public function show($id)
+public function show($id, Request $request)
 {
 
-
-// function fas_check($x) { // Check FASTA File Format
-//  $gt = substr($x, 0, 1);
-//  if ($gt != ">") {
-//   print "Not FASTA File!!";
-//   exit();
-//  } else {
-//   return $x;
-//  }
-// }
 #https://www.biob.in/2017/09/extracting-multiple-fasta-sequences.html
 function get_seq($x) { // Get Sequence and Sequence Name
  $fl = explode(PHP_EOL, $x);
@@ -222,6 +182,8 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   foreach ($sqs as $sq) {
    $spair = get_seq($sq);
    $spairs[$spair[0]] = $spair[1];
+   // $spairs['id'][] = $spair[0];
+   // $spairs['sequence'][] = $spair[1];
   }
   return $spairs;
  } else {
@@ -229,42 +191,130 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   return array($spair[0] => $spair[1]);
  }
 }
+
   $species_name = SpeciesTaxId::find($id)->code;
   $fasta_path = '/public/fasta/' . $species_name . '.fa';
   $fasta = Storage::get($fasta_path);
   $test = fas_get($fasta);
   $test2 = collect($test);
 
-
-  # dd($test2);
-  $test2->each(function ($item, $key) {
-    echo $key;
-  });
-
   $test3 = SpeciesTaxId::find($id)->taps;
-  # dd($test3[0]->tap_id);
-  $test3->each(function ($item, $key) {
-    echo $item->tap_id;
-  });
+  $items_name = $test3->pluck('tap_id')->flip();
+  $intersect = $test2->intersectbyKeys($items_name);
+  #dd(collect($child_arr));
+  $test6 = [];
 
-  $intersect = $test2->intersect($test3);
-  $intersect->all();
-  dd($intersect);
+ $i = 0;
+ foreach ($intersect as $key => $value){
+  // $intersect->each(function ($item, $key) {
+    $intersect2[]['id'] = $key;
+    $intersect2[$i]['sequence'] = $value;
+    $i++;
+  };
 
-  echo($test3);
-  foreach ($test3 as $taps) {
-    echo $taps->tap_id . "<br>";
+
+      if ($request->ajax($id)) {
+        return DataTables::of($intersect2)
+          // return Datatables::of($intersect)
+                  ->addIndexColumn()
+                  // ->addColumn('action', function($row){
+                  //
+                  //        $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                  //
+                  //         return $btn;
+                  // })
+                  // ->rawColumns(['action'])
+                  ->make(true);
+      };
+
+  return view('news.index', ['tap' => $id]);
+}
+
+public function show_species($species_id, $tap_name, Request $request)
+{
+
+#https://www.biob.in/2017/09/extracting-multiple-fasta-sequences.html
+function get_seq($x) { // Get Sequence and Sequence Name
+ $fl = explode(PHP_EOL, $x);
+ $sh1 = trim(array_shift($fl));
+ $sh2 = explode(" ", $sh1);
+ $sh = $sh2[0];
+ if($sh == null) {
+  $sh = "UNKNOWN SEQUENCE";
+ }
+ $fl = array_filter($fl);
+ $seq = "";
+ foreach($fl as $str) {
+  $seq .= trim($str);
+ }
+ $seq = strtoupper($seq);
+ $seq = preg_replace("/[^ACDEFGHIKLMNPQRSTVWY]/i", "", $seq);
+ if ((count($fl) < 1) || (strlen($seq) == 0)) {
+  #print "Sequence is Empty!!";
+  #exit();
+  return array($sh, $seq);
+ } else {
+  return array($sh, $seq);
+ }
+}
+
+function fas_get($x) { // Read Multiple FASTA Sequences
+ $gtr = substr($x, 1);
+ $sqs = explode(">", $gtr);
+ if (count($sqs) > 1) {
+  foreach ($sqs as $sq) {
+   $spair = get_seq($sq);
+   $spairs[$spair[0]] = $spair[1];
+   // $spairs['id'][] = $spair[0];
+   // $spairs['sequence'][] = $spair[1];
   }
+  return $spairs;
+ } else {
+  $spair = get_seq($gtr);
+  return array($spair[0] => $spair[1]);
+ }
+}
 
+  $species_name = SpeciesTaxId::find($species_id)->code;
+  $species_full_name = SpeciesTaxId::find($species_id)->name;
+  $fasta_path = '/public/fasta/' . $species_name . '.fa';
+  $fasta = Storage::get($fasta_path);
+  $test = fas_get($fasta);
+  $test2 = collect($test);
 
-  #dd($intersect);
-  #dd($test3);
+  $test3 = SpeciesTaxId::find($species_id)->taps->where('tap_1', $tap_name);
+  $items_name = $test3->pluck('tap_id')->flip();
+  $intersect = $test2->intersectbyKeys($items_name);
+  
+  #dd(collect($child_arr));
+  $test6 = [];
 
-  #dd($test3);
-  #dd($test2);
+ $i = 0;
+ foreach ($intersect as $key => $value){
+  // $intersect->each(function ($item, $key) {
+    $intersect2[]['id'] = $key;
+    $intersect2[$i]['sequence'] = $value;
+    $intersect2[$i]['tap_1'] = Tap::where('tap_id', $key)->select('tap_1')->first()->tap_1;
+    $intersect2[$i]['tap_2'] = Tap::where('tap_id', $key)->select('tap_2')->first()->tap_2;
+    $i++;
+  };
+  // dd($intersect2);
 
-  # hier muss eine Schleife hin die die fa. nach den IDs der TAP durchsucht und diese zurück gibt um damit eine Liste herzustellen.
-  return view('taps.index', []);
+      if ($request->ajax($species_id)) {
+        return DataTables::of($intersect2)
+          // return Datatables::of($intersect)
+                  ->addIndexColumn()
+                  // ->addColumn('action', function($row){
+                  //
+                  //        $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                  //
+                  //         return $btn;
+                  // })
+                  // ->rawColumns(['action'])
+                  ->make(true);
+      };
+
+  return view('taps.species', ['species_id' => $species_id, 'tap_name' => $tap_name, 'species_full_name' => $species_full_name]);
 }
 
 /**
@@ -286,27 +336,4 @@ public function search(Request $request)
 
     return view('search.index', compact('searchResults'));
 }
-
-// search in fasta  https://stackoverflow.com/questions/3686177/php-to-search-within-txt-file-and-echo-the-whole-line
-// <?php
-// $searchthis = "mystring";
-// $matches = array();
-//
-// $handle = @fopen("path/to/inputfile.txt", "r");
-// if ($handle)
-// {
-//     while (!feof($handle))
-//     {
-//         $buffer = fgets($handle);
-//         if(strpos($buffer, $searchthis) !== FALSE)
-//             $matches[] = $buffer;
-//     }
-//     fclose($handle);
-// }
-//
-// //show results:
-// print_r($matches);
-//
-
-    //
 }

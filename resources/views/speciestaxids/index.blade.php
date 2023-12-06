@@ -37,7 +37,7 @@ Transcriptional regulation is carried out by transcription associated proteins (
   "checkbox" : {
     "keep_selected_style" : false
   },
-  "plugins" : ["contextmenu","wholerow", "checkbox","search"]
+  "plugins" : ["contextmenu","wholerow","search"]
   });
 
   var to = false;
@@ -49,10 +49,16 @@ Transcriptional regulation is carried out by transcription associated proteins (
     }, 250);
   });
 
-
     // 7 bind to events triggered on the tree
     $('#jstree').on("changed.jstree", function (e, data) {
       console.log(data.selected);
+      if(!isNaN(data.selected))
+      {
+         window.open('/species/' + data.selected, '_blank');
+         // location.href='/species/' + data.selected;
+      }else{
+         //do some thing if it's NOT a number
+      }
     });
     // $('#jstree').on("select_node.jstree", function (e, data) {
     //   alert("node_id: " + data.node.text);

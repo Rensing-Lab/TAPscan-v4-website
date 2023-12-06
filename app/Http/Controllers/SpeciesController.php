@@ -19,37 +19,15 @@ use Illuminate\Support\Facades\DB;
 
 class SpeciesController extends Controller
 {
-    // /**
-    //  * Display a listing of the resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    //  public function datatable(): View
-    //  {
-    //      $table = (new SpeciesTable())->setup();
-    //
-    //      return view('speciestaxids.table', compact('table'));
-    //  }
 
      public function index()
      {
-       // $species_tree = DB::table('species_tax_ids')
-       //               ->get();
        $species_tree = SpeciesTaxId::all();
        $species_kingdom = Kingdom::all();
        $species_clade = Clade::all();
        $species_supergroup = Supergroup::all();
        $species_order = Order::all();
        $species_family = Family::all();
-       // $species_kingdo = $species_tree->kingdoms()->get();
-                     // ->toJson();
-       // $concat = collect(['name','taxid']);
-       //  foreach ($species_tree as $species) {
-       //    $collection = $concat->combine([
-       //    $species->name,
-       //    $species->taxid
-       //    ]);
-       //  }
 
 // create loop to get every kingdom,order,family and write stuff
        $data2 = [];
@@ -91,44 +69,10 @@ class SpeciesController extends Controller
 
          foreach ($species_tree as $species)
           $data2[] = [
-                'id' => $species->code,
+                'id' => $species->id,
                 'parent' => $species->family()->value('family'),
-                'text' => $species->name,
+                'text' => $species->name
           ];
-
-
-
-
-        // foreach ($species_tree as $species)
-        //  $data2[] = [
-        //        'id' => $species->name,
-        //        'parent' => $species->order()->value('order'),
-        //        'text' => $species->name,
-        //  ];
-
-        // echo $species_tree->toJson();
-
-        // echo json_encode($data2);
-
-       // {
-       //   if (rand(0,2) == 1)
-       //   {
-       //   $data2[] = [
-       //       'id' => $species->id,
-       //       'parent' => $species_tree->random()->id,
-       //       'text' => $species->name,
-       //   ];
-       // } else {
-       //   $data2[] = [
-       //       'id' => $species->id,
-       //       'parent' => '#',
-       //       'text' => $species->name,
-       //   ];
-       // }
-       // }
-        // echo $species_tree->toJson();
-        // echo json_encode($data2);
-
 
        return view('speciestaxids.index', ['species_tree'=>json_encode($data2)]);
      }
@@ -176,24 +120,20 @@ class SpeciesController extends Controller
      * @param  \App\Models\SpeciesTaxId  $speciesTaxId
      * @return \Illuminate\Http\Response
      */
-    // public function show(SpeciesTaxId $speciesTaxId, $specie)
-    // {
-    //   $flight = $speciesTaxId::findOrFail($specie);
-    //   return $flight;
-    //     //
-    // }
 
     public function show(SpeciesTaxId $speciesTaxId, $specie)
     {
       $species = $speciesTaxId::findOrFail($specie);
-      // $taps = SpeciesTaxId::find($specie)->taps;
       $tap_count = SpeciesTaxId::find($specie)->taps->countBy('tap_1');
-      // dd($tap_count);
-      // $tap_count = DB::table('taps')
-      //               ->selectRaw('tap_1,count(*) as num')
-      //               ->groupBy('tap_1')
-      //               ->get();
-      return view('speciestaxids.show', ['tap_count' => $tap_count, 'species' => $species]);
+      return view('speciestaxids.show', ['tap_count' => $tap_count, 'species' => $species, 'id' => $specie]);
+        //
+    }
+
+    public function show_tap(SpeciesTaxId $speciesTaxId, $specie, $tap_name)
+    {
+      $species = $speciesTaxId::findOrFail($specie);
+      $tap_count = SpeciesTaxId::find($specie)->taps->countBy('tap_1');
+      return view('speciestaxids.show_tap', ['tap_count' => $tap_count, 'species' => $species, 'specie' => $specie]);
         //
     }
 
