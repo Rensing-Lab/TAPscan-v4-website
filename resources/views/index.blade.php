@@ -11,12 +11,13 @@
     <h1 class="display-6">TAPscan - Families</h1>
     <p class="lead">This is a list of all TAPs covered by the TAPscan web page. Clicking them will lead you to a list of species in which these TAP families occur. The number of proteins containing the respective TAP is written in brackets after its name.</p>
     <hr class="my-1">
-    <p>The colour code corresponds to TAP classes:
-Transcriptional regulation is carried out by transcription associated proteins (<span style="color:green">TAPs</span>), comprising <span style="color:green">transcription factors</span> 
+    <p>Transcriptional regulation is carried out by transcription associated proteins (<span style="color:green">TAPs</span>), comprising <span style="color:green">transcription factors</span> 
 (TFs, binding in sequence-specific manner to cis-regulatory elements to enhance or repress transcription), 
 <span style="color:green">transcriptional regulators</span>
  (TRs, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction or chromatin modification) and <span style="color:green">putative TAPs</span>
  (PTs), the role of which needs to be determined. </p>
+  <p>The colour of the TAP name corresponds to the TAP class: <span class="TF">TF</span>, <span class="TR">TR</span> and <span class="PT">PT</span>
+  </p>
   </div>
 
 </div>
@@ -24,9 +25,9 @@ Transcriptional regulation is carried out by transcription associated proteins (
 
 <style>
 
-.TF { color:#FFFF00; }
-.TR { color:#00FF00; }
-.PT { color:#00FF60; }
+.TF { color:#F5793A; }
+.TR { color:#A95AA1; }
+.PT { color:#3490dc; }
 
 </style>
 
