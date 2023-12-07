@@ -58,7 +58,12 @@
             <button type="button" class="btn btn-outline-danger">{{$rules->tap_2}}</button>
           @endif
       @endforeach
-    </div>
+      <br/><br/>
+      Download phylogenetic tree (Newick format):
+      <br/>
+      <a href="/storage/trees/quicktree_reducedAlignment_{{$id}}.tre" download><button type="button" class="btn btn-info">Quicktree</button></a>
+      <a href="/storage/trees/MAFFT_reducedAlignment_trim.fasta_{{$id}}.treefile" download><button type="button" class="btn btn-info">MAFFT</button></a>
+     </div>
   </div>
 
   {{-- @foreach ($tap_distribution as $distribution)
