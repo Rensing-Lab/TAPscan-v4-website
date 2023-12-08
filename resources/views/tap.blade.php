@@ -63,6 +63,11 @@
       <br/>
       <a href="/storage/trees/quicktree_reducedAlignment_{{$id}}.tre" download><button type="button" class="btn btn-info">Quicktree</button></a>
       <a href="/storage/trees/MAFFT_reducedAlignment_trim.fasta_{{$id}}.treefile" download><button type="button" class="btn btn-info">MAFFT</button></a>
+      <br/>
+      <details>
+        <summary>View Tree</summary>
+	   <img src = "/storage/trees/svgs/MAFFT_reducedAlignment_trim.fasta_{{$id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"/>
+        </details>
      </div>
   </div>
 
