@@ -16,7 +16,13 @@
 <span style="color:green">transcriptional regulators</span>
  (TRs, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction or chromatin modification) and <span style="color:green">putative TAPs</span>
  (PTs), the role of which needs to be determined. </p>
-  <p>The colour of the TAP name corresponds to the TAP class: <span class="TF">TF</span>, <span class="TR">TR</span> and <span class="PT">PT</span>
+  <p>The colour of the TAP name corresponds to the TAP class: 
+   <span style="background-color:#317b22; color: #ffffff; font-weight: bolder">
+     <span class="TF">TF</span>, <span class="TR">TR</span> and <span class="PT">PT</span>
+   </span>
+   <br/>
+   and shown behind the TAP name, together with the species count: 
+   <span class="badge badge-success badge-pill badge-tapcount"> TF | 42 </span>
   </p>
   </div>
 
@@ -29,19 +35,22 @@
 .TR { color:#fb9b00; }
 .PT { color:#fefd98; }
 .NA  { color:#ffffff; }
-.tapcell{
-  font-weight: bold;
+.taptext{ font-weight: bolder;}
+.tapcell{ min-height: 2rem;}
+.badge-tapcount {
+  background-color: #f9db6d;
+  color: #000000;
 }
 
 </style>
 
 <div class="container">
-  <div class="row row-cols-6">
+  <div class="row row-cols-4">
 @foreach ($tap_count as $tap)
       @if ($loop->index)
-        <span class="border rounded" id="stuff">
-         <div class="col justify-content-between align-items-center d-flex"><a class='tapcell {{ $tap->type ?? "NA" }}' href='/tap/{{ $tap->tap_1}}'> {{ $tap->tap_1}} </a>
-         <span class="badge badge-success badge-pill">{{ $tap->num}}</span>
+        <span class="border rounded tapcell" id="stuff">
+         <div class="col justify-content-between align-items-center d-flex"><a class='taptext {{ $tap->type ?? "NA" }}' href='/tap/{{ $tap->tap_1}}'> {{ $tap->tap_1}} </a>
+         <span class="badge badge-success badge-pill badge-tapcount">{{ $tap->type ?? "NA" }}  |  {{ str_pad($tap->num,4,'    ',STR_PAD_LEFT) }}</span>
          </div>
          </span>
       @endif
