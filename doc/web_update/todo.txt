@@ -1,0 +1,6 @@
+* Create New Schema and import old data into it
+* Create scripts for data importation
+* Create new webview
+* Search
+* Write Wiki
+* Go trough website and check how to extract all the information shown on website trough new schema and if its possible
