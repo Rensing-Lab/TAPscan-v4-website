@@ -15,7 +15,7 @@
        @endif
       <div class="card-body">
         <h5 class="card-title">{{$new->name}}</h5>
-        <p class="card-text">{{$new->content}}</p>
+        <p class="card-text">{{ Illuminate\Mail\Markdown::parse($new->content)}}</p>
       </div>
       <div class="card-footer text-muted">
         {{$new->created_at}}
