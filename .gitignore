@@ -14,3 +14,5 @@ yarn-error.log
 .env.backup
 *.swp
 _data/import-v3/TAPscan.sql
+TAPscan.sql
+*.zip
