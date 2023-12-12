@@ -25,9 +25,13 @@
 
 <style>
 
-.TF { color:#F5793A; }
-.TR { color:#A95AA1; }
-.PT { color:#3490dc; }
+.TF { color:#cdfecc; }
+.TR { color:#fb9b00; }
+.PT { color:#fefd98; }
+.NA  { color:#ffffff; }
+.tapcell{
+  font-weight: bold;
+}
 
 </style>
 
@@ -36,7 +40,7 @@
 @foreach ($tap_count as $tap)
       @if ($loop->index)
         <span class="border rounded" id="stuff">
-         <div class="col justify-content-between align-items-center d-flex"><a class='{{ $tap->type }}' href='/tap/{{ $tap->tap_1}}'> {{ $tap->tap_1}} </a>
+         <div class="col justify-content-between align-items-center d-flex"><a class='tapcell {{ $tap->type ?? "NA" }}' href='/tap/{{ $tap->tap_1}}'> {{ $tap->tap_1}} </a>
          <span class="badge badge-success badge-pill">{{ $tap->num}}</span>
          </div>
          </span>
