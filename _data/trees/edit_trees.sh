@@ -6,15 +6,21 @@
 # fasta files are named with this uniprot ID
 
 
-for i in ../fasta/*.fa
+for uniprot_code in $(cat *.tre* | grep "(*_" | cut -d "_" -f1 | cut -d "." -f2 | cut -d "(" -f2 | sort | uniq)
 do
   # parse the genome code from the fasta files
-  uniprot_code=$(basename $i)
-  uniprot_code=${uniprot_code%.fa}
+  #uniprot_code=$(basename $i)
+  #uniprot_code=${uniprot_code%.fa}
   echo $uniprot_code
 
   # get the corresponding NCBI_taxon name
   ncbi=$(curl -s https://omabrowser.org/api/genome/$uniprot_code/ | jq '.taxon_id')
-  echo $ncbi
+
+  # find and replace values in the newick trees based on this ID mapping
+  if [[ $ncbi != null ]]
+  then
+    echo $ncbi
+    sed -i "s/${uniprot_code}/${ncbi}.${uniprot_code}/" *.tre*
+  fi
 
 done
