@@ -61,8 +61,14 @@
       <br/><br/>
       Download phylogenetic tree (Newick format):
       <br/>
+      @if (Storage::disk('public')->exists("trees/quicktree_reducedAlignment_".$id.".tre"))
       <a href="/storage/trees/quicktree_reducedAlignment_{{$id}}.tre" download><button type="button" class="btn btn-info">NJ-tree</button></a>
+      @endif
+
+      @if (Storage::disk('public')->exists("trees/MAFFT_reducedAlignment_trim.fasta_".$id.".treefile"))
       <a href="/storage/trees/MAFFT_reducedAlignment_trim.fasta_{{$id}}.treefile" download><button type="button" class="btn btn-info">ML-tree</button></a>
+      @endif
+
       <br/>
       <details>
         <summary>View Tree</summary>
