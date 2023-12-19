@@ -48,14 +48,15 @@
   <div class="row row-cols-4">
    @foreach ($tap_count as $tap)   
      @php
-     $i = ($loop->index/4)%2;
+     $i = (($loop->index-1)/4)%2;
      @endphp
-
+     @if ($loop->index)
      <span class="border rounded tapcell @if($i==1) oddrow @else evenrow @endif" id="stuff">
        <div class="col justify-content-between align-items-center d-flex"><a class='taptext {{ $tap->type ?? "NA" }}' href='/tap/{{ $tap->tap_1}}'> {{ $tap->tap_1}} </a>
          <span class="badge badge-success badge-pill badge-tapcount">{{ $tap->type ?? "NA" }}  |  {{ str_pad($tap->num,4,'    ',STR_PAD_LEFT) }}</span>
        </div>
     </span>
+    @endif
   @endforeach
   </div>
 </div>
