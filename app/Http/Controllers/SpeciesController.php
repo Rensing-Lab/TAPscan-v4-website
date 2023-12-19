@@ -124,7 +124,7 @@ class SpeciesController extends Controller
     public function show(SpeciesTaxId $speciesTaxId, $specie)
     {
       $species = $speciesTaxId::findOrFail($specie);
-      $tap_count = SpeciesTaxId::find($specie)->taps->countBy('tap_1');
+      $tap_count = SpeciesTaxId::find($specie)->taps->sortBy('tap_1')->countBy('tap_1');
       return view('speciestaxids.show', ['tap_count' => $tap_count, 'species' => $species, 'id' => $specie]);
         //
     }
