@@ -28,7 +28,7 @@
 
     <p>
       This table lists all the TAPs found for species {{$species->name}}.
-      Click on a TAP to view more details, including sequence.
+      Click on a TAP family to view more details, including sequences.
     </p>
 
     <p>The colour of the TAP name corresponds to the TAP class:
