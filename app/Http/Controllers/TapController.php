@@ -43,6 +43,7 @@ class TapController extends Controller
       $join->on('tap_infos.tap', '=', 'tap_count.tap_1');
   })
   ->select('tap_1','num', 'type')
+  ->orderBy('tap_1')
   ->get();
 
 
