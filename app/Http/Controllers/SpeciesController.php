@@ -8,6 +8,8 @@ use App\Models\Clade;
 use App\Models\Supergroup;
 use App\Models\Order;
 use App\Models\Family;
+use App\Models\Tap;
+use App\Models\TapInfo;
 use Illuminate\Http\Request;
 use \Illuminate\View\View;
 use \App\Tables\SpeciesTable;
@@ -125,7 +127,9 @@ class SpeciesController extends Controller
     {
       $species = $speciesTaxId::findOrFail($specie);
       $tap_count = SpeciesTaxId::find($specie)->taps->sortBy('tap_1')->countBy('tap_1');
-      return view('speciestaxids.show', ['tap_count' => $tap_count, 'species' => $species, 'id' => $specie]);
+      $tap_info = DB::table('tap_infos')
+	          ->get();
+      return view('speciestaxids.show', ['tap_count' => $tap_count, 'species' => $species, 'id' => $specie, 'tap_info' => $tap_info]);
         //
     }
 
