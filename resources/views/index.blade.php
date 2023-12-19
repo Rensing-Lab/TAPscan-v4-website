@@ -21,7 +21,7 @@
      <span class="TF">TF</span>, <span class="TR">TR</span> and <span class="PT">PT</span>
    </span>
    <br/>
-   and shown behind the TAP name, together with the species count: 
+   and is shown behind the TAP name, together with the species count: 
    <span class="badge badge-success badge-pill badge-tapcount"> TF | 42 </span>
   </p>
   </div>
