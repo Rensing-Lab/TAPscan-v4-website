@@ -53,7 +53,7 @@
       console.log(data.selected);
       if(!isNaN(data.selected))
       {
-         window.open('/species/' + data.selected, '_blank');
+         window.open('/species/' + data.selected, '_self');
          // location.href='/species/' + data.selected;
       }else{
          //do some thing if it's NOT a number
