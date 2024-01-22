@@ -243,9 +243,9 @@
                     <div class="text-center text-sm text-gray-500 sm:text-left">
                         <div class="flex items-center">
 
-                        <a href="https://www.plantco.de/impressum.php">Impressum</a>
-                &#x2022
-                        <a href="https://www.plantco.de/Datenschutz.php">Datenschutzerklärung</a>
+                        <a href="https://plantcode.cup.uni-freiburg.de/tapscan/impressum-plain.php">Impressum & Datenschutzerklärung</a>
+                
+                        <!--<a href="https://www.plantco.de/Datenschutz.php">Datenschutzerklärung</a>-->
                         </div>
                     </div>
 
