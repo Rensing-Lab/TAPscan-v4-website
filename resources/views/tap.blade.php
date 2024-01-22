@@ -102,16 +102,18 @@
   @if (Storage::disk('public')->exists("trees/svgs/quicktree_reducedAlignment_".$id.".tre.svg"))
   <details>
     <summary>View NJ Tree</summary>
-      <img src = "/storage/trees/svgs/quicktree_reducedAlignment_{{$id}}.tre.svg" alt="Phylogenetic tree image for {{$id}}"/>
+      <object data="/storage/trees/svgs/quicktree_reducedAlignment_{{$id}}.tre.svg" alt="Phylogenetic tree image for {{$id}}"/>
   </details>
   @endif
   
   @if (Storage::disk('public')->exists("trees/svgs/MAFFT_reducedAlignment_trim.fasta_".$id.".treefile.svg"))
   <details>
     <summary>View ML Tree</summary>
-      <img src = "/storage/trees/svgs/MAFFT_reducedAlignment_trim.fasta_{{$id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"/>
+      <object data="/storage/trees/svgs/MAFFT_reducedAlignment_trim.fasta_{{$id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"/>
   </details>
   @endif
+
+
 
 </div>
 
