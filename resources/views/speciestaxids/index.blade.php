@@ -6,8 +6,8 @@
 
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-    <h1 class="display-6">TAPscan - Species</h1>
-    <p class="lead">This is a list of all species covered by the TAPscan web page. Clicking them will lead you to table of TAPs that are detected in the species. The number of proteins containing the respective TAP is written in brackets after its name.</p>
+    <h1 class="display-6">TAPscan - Species View</h1>
+    <p class="lead">This is a list of all species covered by the TAPscan web page V4. Clicking them will lead you to table of TAPs that are detected in the species. The number of proteins containing the respective TAP is written in brackets after its name.</p>
     <hr class="my-1">
     <p>Transcriptional regulation is carried out by transcription associated proteins (TAPs), comprising transcription factors (TFs, binding in sequence-specific manner to cis-regulatory elements to enhance or repress transcription), transcriptional regulators (TRs, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction or chromatin modification) and putative TAPs (PTs), the role of which needs to be determined. </p>
   </div>
