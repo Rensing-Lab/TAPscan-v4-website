@@ -36,7 +36,7 @@
       {{-- <h5 class="card-title">fdsafsafa</h5> --}}
     </div>
     <div class="card-footer text-muted text-center">
-      Last updated 2017
+      Last updated 2024
     </div>
   </div>
   <br>
