@@ -25,9 +25,9 @@
             <br><br>
 
             Transcriptional regulation is carried out by transcription associated proteins (<b>TAP</b>s), comprising transcription factors
-            (<b class="green-light">TF</b>s, binding in sequence-specific manner to cis-regulatory elements to enhance or repress transcription), transcriptional
-            regulators (<b style="color:#e36c09"; class="yellow-light">TR</b>s, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction
-            or chromatin modification) and putative TAPs (<b style="color:#ffc000"; class="yellow-light">PT</b>s), the role of which needs to be determined.
+            (<b>TF</b>s, binding in sequence-specific manner to cis-regulatory elements to enhance or repress transcription), transcriptional
+            regulators (<b>TR</b>s, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction
+            or chromatin modification) and putative TAPs (<b>PT</b>s), the role of which needs to be determined.
 
             <br><br>
             Protein names (e.g. in download and phylogenetic trees) are extended by a (typically five) letter code abbreviating the species,
