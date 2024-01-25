@@ -1,5 +1,8 @@
-Files Information :
+File not for upload :
 - `tap_infos_example.csv`: Example file shared by Hermann Finke
+- `descriptions_website_v4_romy.docx`: original file shared by Romy with new/updated TAPs for v4
+
+Files for upload:
 - `tap_infos_export_from_v3.csv`: Tap info extracted from v3 database
 - `tap_infos_new_v4_romy.csv`: Romy supplied info for taps new in v4
 
