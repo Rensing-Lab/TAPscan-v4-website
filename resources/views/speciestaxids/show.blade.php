@@ -18,7 +18,7 @@
 
 <div class="card">
   <div class="card-header">
-    TaxID: {{ $species->taxid }}
+    TaxID: <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ $species->taxid }}">{{ $species->taxid }} </a>
   </div>
 
   <div class="card-body">
