@@ -69,6 +69,7 @@ $circle_viz = DB::table('taps')
       $tap_info = TapController::tap_info($id);
       $tap_count = TapController::tap_count_proteins($id);
       $tap_array = $tap_info[0]->reference;
+      $domain_info = TapController::domain_info();
 
       $tap_show = DB::table('taps')
                   ->where('tap_1','=', $id)
@@ -79,7 +80,8 @@ $circle_viz = DB::table('taps')
                           'id' => $id,
                           'tap_species_number' => $tap_species_number->count(),
                           'tap_distribution' => $tap_distribution,
-                          'tap_info' => $tap_info,
+			  'tap_info' => $tap_info,
+			  'domain_info' => $domain_info,
                           'tap_count' => $tap_count]);
 }
 
@@ -106,6 +108,13 @@ public function tap_info($id)
 {
   $tap_info = DB::table('tap_infos')->where('tap', '=', $id)->get();
       return $tap_info;
+}
+
+public function domain_info()
+{
+	$domain_info = DB::table('Domain')
+		->get();	
+  return $domain_info;
 }
 
 public function tap_species_number($id)

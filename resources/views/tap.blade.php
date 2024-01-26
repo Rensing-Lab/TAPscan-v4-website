@@ -50,14 +50,23 @@
     <div class="col-6">
       Domain rules:
       @foreach ($tap_rules as $rules)
-          @if ($rules->rule === "should")
-            <button type="button" class="btn btn-outline-success">{{$rules->tap_2}}</button>
+        @foreach ($domain_info as $domain)
+          
+	  @if ($domain->name === $rules->tap_2)
+	  <?php $pfam = str_replace('http://pfam.xfam.org/family/','',$domain->pfam); ?>
           @endif
-          @if ($rules->rule === "should not")
-            <button type="button" class="btn btn-outline-danger">{{$rules->tap_2}}</button>
-          @endif
+	@endforeach	  
+ 
+        <a @if($pfam)target="_blank" href="https://www.ebi.ac.uk/interpro/entry/pfam/{{ $pfam }}"@else @endif>
+        @if ($rules->rule === "should")
+           <button type="button" @if($pfam)class="btn btn-success"@else class="btn btn-outline-success" @endif>{{$rules->tap_2}}</button>
+        @endif
+        @if ($rules->rule === "should not")
+            <button type="button" @if($pfam)class="btn btn-danger" @else class="btn btn-outline-danger"@endif>{{$rules->tap_2}}</button>
+	@endif
+	</a>
       @endforeach
-     
+          
       <br/><br/>
       TAP distribution:
       <br/>
@@ -112,8 +121,6 @@
       <object data="/storage/trees/svgs/MAFFT_reducedAlignment_trim.fasta_{{$id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"/>
   </details>
   @endif
-
-
 
 </div>
 
