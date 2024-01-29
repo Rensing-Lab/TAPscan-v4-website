@@ -13,11 +13,11 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-6">TAP Family: {{$id}}</h1>
-        <p class="lead">{{ $tap_info[0]->text }}</p>
+        <p class="lead">{{ $tap_info[0]->text ?? "Description missing"}}</p>
         <hr class="my-1">
         <p>References:<br>
 
-        {!! $tap_info[0]->reference !!}
+        {!! $tap_info[0]->reference ?? "References missing" !!}
 
       </div>
     </div>
@@ -33,7 +33,7 @@
           </tr>
           <tr>
             <td>Class:</td>
-            <td>{{ $tap_info[0]->type }}</td>
+            <td>{{ $tap_info[0]->type ?? "Unknown" }}</td>
           </tr>
           <tr>
             <td>Number of species containing the TAP:</td>
@@ -51,7 +51,7 @@
       Domain rules:
       @foreach ($tap_rules as $rules)
         @foreach ($domain_info as $domain)
-          
+          <?php $pfam='' ?>        
 	  @if ($domain->name === $rules->tap_2)
 	  <?php $pfam = str_replace('http://pfam.xfam.org/family/','',$domain->pfam); ?>
           @endif

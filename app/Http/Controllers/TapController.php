@@ -68,7 +68,7 @@ $circle_viz = DB::table('taps')
       $tap_distribution = TapController::tap_distribution($id);
       $tap_info = TapController::tap_info($id);
       $tap_count = TapController::tap_count_proteins($id);
-      $tap_array = $tap_info[0]->reference;
+      $tap_array = $tap_info[0]->reference ?? null;
       $domain_info = TapController::domain_info();
 
       $tap_show = DB::table('taps')
