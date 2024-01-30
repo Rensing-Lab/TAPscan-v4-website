@@ -49,14 +49,15 @@
 
     <div class="col-6">
       Domain rules:
+      <?php $pfam=null ?>
       @foreach ($tap_rules as $rules)
         @foreach ($domain_info as $domain)
-          <?php $pfam='' ?>        
+          <?php $pfam=null ?>
 	  @if ($domain->name === $rules->tap_2)
 	  <?php $pfam = str_replace('http://pfam.xfam.org/family/','',$domain->pfam); ?>
           @endif
-	@endforeach	  
- 
+	@endforeach
+
         <a @if($pfam)target="_blank" href="https://www.ebi.ac.uk/interpro/entry/pfam/{{ $pfam }}"@else @endif>
         @if ($rules->rule === "should")
            <button type="button" @if($pfam)class="btn btn-success"@else class="btn btn-outline-success" @endif>{{$rules->tap_2}}</button>
@@ -66,7 +67,7 @@
 	@endif
 	</a>
       @endforeach
-          
+
       <br/><br/>
       TAP distribution:
       <br/>
@@ -114,7 +115,7 @@
       <object data="/storage/trees/svgs/quicktree_reducedAlignment_{{$id}}.tre.svg" alt="Phylogenetic tree image for {{$id}}"/>
   </details>
   @endif
-  
+
   @if (Storage::disk('public')->exists("trees/svgs/MAFFT_reducedAlignment_trim.fasta_".$id.".treefile.svg"))
   <details>
     <summary>View ML Tree</summary>
