@@ -1336,7 +1336,7 @@ class Connection
      */
     protected function _getNestedTransactionSavePointName()
     {
-        return 'DOCTRINE2_SAVEPOINT_' . $this->transactionNestingLevel;
+        return 'DOCTRINE_' . $this->transactionNestingLevel;
     }
 
     /**
@@ -1794,7 +1794,7 @@ class Connection
                             'doctrine/dbal',
                             'https://github.com/doctrine/dbal/pull/5550',
                             'Using NULL as prepared statement parameter type is deprecated.'
-                                . 'Omit or use Parameter::STRING instead',
+                                . 'Omit or use ParameterType::STRING instead',
                         );
                     }
 
@@ -1817,7 +1817,7 @@ class Connection
                             'doctrine/dbal',
                             'https://github.com/doctrine/dbal/pull/5550',
                             'Using NULL as prepared statement parameter type is deprecated.'
-                                . 'Omit or use Parameter::STRING instead',
+                                . 'Omit or use ParameterType::STRING instead',
                         );
                     }
 
