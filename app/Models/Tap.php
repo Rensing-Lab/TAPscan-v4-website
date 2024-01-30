@@ -14,7 +14,7 @@ class Tap extends Model
 
     public function speciesTaxId()
     {
-      return $this->belongsTo(SpeciesTaxId::class, 'code', 'code_id');
+      return $this->belongsTo(SpeciesTaxId::class, 'lettercode', 'code_id');
     }
 
     public function sequenceId()

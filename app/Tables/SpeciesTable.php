@@ -41,10 +41,10 @@ class SpeciesTable extends AbstractTable
      */
     protected function columns(Table $table): void
     {
-        $table->column('code')->sortable()->searchable()->title('Code');
+        $table->column('lettercode')->sortable()->searchable()->title('5 Letter Code');
         $table->column('name')->sortable()->searchable()->title('Species Name');
         $table->column('taxid')->sortable()->searchable()->title('TaxID');
-        // $table->column('updated_at')->dateTimeFormat('d/m/Y H:i')->sortable(true, 'desc');
+        //$table->column('updated_at')->dateTimeFormat('d/m/Y H:i')->sortable(true, 'desc');
     }
 
     /**

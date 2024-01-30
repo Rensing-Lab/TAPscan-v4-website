@@ -113,7 +113,7 @@ public function tap_info($id)
 public function domain_info()
 {
 	$domain_info = DB::table('Domain')
-		->get();	
+		->get();
   return $domain_info;
 }
 
@@ -202,7 +202,7 @@ function fas_get($x) { // Read Multiple FASTA Sequences
  }
 }
 
-  $species_name = SpeciesTaxId::find($id)->code;
+  $species_name = SpeciesTaxId::find($id)->lettercode;
   $fasta_path = '/public/fasta/' . $species_name . '.fa';
   $fasta = Storage::get($fasta_path);
   $test = fas_get($fasta);
@@ -285,7 +285,7 @@ function fas_get($x) { // Read Multiple FASTA Sequences
  }
 }
 
-  $species_name = SpeciesTaxId::find($species_id)->code;
+  $species_name = SpeciesTaxId::find($species_id)->lettercode;
   $species_full_name = SpeciesTaxId::find($species_id)->name;
   $fasta_path = '/public/fasta/' . $species_name . '.fa';
   $fasta = Storage::get($fasta_path);
@@ -295,7 +295,7 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   $test3 = SpeciesTaxId::find($species_id)->taps->where('tap_1', $tap_name);
   $items_name = $test3->pluck('tap_id')->flip();
   $intersect = $test2->intersectbyKeys($items_name);
-  
+
   #dd(collect($child_arr));
   $test6 = [];
 

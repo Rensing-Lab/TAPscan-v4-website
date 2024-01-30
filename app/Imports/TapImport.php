@@ -34,7 +34,7 @@ class TapImport implements ToCollection,WithCustomCsvSettings,WithBatchInserts
             'count'     => $row[3],
             'tap_3'     => $row[4],
             // 'code_id'     => SpeciesTaxId::whereRaw('SUBSTRING_INDEX(code, "_",  1) = ?', [$row[5]])->first()->id ?? NULL,
-            'code_id'     => SpeciesTaxId::where('code', strstr($row[0], "_", true))->first()->id ?? NULL,
+            'code_id'     => SpeciesTaxId::where('lettercode', strstr($row[0], "_", true))->first()->id ?? NULL,
           ]
         );
       }
