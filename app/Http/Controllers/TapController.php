@@ -112,7 +112,7 @@ public function tap_info($id)
 
 public function domain_info()
 {
-	$domain_info = DB::table('Domain')
+	$domain_info = DB::table('domain')
 		->get();
   return $domain_info;
 }
