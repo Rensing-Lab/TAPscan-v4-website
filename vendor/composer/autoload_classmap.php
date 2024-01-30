@@ -70,6 +70,7 @@ return array(
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Tables\\NewsTable' => $baseDir . '/app/Tables/NewsTable.php',
     'App\\Tables\\SpeciesTable' => $baseDir . '/app/Tables/SpeciesTable.php',
+    'App\\Tables\\TapInfoTable' => $baseDir . '/app/Tables/TapInfoTable.php',
     'App\\Tables\\TapRulesTable' => $baseDir . '/app/Tables/TapRulesTable.php',
     'App\\Tables\\TapTable' => $baseDir . '/app/Tables/TapTable.php',
     'App\\View\\Components\\AppLayout' => $baseDir . '/app/View/Components/AppLayout.php',

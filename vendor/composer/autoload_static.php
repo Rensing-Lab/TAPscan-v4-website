@@ -734,6 +734,7 @@ class ComposerStaticInit6b61051ad2c4ef4e37c234e6f79831d3
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Tables\\NewsTable' => __DIR__ . '/../..' . '/app/Tables/NewsTable.php',
         'App\\Tables\\SpeciesTable' => __DIR__ . '/../..' . '/app/Tables/SpeciesTable.php',
+        'App\\Tables\\TapInfoTable' => __DIR__ . '/../..' . '/app/Tables/TapInfoTable.php',
         'App\\Tables\\TapRulesTable' => __DIR__ . '/../..' . '/app/Tables/TapRulesTable.php',
         'App\\Tables\\TapTable' => __DIR__ . '/../..' . '/app/Tables/TapTable.php',
         'App\\View\\Components\\AppLayout' => __DIR__ . '/../..' . '/app/View/Components/AppLayout.php',
