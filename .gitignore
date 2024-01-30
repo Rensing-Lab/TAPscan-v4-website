@@ -2,6 +2,7 @@ node_modules/
 public/hot/
 public/storage/
 storage/*.key
+storage/
 mysql-dump/
 meilisearch/
 .phpunit.result.cache
@@ -16,3 +17,4 @@ yarn-error.log
 _data/import-v3/TAPscan.sql
 TAPscan.sql
 *.zip
+
