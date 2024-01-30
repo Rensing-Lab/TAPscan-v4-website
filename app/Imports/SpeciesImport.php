@@ -77,12 +77,12 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
 
         SpeciesTaxId::updateOrCreate(
           [
-            'taxid'    => $row[7],
+            'lettercode'    => $row[0],
           ],
           [
             'name'     => $row[6],
             'taxid'     => $row[7],
-            'code'     => $row[0],
+            'lettercode'     => $row[0],
             'kingdom_id'     =>  Kingdom::where('kingdom',$row[1])->first()->id ?? NULL,
             'clade_id'     =>  Clade::where('clade',$row[2])->first()->id ?? NULL,
             'supergroup_id' => Supergroup::where('supergroup',$row[3])->first()->id ?? NULL,
