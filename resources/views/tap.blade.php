@@ -17,7 +17,14 @@
         <hr class="my-1">
         <p>References:<br>
 
-        {!! $tap_info[0]->reference ?? "References missing" !!}
+        @isset($tap_info[0])
+        @if ($tap_info[0]->reference != "")
+        @foreach(explode(',"', $tap_info[0]->reference) as $reference)
+          <p>{!! Markdown::parse(preg_replace('/(http[\w\.\-\/:_]*)\"?$/', '[\1](\1)', $reference)) !!} </p>
+        @endforeach
+        @endif
+        @endisset
+
 
       </div>
     </div>
