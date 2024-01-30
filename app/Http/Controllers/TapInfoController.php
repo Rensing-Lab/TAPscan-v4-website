@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use \Illuminate\View\View;
 use \App\Tables\TapTable;
+use \App\Tables\TapInfoTable;
 use Illuminate\Support\Facades\Storage;
 use App\Models\SpeciesTaxId;
 use App\Models\TapRules;
@@ -22,23 +23,22 @@ class TapInfoController extends Controller
 
   public function import(Request $request)
 {
-    Excel::import(new TapInfoImport(), $request->file('file'));return redirect()->route('tap.index')
+    Excel::import(new TapInfoImport(), $request->file('file'));return redirect()->route('tapinfo.table')
         ->with('success', 'Products has been imported');
 }
 
 
 public function table(): View
 {
-    $table = (new TapTable())->setup();
+    $table = (new TapInfoTable())->setup();
 
-    return view('taps.table', compact('table'));
+    return view('tapinfo.table', compact('table'));
 }
 
 public function index()
 {
-  return view('taps.index');
+  return view('tapinfo.index');
 }
-
 
 
 

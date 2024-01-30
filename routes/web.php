@@ -64,6 +64,8 @@ Route::get('/news/table', [NewsController::class, 'table'])->middleware(['auth']
 Route::get('/species/table', [SpeciesController::class, 'table'])->middleware(['auth'])->name('species.table');
 Route::get('/taps/table', [TapController::class, 'table'])->middleware(['auth'])->name('taps.table');
 Route::get('/rules/table', [TapRulesController::class, 'table'])->middleware(['auth'])->name('rules.table');
+Route::get('/tapinfo/table', [TapInfoController::class, 'table'])->middleware(['auth'])->name('tapinfo.table');
+
 // Route::get('/rules', [TapRulesController::class, 'index'])->middleware(['auth'])->name('rulestable.index'); //auch beides in ressource
 // Route::get('/taps', [TapController::class, 'index'])->middleware(['auth'])->name('taptable.index'); // dies auch
 
