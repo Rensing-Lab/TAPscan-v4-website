@@ -14,7 +14,7 @@ class UpdateSpeciesTaxIdsCode extends Migration
     public function up()
     {
       Schema::table('species_tax_ids', function (Blueprint $table) {
-          $table->string('code')->unique();
+          $table->string('lettercode')->unique();
       });
     }
 
@@ -25,6 +25,6 @@ class UpdateSpeciesTaxIdsCode extends Migration
      */
     public function down()
     {
-        Schema::dropColumn('code');
+        Schema::dropColumn('lettercode');
     }
 }
