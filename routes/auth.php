@@ -14,11 +14,11 @@ use Illuminate\Support\Facades\Route;
 
 // check if one user exists, do not allow registration after that
 
-if (User::exists()) {
-    $mware = 'auth';
-} else {
-    $mware = 'guest';
-}
+//if (User::exists()) {
+//    $mware = 'auth';
+//} else {
+//    $mware = 'guest';
+//}
 
 
 Route::get('/register', [RegisteredUserController::class, 'create'])
