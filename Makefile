@@ -9,7 +9,6 @@ configure:
 	./vendor/bin/sail npm install
 	./vendor/bin/sail npm run dev
 	./vendor/bin/sail down
-	chmod -R a+rwx storage/framework/views
 
 run:
 	docker-compose up
