@@ -52,6 +52,7 @@
                   <a class="dropdown-item {{ (request()->is('taps')) ? 'active' : '' }}" href="/taps/table">TAPs</a>
                   <a class="dropdown-item {{ (request()->is('rules')) ? 'active' : '' }}" href="/rules/table">TAP Rules</a>
                   <a class="dropdown-item {{ (request()->is('species/table')) ? 'active' : '' }}" href="/species/table">Species</a>
+                  <a class="dropdown-item {{ (request()->is('tapinfo/table')) ? 'active' : '' }}" href="/tapinfo/table">Tap Info</a>
                   <a class="dropdown-item {{ (request()->is('news/table')) ? 'active' : '' }}" href="/news/table">News</a>
                 </div>
               </li>
@@ -244,7 +245,7 @@
                         <div class="flex items-center">
 
                         <a href="https://plantcode.cup.uni-freiburg.de/tapscan/impressum-plain.php">Impressum & Datenschutzerklärung</a>
-                
+
                         <!--<a href="https://www.plantco.de/Datenschutz.php">Datenschutzerklärung</a>-->
                         </div>
                     </div>
