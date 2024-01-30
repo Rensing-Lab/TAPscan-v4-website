@@ -24,7 +24,7 @@ class TapController extends Controller
   public function import(Request $request)
 {
     set_time_limit(300);
-    Excel::import(new TapImport, $request->file('file'));return redirect()->route('tap.index')
+    Excel::import(new TapImport, $request->file('file'));return redirect()->route('taps.table')
         ->with('success', 'Products has been imported');
 }
   public function export()

@@ -88,7 +88,7 @@ class SpeciesController extends Controller
 
      public function import(Request $request)
    {
-       Excel::import(new SpeciesImport(), $request->file('file'));return redirect()->route('tap.index')
+       Excel::import(new SpeciesImport(), $request->file('file'));return redirect()->route('species.table')
            ->with('success', 'Products has been imported');
    }public function export()
    {

@@ -16,7 +16,7 @@ class TapRulesController extends Controller
 
   public function import(Request $request)
 {
-    Excel::import(new TapRulesImport(), $request->file('file'));return redirect()->route('tap.index')
+    Excel::import(new TapRulesImport(), $request->file('file'));return redirect()->route('rules.table')
         ->with('success', 'Products has been imported');
 }
 public function export()
