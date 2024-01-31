@@ -1,13 +1,13 @@
 # For more information: https://laravel.com/docs/sail
 version: '3'
 services:
-    laravel.test:
+    laravel.ananas:
         build:
-            context: ./vendor/laravel/sail/runtimes/8.0
+            context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
-        image: sail-8.0/app
+        image: sail-8.2/app
         ports:
              - '8000:80'
         environment:
@@ -19,9 +19,9 @@ services:
         networks:
             - sail
         depends_on:
-            - mysql
-    mysql:
-        image: 'mysql:8.0'
+            - mysql.ananas
+    mysql.ananas:
+        image: mysql:8.0
         ports:
             # - '${FORWARD_DB_PORT:-3306}:3306'
             - '3307:3306'
