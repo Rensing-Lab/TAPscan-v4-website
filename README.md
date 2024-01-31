@@ -5,11 +5,13 @@ This repository contains the source code for the TAPscan v4 website: [tapscan.pl
 
 ## First time setup
 
+0. Clone this GitHub repo
+
 1. Configure settings:
 
 ```
-cp env.example .env
-# fill in the values for password
+cp env.example .env  #create a copy of the example env file
+# edit .env file as needed
 ```
 
 2. Apply configuration:
@@ -26,8 +28,15 @@ This will take a few minutes, when everything is ready, there
 
 4. View  TAPscan application
    - By default the application will run at `http://0.0.0.0:8000`
-   -
 
+
+### Troubleshooting
+
+You may need to update the permissions of the storage folder
+
+```
+chmod -R a+rwx public storage
+```
 
 
 
@@ -51,7 +60,23 @@ To serve the TAPscan website you need a bit of configuration of a webserver such
 Below is an example nginx configuration:
 
 ```
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
 
+  root /home/tapscan/TAPscan-v4-website;
+
+  server_name tapscan.plantcode.cup.uni-freiburg.de;
+
+  location / {
+    proxy_pass http://0.0.0.0:8000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
 ```
 
 ## Preparing data for upload
