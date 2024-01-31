@@ -9,6 +9,7 @@ configure:
 	./vendor/bin/sail npm install
 	./vendor/bin/sail npm run dev
 	./vendor/bin/sail down
+	echo "configuration complete"
 
 run:
 	docker-compose up
