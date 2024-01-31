@@ -71,7 +71,7 @@ class SpeciesController extends Controller
 
          foreach ($species_tree as $species)
           $data2[] = [
-                'id' => 'species_'.$species->id,
+                'id' => $species->id,
                 'parent' => 'family_'.$species->family()->value('family'),
                 'text' => $species->name
           ];
