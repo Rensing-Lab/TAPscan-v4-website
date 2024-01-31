@@ -36,43 +36,43 @@ class SpeciesController extends Controller
 
        foreach ($species_kingdom as $kingdom)
         $data2[] = [
-              'id' => $kingdom->kingdom,
+              'id' => 'kingdom_'.$kingdom->kingdom,
               'parent' => '#',
               'text' => $kingdom->kingdom,
         ];
 
         foreach ($species_clade as $clade)
          $data2[] = [
-               'id' => $clade->clade,
-               'parent' => $clade->kingdom()->value('kingdom'),
+               'id' => 'clade_'.$clade->clade,
+               'parent' => 'kingdom_'.$clade->kingdom()->value('kingdom'),
                'text' => $clade->clade,
          ];
 
          foreach ($species_supergroup as $supergroup)
           $data2[] = [
-                'id' => $supergroup->supergroup,
-                'parent' => $supergroup->clade()->value('clade'),
+                'id' => 'supergroup_'.$supergroup->supergroup,
+                'parent' => 'clade_'.$supergroup->clade()->value('clade'),
                 'text' => $supergroup->supergroup,
           ];
 
           foreach ($species_order as $order)
            $data2[] = [
-                 'id' => $order->order,
-                 'parent' => $order->supergroup()->value('supergroup'),
+                 'id' => 'order_'.$order->order,
+                 'parent' => 'supergroup_'.$order->supergroup()->value('supergroup'),
                  'text' => $order->order,
            ];
 
            foreach ($species_family as $family)
             $data2[] = [
-                  'id' => $family->family,
-                  'parent' => $family->order()->value('order'),
+                  'id' => 'family_'.$family->family,
+                  'parent' => 'order_'.$family->order()->value('order'),
                   'text' => $family->family,
             ];
 
          foreach ($species_tree as $species)
           $data2[] = [
-                'id' => $species->id,
-                'parent' => $species->family()->value('family'),
+                'id' => 'species_'.$species->id,
+                'parent' => 'family_'.$species->family()->value('family'),
                 'text' => $species->name
           ];
 
