@@ -1,6 +1,7 @@
+first-run:
+	./vendor/bin/sail up
+
 configure:
-	./vendor/bin/sail up -d
-	sleep 120
 	./vendor/bin/sail artisan config:cache
 	./vendor/bin/sail artisan key:generate
 	./vendor/bin/sail artisan migrate:install
@@ -16,3 +17,5 @@ stop:
 	docker-compose down
 restart:
 	docker-compose restart
+cleanup:
+	./vendor/bin/sail down --rmi all -v
