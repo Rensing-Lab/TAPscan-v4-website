@@ -17,5 +17,6 @@ stop:
 	docker-compose down
 restart:
 	docker-compose restart
-cleanup:
+
+delete: # use with care, will wipe the docker images and volumes, mainly useful for dev purposes
 	./vendor/bin/sail down --rmi all -v
