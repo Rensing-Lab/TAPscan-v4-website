@@ -152,7 +152,7 @@ public function index()
 
 public function initialization()
 {
-$download_buttons = ["species","rules","tap","tapinfo"];
+$download_buttons = ["species","rules","tap","tapinfo","domains"];
 
 return view('taps.data-upload', ["download_buttons" => $download_buttons]);
 }

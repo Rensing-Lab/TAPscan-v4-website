@@ -7,7 +7,7 @@ use App\Http\Controllers\TapRulesController;
 use App\Http\Controllers\TapController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\TapInfoController;
-
+use App\Http\Controllers\DomainController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,6 +58,8 @@ Route::get('tap/export', [TapController::class, 'export'])->middleware(['auth'])
 
 Route::post('tapinfo/import', [TapInfoController::class, 'import'])->middleware(['auth'])->name('tapinfo.import');
 
+Route::post('domains/import', [DomainController::class, 'import'])->middleware(['auth'])->name('domains.import');
+
 Route::get('/tap/{id}', [TapController::class, 'tap_show'])->where('id', '.*'); // ab damit in den resource controller
 
 Route::get('/news/table', [NewsController::class, 'table'])->middleware(['auth'])->name('news.table');
@@ -65,6 +67,7 @@ Route::get('/species/table', [SpeciesController::class, 'table'])->middleware(['
 Route::get('/taps/table', [TapController::class, 'table'])->middleware(['auth'])->name('taps.table');
 Route::get('/rules/table', [TapRulesController::class, 'table'])->middleware(['auth'])->name('rules.table');
 Route::get('/tapinfo/table', [TapInfoController::class, 'table'])->middleware(['auth'])->name('tapinfo.table');
+Route::get('/domain/table', [DomainController::class, 'table'])->middleware(['auth'])->name('domain.table');
 
 // Route::get('/rules', [TapRulesController::class, 'index'])->middleware(['auth'])->name('rulestable.index'); //auch beides in ressource
 // Route::get('/taps', [TapController::class, 'index'])->middleware(['auth'])->name('taptable.index'); // dies auch

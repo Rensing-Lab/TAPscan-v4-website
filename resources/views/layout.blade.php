@@ -53,6 +53,7 @@
                   <a class="dropdown-item {{ (request()->is('rules')) ? 'active' : '' }}" href="/rules/table">TAP Rules</a>
                   <a class="dropdown-item {{ (request()->is('species/table')) ? 'active' : '' }}" href="/species/table">Species</a>
                   <a class="dropdown-item {{ (request()->is('tapinfo/table')) ? 'active' : '' }}" href="/tapinfo/table">Tap Info</a>
+                  <a class="dropdown-item {{ (request()->is('domain/table')) ? 'active' : '' }}" href="/domain/table">Domains</a>
                   <a class="dropdown-item {{ (request()->is('news/table')) ? 'active' : '' }}" href="/news/table">News</a>
                 </div>
               </li>
