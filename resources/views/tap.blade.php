@@ -58,10 +58,10 @@
       Domain rules:
       <?php $pfam=null ?>
       @foreach ($tap_rules as $rules)
+        <?php $pfam=null ?>
         @foreach ($domain_info as $domain)
-          <?php $pfam=null ?>
 	  @if ($domain->name === $rules->tap_2)
-	  <?php $pfam = str_replace('http://pfam.xfam.org/family/','',$domain->pfam); ?>
+	  <?php $pfam = $domain->pfam; ?>
           @endif
 	@endforeach
 
