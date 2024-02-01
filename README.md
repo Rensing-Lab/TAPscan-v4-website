@@ -36,7 +36,7 @@ This will run the application in docker. Once it has started successfully, open 
 2. Apply configuration:
    - `make configure`
 
-This may take a few minutes, when everything is ready, the containers will be stopped. From now on, we can control the app directly using the docker compose file.
+This may take a few minutes, when everything is ready, the containers will be stopped. From now on, we can control TAPscan directly using the docker compose file.
 
 3. Start TAPscan application
    - `docker-compose up` (or `make run`)
