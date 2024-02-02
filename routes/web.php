@@ -20,32 +20,43 @@ use App\Http\Controllers\DomainController;
 |
 */
 
+require __DIR__.'/auth.php';
+
+
 // Route::get('/', function () {
 //     return view('welcome');
 // });
 
+# Main pages
 Route::get('/', [TapController::class, 'tap_count'])->name('tap.index');
-Route::get('/visualization', [TapController::class, 'circle_viz']);
-Route::get('/about', function () {
-  return view('about.index');
-});
-Route::get('/contact', function () {
-  return view('contact.index');
-});
-// Route::get('/search', function () {
-//   return view('search.index');
-// });
+Route::get('/tap/{id}', [TapController::class, 'tap_show'])->where('id', '.*'); // ab damit in den resource controller
 
 Route::get('/search', [TapController::class, 'search'])->name('search');
 
+Route::resource('species', SpeciesController::class);
+Route::get('/species/{species_id}/tap/{tap_name}', [TapController::class, 'show_species'])->where('tap_name', '.*')->name('taps.species');
+
+Route::resource('news', NewsController::class);
+
+Route::get('/species-list', [SpeciesController::class, 'species_list'])->name('species.list');
 
 
-// Route::get('/index', function() {
-// })->name('tap.index');
+Route::get('/about', function () {
+  return view('about.index');
+});
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+
+
+# Admin tables
+Route::get('/news/table', [NewsController::class, 'table'])->middleware(['auth'])->name('news.table');
+Route::get('/species/table', [SpeciesController::class, 'table'])->middleware(['auth'])->name('species.table');
+Route::get('/taps/table', [TapController::class, 'table'])->middleware(['auth'])->name('taps.table');
+Route::get('/rules/table', [TapRulesController::class, 'table'])->middleware(['auth'])->name('rules.table');
+Route::get('/tapinfo/table', [TapInfoController::class, 'table'])->middleware(['auth'])->name('tapinfo.table');
+Route::get('/domain/table', [DomainController::class, 'table'])->middleware(['auth'])->name('domain.table');
+
+# Admin Import/Export pages
+Route::get('data-upload', [TapController::class, 'initialization'])->middleware(['auth'])->name('tap.data-upload');
 
 Route::post('species/import', [SpeciesController::class, 'import'])->middleware(['auth'])->name('species.import');
 Route::get('species/export', [SpeciesController::class, 'export'])->middleware(['auth'])->name('species.export');
@@ -57,41 +68,37 @@ Route::post('tap/import', [TapController::class, 'import'])->middleware(['auth']
 Route::get('tap/export', [TapController::class, 'export'])->middleware(['auth'])->name('tap.export');
 
 Route::post('tapinfo/import', [TapInfoController::class, 'import'])->middleware(['auth'])->name('tapinfo.import');
-
 Route::post('domains/import', [DomainController::class, 'import'])->middleware(['auth'])->name('domains.import');
 
-Route::get('/tap/{id}', [TapController::class, 'tap_show'])->where('id', '.*'); // ab damit in den resource controller
 
-Route::get('/news/table', [NewsController::class, 'table'])->middleware(['auth'])->name('news.table');
-Route::get('/species/table', [SpeciesController::class, 'table'])->middleware(['auth'])->name('species.table');
-Route::get('/taps/table', [TapController::class, 'table'])->middleware(['auth'])->name('taps.table');
-Route::get('/rules/table', [TapRulesController::class, 'table'])->middleware(['auth'])->name('rules.table');
-Route::get('/tapinfo/table', [TapInfoController::class, 'table'])->middleware(['auth'])->name('tapinfo.table');
-Route::get('/domain/table', [DomainController::class, 'table'])->middleware(['auth'])->name('domain.table');
 
-// Route::get('/rules', [TapRulesController::class, 'index'])->middleware(['auth'])->name('rulestable.index'); //auch beides in ressource
+// Routes that were in this file but not working/enabled, TODO: cleanup
+
+//Route::get('/rules', [TapRulesController::class, 'index'])->middleware(['auth'])->name('rulestable.index'); //auch beides in ressource
 // Route::get('/taps', [TapController::class, 'index'])->middleware(['auth'])->name('taptable.index'); // dies auch
-
-Route::get('/ajax-autocomplete-search', [TapController::class, 'selectSearch']);
+//Route::get('/ajax-autocomplete-search', [TapController::class, 'selectSearch']);
 
 // Route::resource('datatable/species', [SpeciesController::class, 'datatable']);
-Route::resource('species', SpeciesController::class);
 #Route::get('/species/{species_id}/tap/{tap_name}', [SpeciesController::class, 'show_tap'])->name('speciestaxid.show_tap');
-Route::resource('rules', TapRulesController::class);
-Route::resource('taps', TapController::class);
-Route::get('/species/{species_id}/tap/{tap_name}', [TapController::class, 'show_species'])->where('tap_name', '.*')->name('taps.species');
-Route::resource('news', NewsController::class);
-
-Route::get('data-upload', [TapController::class, 'initialization'])->middleware(['auth'])->name('tap.data-upload');
-
+//Route::resource('rules', TapRulesController::class);
 
 // Route::get('/species', [SpeciesController::class, 'index'])->middleware(['auth'])->name('speciestaxids.index');
 // Route::get('/species/{id}/edit', [SpeciesController::class, 'edit'])->middleware(['auth'])->name('speciestaxid.edit');
 // Route::get('/species/{id}/show', [SpeciesController::class, 'show'])->middleware(['auth'])->name('speciestaxid.show');
 
+//Route::get('/visualization', [TapController::class, 'circle_viz']);
+//Route::get('/contact', function () {
+//  return view('contact.index');
+//});
+// Route::get('/search', function () {
+//   return view('search.index');
+// });
 
-
-
-require __DIR__.'/auth.php';
+// Route::get('/index', function() {
+// })->name('tap.index');
+//Route::get('/dashboard', function () {
+//    return view('dashboard');
+//})->middleware(['auth'])->name('dashboard');
+//Route::resource('taps', TapController::class);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
