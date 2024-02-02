@@ -6,7 +6,8 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Edit News Entry: {{ $news_data->name }}</h2>
+                <h2>Edit news entry titled: {{ $news_data->name }}</h2>
+                <p> News content supports markdown and html formatting </p>
             </div>
         </div>
     </div>

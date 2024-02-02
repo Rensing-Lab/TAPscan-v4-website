@@ -6,7 +6,9 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Add New Product</h2>
+                <h2>Add News Post</h2>
+                <p> News content supports markdown and html formatting </p>
+
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('news.index') }}" title="Go back"> <i class="fas fa-backward "></i> </a>
