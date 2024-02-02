@@ -738,6 +738,7 @@ class ComposerStaticInit6b61051ad2c4ef4e37c234e6f79831d3
         'App\\Tables\\DomainTable' => __DIR__ . '/../..' . '/app/Tables/DomainTable.php',
         'App\\Tables\\NewsTable' => __DIR__ . '/../..' . '/app/Tables/NewsTable.php',
         'App\\Tables\\SpeciesTable' => __DIR__ . '/../..' . '/app/Tables/SpeciesTable.php',
+        'App\\Tables\\SpeciesTableSimple' => __DIR__ . '/../..' . '/app/Tables/SpeciesTableSimple.php',
         'App\\Tables\\TapInfoTable' => __DIR__ . '/../..' . '/app/Tables/TapInfoTable.php',
         'App\\Tables\\TapRulesTable' => __DIR__ . '/../..' . '/app/Tables/TapRulesTable.php',
         'App\\Tables\\TapTable' => __DIR__ . '/../..' . '/app/Tables/TapTable.php',

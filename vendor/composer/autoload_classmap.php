@@ -74,6 +74,7 @@ return array(
     'App\\Tables\\DomainTable' => $baseDir . '/app/Tables/DomainTable.php',
     'App\\Tables\\NewsTable' => $baseDir . '/app/Tables/NewsTable.php',
     'App\\Tables\\SpeciesTable' => $baseDir . '/app/Tables/SpeciesTable.php',
+    'App\\Tables\\SpeciesTableSimple' => $baseDir . '/app/Tables/SpeciesTableSimple.php',
     'App\\Tables\\TapInfoTable' => $baseDir . '/app/Tables/TapInfoTable.php',
     'App\\Tables\\TapRulesTable' => $baseDir . '/app/Tables/TapRulesTable.php',
     'App\\Tables\\TapTable' => $baseDir . '/app/Tables/TapTable.php',
