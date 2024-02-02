@@ -13,6 +13,7 @@ use App\Models\TapInfo;
 use Illuminate\Http\Request;
 use \Illuminate\View\View;
 use \App\Tables\SpeciesTable;
+use \App\Tables\SpeciesTableSimple;
 use App\Http\Controllers\Input;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\SpeciesExport;
@@ -141,6 +142,12 @@ class SpeciesController extends Controller
         //
     }
 
+    public function species_list()
+    {
+      $table = (new SpeciesTableSimple())->setup();
+      return view('speciestaxids.list', compact('table'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -200,6 +207,6 @@ class SpeciesController extends Controller
 
     public function __construct()
 {
-    $this->middleware('auth')->except(['index','show']);
+    $this->middleware('auth')->except(['index','show','species_list']);
 }
 }
