@@ -19,6 +19,7 @@ class SpeciesTableSimple extends AbstractTable
         return (new Table())->model(SpeciesTaxId::class)
             ->routes([
                 'index'   => ['name' => 'species.table'],
+                'show'    => ['name' => 'species.show']
             ]);
     }
 

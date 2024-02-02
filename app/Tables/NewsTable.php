@@ -20,9 +20,10 @@ class NewsTable extends AbstractTable
             ->routes([
                 'index'   => ['name' => 'news.table'],
                 'create'  => ['name' => 'news.create'],
-                'show' => ['name' => 'news.show'],
+                'show'    => ['name' => 'news.show'],
                 'edit'    => ['name' => 'news.edit'],
                 'destroy' => ['name' => 'news.destroy'],
+
             ])
             ->destroyConfirmationHtmlAttributes(fn(News $news) => [
                 'data-confirm' => __('Are you sure you want to delete the entry :entry?', [
