@@ -9,20 +9,22 @@
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-6">TAPscan - Family View</h1>
-      <p class="lead">This is a list of all TAPs families covered by the TAPscan web page V4, in alphabetical order. Clicking them will lead you to a list of species in which these TAP families occur. There, the number of proteins containing the respective TAP is written in brackets after its name.</p>
+      <p class="lead">This is a list of all TAPs families covered by the TAPscan web page V4, in alphabetical order. Clicking them will lead you to a page with more details. There, the number of proteins containing the respective TAP is written in brackets after its name.
+      For a list of all species covered by TAPscan, please refer to this <a href="/species">species tree</a> or <a href="/species-list">species table</a>.
+      </p>
       <hr class="my-1">
       <h6> What are TAPs?</h6>
-      <p>Transcriptional regulation is carried out by transcription associated proteins (TAPs), comprising <i>transcription factors</i> 
-         (TFs, binding in sequence-specific manner to cis-regulatory elements to enhance or repress transcription), 
-         <i>transcriptional regulators</i> (TRs, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction or chromatin modification) 
-         and <i>putative TAPs</i> (PTs), the role of which needs to be determined. 
+      <p>Transcriptional regulation is carried out by transcription associated proteins (TAPs), comprising <i>transcription factors</i>
+         (TFs, binding in sequence-specific manner to cis-regulatory elements to enhance or repress transcription),
+         <i>transcriptional regulators</i> (TRs, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction or chromatin modification)
+         and <i>putative TAPs</i> (PTs), the role of which needs to be determined.
       </p>
-      <p>The colour of the TAP name corresponds to the TAP class: 
+      <p>The colour of the TAP name corresponds to the TAP class:
       <span style="background-color:#317b22; color: #ffffff; font-weight: bolder">
         <span class="TF">TF</span>, <span class="TR">TR</span> and <span class="PT">PT</span>
       </span>
       <br/>
-      and is shown behind the TAP name, together with the TAP count among <a href="/species">the species dataset used here</a>: 
+      and is shown behind the TAP name, together with the TAP count among <a href="/species">the species dataset used here</a>:
       <span class="badge badge-success badge-pill badge-tapcount"> TF | 42 </span>
       </p>
     </div>
@@ -46,7 +48,7 @@
 
 <div class="container">
   <div class="row row-cols-4">
-   @foreach ($tap_count as $tap)   
+   @foreach ($tap_count as $tap)
      @php
      $i = (($loop->index-1)/4)%2;
      @endphp

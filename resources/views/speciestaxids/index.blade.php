@@ -7,13 +7,15 @@
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
     <h1 class="display-6">TAPscan - Species View</h1>
-    <p class="lead">This is a list of all species covered by the TAPscan web page V4.</p>
+    <p class="lead">This is a list of all species covered by the TAPscan web page V4.
+    </br></br>
+    Below you can explore the species in tree form. A <a href="/species-list">table</a> listing all species is also available.</p>
     <hr class="my-1">
     <h6> What are TAPs?</h6>
-    <p>Transcriptional regulation is carried out by transcription associated proteins (TAPs), comprising <i>transcription factors</i> 
-       (TFs, binding in sequence-specific manner to cis-regulatory elements to enhance or repress transcription), 
-       <i>transcriptional regulators</i> (TRs, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction or chromatin modification) 
-       and <i>putative TAPs</i> (PTs), the role of which needs to be determined. 
+    <p>Transcriptional regulation is carried out by transcription associated proteins (TAPs), comprising <i>transcription factors</i>
+       (TFs, binding in sequence-specific manner to cis-regulatory elements to enhance or repress transcription),
+       <i>transcriptional regulators</i> (TRs, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction or chromatin modification)
+       and <i>putative TAPs</i> (PTs), the role of which needs to be determined.
     </p>
   </div>
 </div>
