@@ -139,9 +139,16 @@ TODO: link to tapscan script and/or galaxy tool
 
 ## Debug/dev notes
 
+### Deleting TAPscan
+
+To throw away your TAPscan images, containers, volumes, you can do the following. Use with care!
+
 ```
 # remove all docker images, containers and volumes if setup goes wrong
 ./vendor/bin/sail down --rmi all -v
+
+# this command is also run if you do
+make delete
 ```
 
 
