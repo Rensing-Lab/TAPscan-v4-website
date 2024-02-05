@@ -95,6 +95,29 @@ public function tap_count_proteins($id)
     return $tap_count;
 }
 
+
+public function dev()
+{
+  $tap_count = DB::table('taps')
+                ->select('tap_1', DB::raw('count(*) as num'))
+                ->groupBy('tap_1')->get()->toArray();
+  $tap_count2 = DB::table('taps')
+                ->select('tap_2', DB::raw('count(*) as num'))
+                ->groupBy('tap_2')->get()->toArray();
+
+
+  $db_taps = DB::table('taps')->get()->toArray();
+  $db_tap_rules = DB::table('tap_rules')->get()->toArray();
+  $db_domains = DB::table('domain')->get()->toArray();
+  $db_species_tax_ids = DB::table('species_tax_ids')->get()->toArray();
+  $db_tap_infos = DB::table('tap_infos')->get()->toArray();
+  $db_sequences = DB::table('sequences')->get()->toArray();
+
+
+  return view('taps.dev', ['tap_count' => $tap_count, 'tap_count2' => $tap_count2, 'db_taps' => $db_taps, 'dp_tap_rules' => $db_tap_rules, 'db_domains' => $db_domains, 'db_species_tax_ids' => $db_species_tax_ids, 'db_tap_infos' => $db_tap_infos, '$db_sequences' => $db_sequences]);
+
+}
+
 public function tap_rules($id)
 {
   $tap_rules = DB::table('tap_rules')

@@ -70,6 +70,8 @@ Route::resource('news', NewsController::class);
 Route::resource('rules', TapRulesController::class);
 Route::resource('domain', DomainController::class);
 
+# dev page
+Route::get('/dev', [TapController::class, 'dev'])->name('taps.dev');
 
 
 //Routes that were in this file but unclear if needed
