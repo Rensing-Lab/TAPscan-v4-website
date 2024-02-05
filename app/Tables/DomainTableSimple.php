@@ -7,7 +7,7 @@ use Okipa\LaravelTable\Abstracts\AbstractTable;
 use Okipa\LaravelTable\Table;
 use App\Models\Users;
 
-class DomainTable extends AbstractTable
+class DomainTableSimple extends AbstractTable
 {
     /**
      * Configure the table itself.
@@ -19,7 +19,7 @@ class DomainTable extends AbstractTable
     {
         return (new Table())->model(Domain::class)
             ->routes([
-                'index'   => ['name' => 'domain.table'],
+                'index'   => ['name' => 'domain.index'],
                 // 'create'  => ['name' => 'species.create'],
                 //'show' => ['name' => 'tapinfo.show'],
                 //'edit'    => ['name' => 'tapinfo.edit'],

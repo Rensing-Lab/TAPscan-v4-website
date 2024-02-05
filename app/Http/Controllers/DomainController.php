@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use \Illuminate\View\View;
 use App\Tables\DomainTable;
+use App\Tables\DomainTableSimple;
 use App\Imports\DomainImport;
 use Illuminate\Support\Facades\Storage;
 use App\Models\SpeciesTaxId;
@@ -36,12 +37,10 @@ public function table(): View
 
 public function index()
 {
-    $table = (new DomainTable())->setup();
-
-    return view('domain.index');
+    $table = (new DomainTableSimple())->setup();
+    #$domain_list =  DB::table('domain')->get();
+    #return view('domain.index', ['domains' => $domain_list]);
+    return view('domain.index', compact('table'));
 }
-
-
-
 
 }

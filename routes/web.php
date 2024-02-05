@@ -68,6 +68,7 @@ Route::resource('species', SpeciesController::class);
 Route::resource('taps', TapController::class);
 Route::resource('news', NewsController::class);
 Route::resource('rules', TapRulesController::class);
+Route::resource('domain', DomainController::class);
 
 
 

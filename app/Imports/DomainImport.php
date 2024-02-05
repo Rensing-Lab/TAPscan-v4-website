@@ -21,13 +21,19 @@ class DomainImport implements ToCollection,WithCustomCsvSettings
       //$rows->shift(); # skip first row of Collection - Header
       foreach ($rows as $row)
       {
+        if (str_starts_with($row[1], 'PF')){
+          $pfam = $row[1];
+        } else {
+          $pfam = 'custom';
+        }
+
         Domain::updateOrCreate(
           [
             'name'    => $row[0],
           ],
           [
             'name'    => $row[0],
-            'pfam'     => $row[1],
+            'pfam'     => $pfam,
           ]
         );
       }
