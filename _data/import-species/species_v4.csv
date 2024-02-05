@@ -9,7 +9,9 @@ ARAAL;Archaeplastida;eudicots;rosids;Brassicales;Brassicaceae;Arabis alpina;5045
 ARALY;Archaeplastida;eudicots;rosids;Brassicales;Brassicaceae;Arabidopsis lyrata;59689
 ARATH;Archaeplastida;eudicots;rosids;Brassicales;Brassicaceae;Arabidopsis thaliana;3702
 AZAIN;Archaeplastida;eudicots;rosids;Sapindales;Meliaceae;Azadirachta indica;124943
+AZOFIhc;Archaeplastida;Moniliformopses;Polypodiidae;Salviniales;Azollaceae;Azolla filiculoides;84609
 BATPR;Archaeplastida;Chlorophyta;prasinophytes;Mamiellales;Bathycoccaceae;Bathycoccus prasinos;41875
+BETVUEL;Archaeplastida;Streptophyta;;Caryophyllales;Chenopodiaceae;Beta vulgaris;161934
 BOEST;Archaeplastida;eudicots;rosids;Brassicales;Brassicaceae;Boechera stricta;72658
 BRADI;Archaeplastida;Liliopsida;commelinids;Poales;Poaceae;Brachypodium distachyon;15368
 BRAOL;Archaeplastida;eudicots;rosids;Brassicales;Brassicaceae;Brassica oleracea;3712
@@ -63,6 +65,7 @@ GRACH;Archaeplastida;Rhodophyta;0;Gracilariales;Gracilariaceae;Gracilariopsis ch
 GUITH;Cryptophyta;Cryptophyceae;-;Pyrenomonadales;Geminigeraceae;Guillardia theta;55529
 HORVU;Archaeplastida;Liliopsida;commelinids;Poales;Poaceae;Hordeum vulgare;4513
 JATCU;Archaeplastida;eudicots;rosids;Malpighiales;Euphorbiaceae;Jatropha curcas;180498
+KALLA;Archaeplastida;eudicots;stem rosids;Saxifragales;Crassulaceae;Kalanchoe laxiflora;-;80907
 KLEFL;Archaeplastida;Streptophyta KCM grade;Klebsormidiophyceae;Klebsormidiales;Klebsormidiaceae;Klebsormidium flaccidum;105231
 LEAAL;Archaeplastida;eudicots;rosids;Brassicales;Brassicaceae;Leavenworthia alabamica;310722
 LINUS;Archaeplastida;eudicots;rosids;Malpighiales;Linaceae;Linum usitatissimum;4006
@@ -71,7 +74,9 @@ MALDO;Archaeplastida;eudicots;rosids;Rosales;Rosaceae;Malus domestica;3750
 MANES;Archaeplastida;eudicots;rosids;Malpighiales;Euphorbiaceae;Manihot esculenta;3983
 MARPO;Archaeplastida;Marchantiophyta;Marchantiopsida;Marchantiales;Marchantiaceae;Marchantia polymorpha;3197
 MEDTR;Archaeplastida;eudicots;rosids;Fabales;Fabaceae;Medicago truncatula;3880
+MESENsta;Archaeplastida;Streptophyta ZCC grade;Zygnemophyceae;Zygnematales;Mesotaeniaceae;Mesotaenium endlicherianum;184485
 MESVINI;Archaeplastida;Streptophyta KCM grade;Mesostigmatophyceae;Mesostigmatales;Mesostigmataceae;Mesostigma viride;41882
+MICMAtr;Archaeplastida;Moniliformopses;Polypodiidae;Polypodiales;Dennstaedtiaceae;Microlepia marginata;-;749682
 MICPUCC;Archaeplastida;Chlorophyta;prasinophytes;Mamiellales;Mamiellaceae;Micromonas pusilla CCMP1545;564608
 MICPURC;Archaeplastida;Chlorophyta;prasinophytes;Mamiellales;Mamiellaceae;Micromonas sp. RCC299;296587
 MIMGU;Archaeplastida;eudicots;asterids;Lamiales;Phrymaceae;Mimulus guttatus;4155
@@ -87,12 +92,14 @@ OSTSP;Archaeplastida;Chlorophyta;prasinophytes;Mamiellales;Bathycoccaceae;Ostreo
 OSTTA;Archaeplastida;Chlorophyta;Prasinophyta;Mamiellales;Bathycoccaceae;Ostreococcus tauri;0
 PANVI;Archaeplastida;Liliopsida;commelinids;Poales;Poaceae;Panicum virgatum;38727
 PENMA;Archaeplastida;Streptophyta ZCC grade;Zygnemophyceae;Desmidiales;Peniaceae;Penium margaritaceum;102169
+PENMA_5l;Archaeplastida;Streptophyta ZCC grade;Zygnemophyceae;Desmidiales;Peniaceae;Penium margaritaceum;-;102169
 PHAEQ;Archaeplastida;Liliopsida;-;Asparagales;Orchidaceae;Phalaenopsis equestris;78828
 PHAVU;Archaeplastida;eudicots;rosids;Fabales;Fabaceae;Phaseolus vulgaris;3885
 PHODA;Archaeplastida;Liliopsida;commelinids;Arecales;Arecaceae;Phoenix dactylifera;42345
 PHYHE;Archaeplastida;Liliopsida;commelinids;Poales;Poaceae;Phyllostachys heterocycla;38705
 PHYPAV33;Archaeplastida;Bryopsida;Funariidae;Funariales;Funariaceae;Physcomitrella patens;3218
 PICAB;Archaeplastida;Acrogymnospermae;Coniferophyta;Pinales;Pinaceae;Picea abies;3329
+PICGL;Archaeplastida;Acrogymnospermae;Coniferophyta;Pinales;Pinaceae;Picea glauca;-;3330
 PINTA;Archaeplastida;Acrogymnospermae;Coniferophyta;Pinales;Pinaceae;Pinus taeda;3352
 POPTR;Archaeplastida;eudicots;rosids;Malpighiales;Salicaceae;Populus trichocarpa;3694
 PORCRtr;Archaeplastida;Rhodophyta;Bangiophyceae;Porphyridiales;Porphyridiaceae;Porphyridium cruentum;2891951
@@ -101,6 +108,7 @@ PORUM;Archaeplastida;Rhodophyta;Bangiophyceae;Bangiales;Bangiaceae;Porphyra umbi
 PRACO;Archaeplastida;Chlorophyta;Palmophyllophyceae;Prasinococcales;Prasinococcaceae;Prasinoderma coloniale;0
 PRUMU;Archaeplastida;eudicots;rosids;Rosales;Rosaceae;Prunus mume;102107
 PRUPE;Archaeplastida;eudicots;rosids;Rosales;Rosaceae;Prunus persica;3760
+PTEAQpt;Archaeplastida;Moniliformopses;Polypodiidae;Polypodiales;Dennstaedtiaceae;Pteridium aquilinum;-;32101
 PYRBR;Archaeplastida;eudicots;rosids;Rosales;Rosaceae;Pyrus bretschneideri;225117
 PYRCO;Archaeplastida;eudicots;rosids;Rosales;Rosaceae;Pyrus communis;23211
 PYRGR;Fungi;Ascomycota;saccharomyceta;Magnaporthales;Magnaporthaceae;Magnaporthe grisea;148305
@@ -108,6 +116,7 @@ PYRYE;Archaeplastida;Rhodophyta;Bangiophyceae;Bangiales;Bangiaceae;Pyropia yezoe
 RAPRA;Archaeplastida;eudicots;rosids;Brassicales;Brassicaceae;Raphanus raphanistrum;109996
 RAPSA;Archaeplastida;eudicots;rosids;Brassicales;Brassicaceae;Raphanus sativus;3726
 RICCO;Archaeplastida;eudicots;rosids;Malpighiales;Euphorbiaceae;Ricinus communis;3988
+SALCUhc;Archaeplastida;Moniliformopses;Polypodiidae;Salviniales;Salviniaceae;Salvinia cucullata;-;32188
 SALPU;Archaeplastida;eudicots;rosids;Malpighiales;Salicaceae;Salix purpurea;77065
 SELMO;Archaeplastida;Lycopodiidae;Lycopodiales;Selaginellales;Selaginellaceae;Selaginella moellendorffii;88036
 SETIT;Archaeplastida;Liliopsida;commelinids;Poales;Poaceae;Setaria italica;4555
@@ -117,11 +126,13 @@ SOLLY;Archaeplastida;eudicots;asterids;Solanales;Solanaceae;Solanum lycopersicum
 SOLME;Archaeplastida;eudicots;asterids;Solanales;Solanaceae;Solanum melongena;4111
 SOLPE;Archaeplastida;eudicots;asterids;Solanales;Solanaceae;Solanum pennellii;28526
 SOLTU;Archaeplastida;eudicots;asterids;Solanales;Solanaceae;Solanum tuberosum;4113
+SORBI;Archaeplastida;Liliopsida;commelinids;Poales;Poaceae;Sorghum bicolor;-;4558
 SPHFA;Archaeplastida;Bryopsida;Sphagnopsida;Sphagnales;Sphagnaceae;Sphagnum fallax;53036
 SPIMU;Archaeplastida;Streptophyta ZCC grade;Zygnemophyceae;Spirogloeales;Spirogloeaceae;Spirogloea muscicola;2576442
 SPIPO;Archaeplastida;Liliopsida;-;Alismatales;Araceae;Spirodela polyrhiza;29656
 SPIPRtrTI;Archaeplastida;Streptophyta ZCC grade;Zygnemophyceae;Zygnematales;Zygnemataceae;Spirogyra pratensis;332123
 SPISP;Archaeplastida;Streptophyta ZCC grade;Zygnemophyceae;Zygnematales;Zygnemataceae;Spirogyra sp.;3181
+TAKLE;Archaeplastida;Bryopsida;Takakiophytina;Takakiales;Takakiaceae;Takakia lepidozioides;-;37425
 TARHA;Archaeplastida;eudicots;rosids;Brassicales;Cleomaceae;Tarenaya hassleriana;28532
 THECA;Archaeplastida;eudicots;rosids;Malvales;Malvaceae;Theobroma cacao;3641
 THEHA;Archaeplastida;eudicots;rosids;Brassicales;Brassicaceae;Thellungiella halophila;98038
@@ -134,4 +145,4 @@ VITVI;Archaeplastida;eudicots;rosids;Vitales;Vitaceae;Vitis vinifera;29760
 VOLCA;Archaeplastida;Chlorophyta;Chlorophyceae;Chlamydomonadales;Volvocaceae;Volvox carteri;3067
 ZEAMA;Archaeplastida;Liliopsida;commelinids;Poales;Poaceae;Zea mays;4577
 ZOSMA;Archaeplastida;Liliopsida;-;Alismatales;Zosteraceae;Zostera marina;29655
-ZYGCIUTEX1599;Archaeplastida;Streptophyta ZCC grade;Zygnemophyceae;Zygnematales;Zygnemataceae;Zygnema circumcarinatum;0
+ZYGCIsta;Archaeplastida;Streptophyta ZCC grade;Zygnemophyceae;Zygnematales;Zygnemataceae;Zygnema circumcarinatum;;35869
