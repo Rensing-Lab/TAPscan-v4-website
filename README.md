@@ -31,12 +31,12 @@ cp env.example .env  #create a copy of the example env file
 2. Start the application for the first time
    -  `make first-run`
 
-This will run the application in docker. Once it has started successfully, open a new terminal and run the configuration step:
+This will run the application in docker. Once it has started successfully,  open a new terminal and run the configuration step:
 
 2. Apply configuration:
    - `make configure`
 
-This may take a few minutes, when everything is ready, the containers will be stopped. From now on, we can control TAPscan directly using the docker compose file.
+This may take a few minutes. When everything is ready, the containers will be stopped. From now on, we can control TAPscan directly using the docker compose file.
 
 3. Start TAPscan application
    - `docker-compose up` (or `make run`)
@@ -49,10 +49,10 @@ This may take a few minutes, when everything is ready, the containers will be st
 
 **Troubleshooting**
 
-If you encounter permission errors, please set the following permissions on the public and storage folders:
+If you encounter permission errors when viewing the website, please set the following permissions on the `public` and `storage` folders:
 
 ```
-chmod -R a+rwx public storage
+sudo chmod -R a+rwx public storage
 ```
 
 
@@ -68,7 +68,6 @@ To load this or other data into TAPscan:
    - create an admin account
 
 2. Upload data via the Admin panel.
-
 
 ### Configure Web server
 
