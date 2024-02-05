@@ -12,6 +12,22 @@ configure:
 	./vendor/bin/sail npm run dev
 	./vendor/bin/sail down
 
+import-data:
+	./vendor/bin/sail artisan import:tapscan_data
+	./vendor/bin/sail down
+
+configure-and-import:
+	./vendor/bin/sail artisan config:cache
+	./vendor/bin/sail artisan key:generate
+	./vendor/bin/sail artisan migrate:install
+	./vendor/bin/sail artisan migrate
+	./vendor/bin/sail artisan db:seed
+	./vendor/bin/sail composer update
+	./vendor/bin/sail npm install
+	./vendor/bin/sail npm run dev
+	./vendor/bin/sail artisan import:tapscan_data
+	./vendor/bin/sail down
+
 run:
 	docker-compose up
 stop:

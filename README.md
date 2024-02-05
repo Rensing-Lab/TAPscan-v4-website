@@ -11,11 +11,6 @@ If you would like to run your own copy of TAPscan with your own data, you can fo
 
 1. Install Docker on your system according to the [official instructions](https://docs.docker.com/engine/install/)
 
-2. Install the following packages on your system, this example is for Ubuntu (TODO Deepti: what dependencies were missing on fresh system?)
-
-```
-sudo apt-get install
-```
 
 ### Install TAPscan
 
@@ -35,6 +30,7 @@ This will run the application in docker. Once it has started successfully,  open
 
 2. Apply configuration:
    - `make configure`
+   - **Tip:** this step can be combined with the database population step (see next section) by doing `make configure-and-import` instead (but his will take quite some time)
 
 This may take a few minutes. When everything is ready, the containers will be stopped. From now on, we can control TAPscan directly using the docker compose file.
 
@@ -56,18 +52,39 @@ sudo chmod -R a+rwx public storage
 ```
 
 
-
 ### Adding Data: Populating the database
 
-The `_data` folder contains all the data used to populate the TAPscan website.
+The `_data` folder contains all the data used to populate the TAPscan website. Data can be uploaded via the admin panel in the web interface, or via the commandline. For the initial data upload, we recommend using the commandline, because it can take quite some time.
 
-To load this or other data into TAPscan:
+To load the TAPscan v4 data into the database:
 
-1. Create an admin user
+1. Start TAPscan
+   - `make first-run`
+   - wait until TAPscan is running (i.e no more new output in terminal)
+
+2. In a differenct terminal, run the importers
+   - `make import-data`
+   - This will take quite some time (~30 minutes)
+   - You can monitor progress in the first terminal window
+   - When it is done, the container will shut down
+   - The data that is uploaded in this command is:
+     ```
+     _data/import-species/species_v4.csv
+     _data/import-rules/rules_v81.txt
+     _data/import-taps/taps_v4.csv
+     _data/import-tapinfo/tapinfo_v4.csv
+     _data/import-domains/domains_v4.csv
+     ```
+
+3. To upload more data later, first create an admin user
    - navigate to `http://0.0.0.0/register`
    - create an admin account
 
-2. Upload data via the Admin panel.
+4. Upload data via the Admin panel.
+   - Admin -> Data Upload and follow the instructions
+
+**TIP:** The data upload step can be combined with the first configuration step by using the command `make configure-and-import`
+
 
 ### Configure Web server
 
