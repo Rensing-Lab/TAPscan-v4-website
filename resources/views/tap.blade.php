@@ -60,12 +60,12 @@
       @foreach ($tap_rules as $rules)
         <?php $pfam=null ?>
         @foreach ($domain_info as $domain)
-	  @if ($domain->name === $rules->tap_2)
-	  <?php $pfam = $domain->pfam; ?>
+	      @if ($domain->name === $rules->tap_2)
+	        <?php $pfam = $domain->pfam; ?>
           @endif
 	@endforeach
 
-        <a @if($pfam)target="_blank" href="https://www.ebi.ac.uk/interpro/entry/pfam/{{ $pfam }}"@else @endif>
+        <a @if($pfam)target="_blank" href="https://www.ebi.ac.uk/interpro/entry/pfam/{{ $pfam }}"@else href="/domain" @endif>
         @if ($rules->rule === "should")
            <button type="button" @if($pfam)class="btn btn-success"@else class="btn btn-outline-success" @endif>{{$rules->tap_2}}</button>
         @endif
