@@ -670,6 +670,7 @@ class ComposerStaticInit6b61051ad2c4ef4e37c234e6f79831d3
     );
 
     public static $classMap = array (
+        'App\\Console\\Commands\\ImportTAPscanData' => __DIR__ . '/../..' . '/app/Console/Commands/ImportTAPscanData.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Exports\\SpeciesExport' => __DIR__ . '/../..' . '/app/Exports/SpeciesExport.php',
@@ -736,6 +737,7 @@ class ComposerStaticInit6b61051ad2c4ef4e37c234e6f79831d3
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Tables\\DomainTable' => __DIR__ . '/../..' . '/app/Tables/DomainTable.php',
+        'App\\Tables\\DomainTableSimple' => __DIR__ . '/../..' . '/app/Tables/DomainTableSimple.php',
         'App\\Tables\\NewsTable' => __DIR__ . '/../..' . '/app/Tables/NewsTable.php',
         'App\\Tables\\SpeciesTable' => __DIR__ . '/../..' . '/app/Tables/SpeciesTable.php',
         'App\\Tables\\SpeciesTableSimple' => __DIR__ . '/../..' . '/app/Tables/SpeciesTableSimple.php',

@@ -6,6 +6,7 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Console\\Commands\\ImportTAPscanData' => $baseDir . '/app/Console/Commands/ImportTAPscanData.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Exports\\SpeciesExport' => $baseDir . '/app/Exports/SpeciesExport.php',
@@ -72,6 +73,7 @@ return array(
     'App\\Providers\\EventServiceProvider' => $baseDir . '/app/Providers/EventServiceProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
     'App\\Tables\\DomainTable' => $baseDir . '/app/Tables/DomainTable.php',
+    'App\\Tables\\DomainTableSimple' => $baseDir . '/app/Tables/DomainTableSimple.php',
     'App\\Tables\\NewsTable' => $baseDir . '/app/Tables/NewsTable.php',
     'App\\Tables\\SpeciesTable' => $baseDir . '/app/Tables/SpeciesTable.php',
     'App\\Tables\\SpeciesTableSimple' => $baseDir . '/app/Tables/SpeciesTableSimple.php',
