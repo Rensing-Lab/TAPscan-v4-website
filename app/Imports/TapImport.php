@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 use Maatwebsite\Excel\Concerns\WithUpserts;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Log;
 
 class TapImport implements ToCollection,WithCustomCsvSettings,WithBatchInserts
 {
@@ -21,6 +22,11 @@ class TapImport implements ToCollection,WithCustomCsvSettings,WithBatchInserts
     public function collection(Collection $rows)
     {
       $rows->shift(); # skip first row of Collection - Header
+
+      $rownum = 0;
+      $totalrows= $rows->count();
+      $percentrows = intval($totalrows/100);
+
       foreach ($rows as $row)
       {
         Tap::updateOrCreate(
@@ -37,6 +43,12 @@ class TapImport implements ToCollection,WithCustomCsvSettings,WithBatchInserts
             'code_id'     => SpeciesTaxId::where('lettercode', strstr($row[0], "_", true))->first()->id ?? NULL,
           ]
         );
+        $rownum = $rownum+1;
+
+        if ($rownum % $percentrows == 0)
+        {
+        print('Row '.$rownum.' of '.$totalrows.' ('.$rownum/$percentrows."%)\n");
+        }
       }
     }
 

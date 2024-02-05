@@ -64,6 +64,7 @@ class ImportTAPscanData extends Command
 
       // TAPS
       $file = '/data/import-tap/taps_v4.csv';
+      //$file = '/data/import-tap/source/ACTCH.output.3';
       $this->info('Importing TAPs from '.$file.' ... (this may take a while)');
       if (!file_exists($file)) {
         $this->error('CSV file not found!'); return;
