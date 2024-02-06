@@ -1,29 +1,21 @@
 <!DOCTYPE html>
-    <html>
-        {{-- <link rel="stylesheet" href="css/tapscan.css" type="text/css"> --}}
-        {{-- <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon" /> --}}
-        <head>
-            <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-            <title>TapScan - v4</title>
-            {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css" /> --}}
-              {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --}}
-              {{-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> --}}
-              {{-- <script src="{{ asset('js/app.js') }}" defer></script>  --}}
-              {{-- remove defer for jquery for jstree --}}
-                <script src="{{ mix('js/app.js') }}"></script>
-                <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-                <script src="https://cdn.datatables.net/fixedcolumns/4.2.1/js/dataTables.fixedColumns.min.js"></script>
-                    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-              <!-- Bootstrap Css -->
-              <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-              {{-- <link rel="stylesheet" href="{{ asset('css/tapscan.css') }}"> --}}
-              <link rel="stylesheet" type="text/css" href="{{ asset('css/tap_row.css') }}" >
-              <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css" />
-              <link rel="icon" href="{{ asset('img/favicon.ico') }}">
-              <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-              <meta name="csrf-token" content="{{ csrf_token() }}">
-        </head>
-
+<html>
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <title>TapScan - v4</title>
+        <script src="{{ mix('js/app.js') }}"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/fixedcolumns/4.2.1/js/dataTables.fixedColumns.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <!-- Bootstrap Css -->
+        <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/tap_row.css') }}" >
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css" />
+        <link rel="icon" href="{{ asset('img/favicon.ico') }}">
+        <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+    </head>
+    <body>
         <div class="container">
           <div class="col-md-10 offset-md-1">
             <img src="{{ asset('img/TAPscan_logo.png') }}" class="img-fluid" alt="Responsive image">
@@ -230,8 +222,7 @@
             @yield('content')
           </div>
 
-        </body>
-        </html>
+
                             {{-- <div>
                                 <img alt="TAPscan logo" id="logo" src="img/TAPscan_logo.png">
                             </div>
@@ -259,3 +250,5 @@
                 </div>
             </div>
         </div>
+        </body>
+        </html>
