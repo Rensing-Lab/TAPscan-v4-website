@@ -18,12 +18,12 @@
 
 <div class="card">
   <div class="card-header">
-    TaxID: <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ $species->taxid }}">{{ $species->taxid }} </a>
+    <h5 class="card-title">Name: {{ $species->name }} ({{$species->lettercode }})</h5>
+    NCBI TaxID: <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ $species->taxid }}">{{ $species->taxid }} </a>
   </div>
 
   <div class="card-body">
-    <h5 class="card-title">Name: {{ $species->name }}</h5>
-    <!-- <p class="card-text">Graphen, weitere links zu TAPs etc.</p> -->
+        <!-- <p class="card-text">Graphen, weitere links zu TAPs etc.</p> -->
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
 
     <p>
