@@ -112,6 +112,7 @@ public function dev()
   $db_species_tax_ids = DB::table('species_tax_ids')->get()->toArray();
   $db_tap_infos = DB::table('tap_infos')->get()->toArray();
   $db_sequences = DB::table('sequences')->get()->toArray();
+  $treefiles = Storage::disk('public')->listContents('trees/');
 
   $db_tap_table_species = DB::table('taps')
      ->selectRaw('SUBSTRING_INDEX(tap_id, "_",  1) as species')
@@ -128,6 +129,7 @@ public function dev()
                            'db_tap_infos' => $db_tap_infos,
                            'db_sequences' => $db_sequences,
                            'db_tap_table_species' => $db_tap_table_species,
+                           'treefiles' => $treefiles,
    ]);
 
 }

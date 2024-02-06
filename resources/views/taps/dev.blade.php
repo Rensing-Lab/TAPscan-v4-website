@@ -144,11 +144,17 @@ Number of TAP Rules: {{count($db_tap_rules) }} <br>
   <summary>TAP families without a tree:</summary>
    <p>
 @foreach ($tap_count as $tap)
-  @php $i = "none" @endphp
-  @if (Storage::disk('public')->exists("trees/quicktree_reducedAlignment_".$tap->tap_1.".tre"))
+  @php $i = "none"; $t = str_replace("/","_",$tap->tap_1); @endphp
+  @if (Storage::disk('public')->exists("trees/quicktree_reducedAlignment_".$t.".tre"))
     @php $i = "tree" @endphp
   @endif
-  @if (Storage::disk('public')->exists("trees/MAFFT_reducedAlignment_trim.fasta_".$tap->tap_1.".treefile"))
+  @if (Storage::disk('public')->exists("trees/quicktree_alignment_".$t.".tre"))
+    @php $i = "tree" @endphp
+  @endif
+  @if (Storage::disk('public')->exists("trees/MAFFT_reducedAlignment_trim.fasta_".$t.".treefile"))
+      @php $i = "tree" @endphp
+  @endif
+  @if (Storage::disk('public')->exists("trees/MAFFT_alignment_trim.fasta_".$t.".treefile"))
       @php $i = "tree" @endphp
   @endif
   @if ($i == "none")
@@ -162,15 +168,41 @@ Number of TAP Rules: {{count($db_tap_rules) }} <br>
   <summary>TAP subfamilies without a tree:</summary>
    <p>
 @foreach ($tap_count2 as $tap)
-  @php $i = "none" @endphp
-  @if (Storage::disk('public')->exists("trees/quicktree_reducedAlignment_".$tap->tap_2.".tre"))
+  @php $i = "none"; $t = str_replace("/","_",$tap->tap_2); @endphp
+  @if (Storage::disk('public')->exists("trees/quicktree_reducedAlignment_".$t.".tre"))
     @php $i = "tree" @endphp
   @endif
-  @if (Storage::disk('public')->exists("trees/MAFFT_reducedAlignment_trim.fasta_".$tap->tap_2.".treefile"))
+  @if (Storage::disk('public')->exists("trees/quicktree_alignment_".$t.".tre"))
+    @php $i = "tree" @endphp
+  @endif
+  @if (Storage::disk('public')->exists("trees/MAFFT_reducedAlignment_trim.fasta_".$t.".treefile"))
+      @php $i = "tree" @endphp
+  @endif
+  @if (Storage::disk('public')->exists("trees/MAFFT_alignment_trim.fasta_".$t.".treefile"))
       @php $i = "tree" @endphp
   @endif
   @if ($i == "none")
    {{$tap->tap_2}} <br>
+  @endif
+@endforeach
+</p>
+</details>
+
+<details>
+  <summary>Trees without an image (Saskia to make images)</summary>
+   <p>
+@foreach ($treefiles as $tree)
+  @if ($tree['type'] == 'file')
+
+    @php $i = "none"; @endphp
+    @if ($tree['extension'] == "treefile" || $tree['extension'] == "tre")
+      @if (Storage::disk('public')->exists("trees/svgs/".$tree['basename'].".svg"))
+        @php $i = "svg" @endphp
+      @endif
+      @if ($i == 'none')
+        {{$tree['path'] }} | missing an svg <br>
+      @endif
+    @endif
   @endif
 @endforeach
 </p>
