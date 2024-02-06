@@ -17,238 +17,127 @@
     </head>
     <body>
         <div class="container">
-          <div class="col-md-10 offset-md-1">
-            <img src="{{ asset('img/TAPscan_logo.png') }}" class="img-fluid" alt="Responsive image">
-          </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/">TAPscan</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              {{-- <li class="nav-item {{ (request()->is('taps*')) ? 'active' : '' }}">
-                <a class="nav-link" href="/taps">TAPs <span class="sr-only">(current)</span></a>
-              </li> --}}
-              <li class="nav-item {{ (request()->is('species*')) ? 'active' : '' }}">
-                <a class="nav-link" href="/species">Species</a>
-              </li>
-              @auth
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Admin
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item {{ (request()->is('upload')) ? 'active' : '' }}" href="/data-upload">Data Upload</a>
-                  <a class="dropdown-item {{ (request()->is('taps')) ? 'active' : '' }}" href="/taps/table">TAPs</a>
-                  <a class="dropdown-item {{ (request()->is('rules')) ? 'active' : '' }}" href="/rules/table">TAP Rules</a>
-                  <a class="dropdown-item {{ (request()->is('species/table')) ? 'active' : '' }}" href="/species/table">Species</a>
-                  <a class="dropdown-item {{ (request()->is('tapinfo/table')) ? 'active' : '' }}" href="/tapinfo/table">Tap Info</a>
-                  <a class="dropdown-item {{ (request()->is('domain/table')) ? 'active' : '' }}" href="/domain/table">Domains</a>
-                  <a class="dropdown-item {{ (request()->is('news/table')) ? 'active' : '' }}" href="/news/table">News</a>
-                </div>
-              </li>
-            @endauth
-              {{-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="/tools" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Tools
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Compare</a>
-                  <a class="dropdown-item {{ (request()->is('visualization*')) ? 'active' : '' }}" href="/visualization">Visualization</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Other</a>
-                </div>
-              </li> --}}
-              {{-- <li class="nav-item">
-                <a class="nav-link {{ (request()->is('trees*')) ? 'active' : '' }}" href="/visualization">Trees</a>
-              </li> --}}
-              <li class="nav-item {{ (request()->is('news*')) ? 'active' : '' }}">
-                <a class="nav-link" href="/news">News</a>
-              </li>
-              {{-- <li class="nav-item {{ (request()->is('search*')) ? 'active' : '' }}">
-                <a class="nav-link" href="/search">Search</a>
-              </li> --}}
-              <!-- <li class="nav-item">
-                <a class="nav-link {{ (request()->is('contact*')) ? 'active' : '' }}" href="/contact">Contact</a>
-              </li> -->
-              <li class="nav-item">
-                <a class="nav-link {{ (request()->is('about*')) ? 'active' : '' }}" href="/about">About</a>
-              </li>
-              {{-- <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="livesearch" name="livesearch" placeholder="Search" aria-label="Search">
-                <select class="livesearch form-control" name="livesearch"></select>
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form> --}}
-
-              {{-- <select class="livesearch form-control" name="livesearch"></select> --}}
-
-              {{-- Was soll das denn?!? wieso geht das nicht über npm von laravel --}}
-              <form class="form-inline my-2 my-lg-0" action="{{ route('search') }}" method="GET">
-                @csrf
-                <input class="form-control mr-sm-2" type="text" name="query" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-              </form>
-
-              {{-- <form action="{{ route('search') }}" method="GET">
-                @csrf
-                <input type="text" name="query" class="form-control" />
-                <input type="submit" class="btn btn-sm btn-primary" value="Search" style="margin-top: 10px;" />
-              </form> --}}
-
-            </ul>
-        <div class="dropdown">
-
-          <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
-            Login
-          </button>
-
-
-        @guest
-        <div class="dropdown-menu dropdown-menu-right">
-          {{-- <form class="px-4 py-3">
-            <div class="form-group">
-              <label for="exampleDropdownFormEmail1">Email address</label>
-              <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+            <div class="col-md-10 offset-md-1">
+                <img src="{{ asset('img/TAPscan_logo.png') }}" class="img-fluid" alt="Responsive image">
             </div>
-            <div class="form-group">
-              <label for="exampleDropdownFormPassword1">Password</label>
-              <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Password">
-            </div>
-            <div class="form-group">
-              <div class="form-check">
-                <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                <label class="form-check-label" for="dropdownCheck">
-                  Remember me
-                </label>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </form> --}}
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+               <a class="navbar-brand" href="/">TAPscan</a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-          <form method="POST" action="{{ route('login') }}">
-              @csrf
-            <div class="container">
-              <div class="form-group row">
-                  <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                  <div class="col-md-8">
-                      <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
-                      @error('email')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-              </div>
-
-              <div class="form-group row">
-                  <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                  <div class="col-md-8">
-                      <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                      @error('password')
-                          <span class="invalid-feedback" role="alert">
-                              <strong>{{ $message }}</strong>
-                          </span>
-                      @enderror
-                  </div>
-              </div>
-
-              {{-- <div class="form-group row">
-                  <div class="col-md-6 offset-md-4">
-                      <div class="form-check">
-                          <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                          <label class="form-check-label" for="remember">
-                              {{ __('Remember Me') }}
-                          </label>
-                      </div>
-                  </div>
-              </div> --}}
-
-              <div class="form-group row">
-                  <div class="col-md-8"></div>
-                  <div class="col-md-4">
-                      <button type="submit" class="btn btn-primary">
-                          {{ __('Login') }}
-                      </button>
-
-                      {{-- @if (Route::has('password.request'))
-                          <a class="btn btn-link" href="{{ route('password.request') }}">
-                              {{ __('Forgot Your Password?') }}
-                          </a>
-                      @endif --}}
-                  </div>
-                  <div class="col-md-4"></div>
-              </div>
-            </div>
-          </form>
-
-          {{-- <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">New around here? Sign up</a>
-          <a class="dropdown-item" href="#">Forgot password?</a> --}}
-        </div>
-        @endguest
-
-        @auth
-        <div class="dropdown-menu dropdown-menu-right">
-
-          <form method="POST" action="{{ route('logout') }}">
-              @csrf
-
-              <div class="form-group row mb-0">
-                  <div class="col-md-8 offset-md-4">
-                      <button type="submit" class="btn btn-primary">
-                          {{ __('Logout') }}
-                      </button>
-                  </div>
-              </div>
-          </form>
-        </div>
-        @endauth
-
-
-          </div>
-        </nav>
-        </div>
-
-        <body>
-
-          <div class="container">
-            @yield('content')
-          </div>
-
-
-                            {{-- <div>
-                                <img alt="TAPscan logo" id="logo" src="img/TAPscan_logo.png">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item {{ (request()->is('species*')) ? 'active' : '' }}">
+                            <a class="nav-link" href="/species">Species</a>
+                        </li>
+                        @auth
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin
+                           </a>
+                           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                               <a class="dropdown-item {{ (request()->is('upload')) ? 'active' : '' }}" href="/data-upload">Data Upload</a>
+                               <a class="dropdown-item {{ (request()->is('taps')) ? 'active' : '' }}" href="/taps/table">TAPs</a>
+                               <a class="dropdown-item {{ (request()->is('rules')) ? 'active' : '' }}" href="/rules/table">TAP Rules</a>
+                               <a class="dropdown-item {{ (request()->is('species/table')) ? 'active' : '' }}" href="/species/table">Species</a>
+                               <a class="dropdown-item {{ (request()->is('tapinfo/table')) ? 'active' : '' }}" href="/tapinfo/table">Tap Info</a>
+                               <a class="dropdown-item {{ (request()->is('domain/table')) ? 'active' : '' }}" href="/domain/table">Domains</a>
+                               <a class="dropdown-item {{ (request()->is('news/table')) ? 'active' : '' }}" href="/news/table">News</a>
                             </div>
-                            <div id="overlay_logo">
-                                <a href="http://www.plantco.de" target="_blank">
-                                    <img alt="plantco.de logo" id="plogo" src="img/plantco_logo.png">
-                                </a>
-                            </div> --}}
+                        </li>
+                        @endauth
+                        <li class="nav-item {{ (request()->is('news*')) ? 'active' : '' }}">
+                            <a class="nav-link" href="/news">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ (request()->is('about*')) ? 'active' : '' }}" href="/about">About</a>
+                        </li>
+                        <form class="form-inline my-2 my-lg-0" action="{{ route('search') }}" method="GET">
+                            @csrf
+                            <input class="form-control mr-sm-2" type="text" name="query" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </ul>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="false">
+                        Login
+                        </button>
+                        @guest
+                       <div class="dropdown-menu dropdown-menu-right">
+                           <form method="POST" action="{{ route('login') }}">
+                           @csrf
+                           <div class="container">
+                               <div class="form-group row">
+                                   <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                   <div class="col-md-8">
+                                       <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                        @error ('email')
+                                        <span class="invalid-feedback" role="alert">
+                                           <strong>{{ $message }}</strong>
+                                        </span>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                    <div class="col-md-8">
+                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                         @error ('password')
+                                         <span class="invalid-feedback" role="alert">
+                                             <strong>{{ $message }}</strong>
+                                         </span>
+                                        @enderror
+                                    </div>
+                                </div>
 
-                            <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
-                    <div class="text-center text-sm text-gray-500 sm:text-left">
-                        <div class="flex items-center">
-
-                        <a href="https://plantcode.cup.uni-freiburg.de/tapscan/impressum-plain.php">Impressum & Datenschutzerklärung</a>
-
-                        <!--<a href="https://www.plantco.de/Datenschutz.php">Datenschutzerklärung</a>-->
+                                <div class="form-group row">
+                                    <div class="col-md-8"></div>
+                                        <div class="col-md-4">
+                                            <button type="submit" class="btn btn-primary">
+                                                {{ __('Login') }}
+                                            </button>
+                                        </div>
+                                       <div class="col-md-4"></div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
-                    </div>
+                        @endguest
 
-                    <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                    All data and services offered on this site are © copyrighted. Distribution via internet or other media is prohibited.<br/>
-                TAPscan logo created by Debbie Maizels
-                <br><br>
+                        @auth
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-8 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Logout') }}
+                                        </button>
+                                    </div>
+                                </div>
+                           </form>
+                        </div>
+                        @endauth
                     </div>
+                </nav>
+            </div>
+            <div class="container">
+                @yield('content')
+             </div>
+             <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+                <div class="text-center text-sm text-gray-500 sm:text-left">
+                    <div class="flex items-center">
+                        <a href="https://plantcode.cup.uni-freiburg.de/tapscan/impressum-plain.php">Impressum & Datenschutzerklärung</a>
+                        <!--<a href="https://www.plantco.de/Datenschutz.php">Datenschutzerklärung</a>-->
+                    </div>
+                </div>
+                <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
+                    All data and services offered on this site are © copyrighted. Distribution via internet or other media is prohibited.<br/>
+                    TAPscan logo created by Debbie Maizels
+                    <br><br>
                 </div>
             </div>
         </div>
-        </body>
-        </html>
+    </body>
+</html>
