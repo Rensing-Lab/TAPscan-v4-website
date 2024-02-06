@@ -33,7 +33,7 @@ Number of TAPs with info: {{ count($db_tap_infos) }} <br>
 
 
 <h5>Missing TapInfo Data</h5>
-<p>To add TAP info, we need a file with columns: <code>TAP_name, description, reverences, type (TR|TF|PT)</code></p>
+<p>To add TAP info, we need a file with columns: <code>TAP_name, description, references, type (TR|TF|PT)</code></p>
 <p>Question: One of the descriptions Romy provided was for a TAP subfamily (MYST), should all subfamilies be listed on the main table? </p>
  <details>
   <summary>TAP families with missing TapInfo:</summary>
