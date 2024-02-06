@@ -61,7 +61,9 @@
         <?php $pfam=null ?>
         @foreach ($domain_info as $domain)
 	      @if ($domain->name === $rules->tap_2)
+            @if (str_starts_with($domain->pfam,"PF"))
 	        <?php $pfam = $domain->pfam; ?>
+            @endif
           @endif
 	@endforeach
 
