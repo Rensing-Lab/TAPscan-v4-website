@@ -17,7 +17,7 @@
 domain table:    id,name,pfam
 taps table:      id, tap_id, tap_1, tap_2, count, tap_3
 species_tax_ids: id, lettercode, name, taxid
-tap_rules:       id, tap_1, tap_2, rule
+tap_rules:       id, tap_1, tap_2, rule     # (tap_2 is domain)
 sequences:       id, tap_id, sequence
 tap_infos        id, tap, text, reference, type
 -->
@@ -179,7 +179,45 @@ Number of TAP Rules: {{count($db_tap_rules) }} <br>
 
 <br>
 <h5>Missing Domains Data</h5>
-<p></p>
+
+<details>
+<summary>Domains referenced in rules but not in domain table</summary>
+<p>
+  @foreach ($db_tap_rules as $rule)
+    @php $i='none' @endphp
+    @foreach ($db_domains as $domain)
+	  @if ($rule->tap_2 == $domain->name)
+        @php $i = "found" @endphp
+      @endif
+	@endforeach
+    @if ($i == 'none')
+     {{$rule->tap_2}} | missing <br>
+    @endif
+  @endforeach
+</p>
+</details>
+
+<details>
+<summary>Domains in domain table but never referenced in rule</summary>
+<p>
+  @foreach ($db_domains as $domain)
+    @php $i='none' @endphp
+    @foreach ($db_tap_rules as $rule)
+	  @if ($domain->name == $rule->tap_2)
+        @php $i = "found" @endphp
+      @endif
+	@endforeach
+    @if ($i == 'none')
+     {{$domain->name}} | missing <br>
+    @endif
+  @endforeach
+</p>
+</details>
+
+<details>
+  <summary>Misc</summary>
+  Check the <a href="/domain">domains table</a>, are all custom domains really custom, or just missing PFAM ID?
+</details>
 
 
 @endsection
