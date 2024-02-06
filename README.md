@@ -64,7 +64,7 @@ To load the TAPscan v4 data into the database:
 
 2. In a differenct terminal, run the importers
    - `make import-data`
-   - This will take quite some time (~30 minutes)
+   - This will take quite some time (> 1 hour)
    - You can monitor progress in the first terminal window
    - When it is done, the container will shut down
    - The data that is uploaded in this command is:
