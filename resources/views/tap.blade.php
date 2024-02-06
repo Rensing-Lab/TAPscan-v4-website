@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-
 @extends('layout')
 
 @section('content')
-
-{{-- @foreach ($tap_show as $tap)
-    <p>This is tap {{ $tap->species_id }}</p>
-@endforeach --}}
 
 <div class="container">
   <div class="row">
@@ -24,7 +18,6 @@
         @endforeach
         @endif
         @endisset
-
 
       </div>
     </div>
@@ -126,26 +119,25 @@
   @if (Storage::disk('public')->exists("trees/svgs/quicktree_reducedAlignment_".$tree_id.".tre.svg"))
   <details>
     <summary>View NJ Tree</summary>
-      <object data="/storage/trees/svgs/quicktree_reducedAlignment_{{$tree_id}}.tre.svg" alt="Phylogenetic tree image for {{$id}}"/>
+      <object data="/storage/trees/svgs/quicktree_reducedAlignment_{{$tree_id}}.tre.svg" alt="Phylogenetic tree image for {{$id}}"></object>
   </details>
   @elseif (Storage::disk('public')->exists("trees/svgs/quicktree_alignment_".$tree_id.".tre.svg"))
   <details>
     <summary>View NJ Tree</summary>
-      <object data="/storage/trees/svgs/quicktree_alignment_{{$tree_id}}.tre.svg" alt="Phylogenetic tree image for {{$id}}"/>
+      <object data="/storage/trees/svgs/quicktree_alignment_{{$tree_id}}.tre.svg" alt="Phylogenetic tree image for {{$id}}"></object>
   </details>
   @endif
 
   @if (Storage::disk('public')->exists("trees/svgs/MAFFT_reducedAlignment_trim.fasta_".$tree_id.".treefile.svg"))
   <details>
     <summary>View ML Tree</summary>
-      <object data="/storage/trees/svgs/MAFFT_reducedAlignment_trim.fasta_{{$tree_id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"/>
-  </details>
+      <object data="/storage/trees/svgs/MAFFT_reducedAlignment_trim.fasta_{{$tree_id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"></object>
+  </details><br>
   @elseif (Storage::disk('public')->exists("trees/svgs/MAFFT_alignment_trim.fasta_".$tree_id.".treefile.svg"))
   <details>
     <summary>View ML Tree</summary>
-      <object data="/storage/trees/svgs/MAFFT_alignment_trim.fasta_{{$tree_id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"/>
+      <object data="/storage/trees/svgs/MAFFT_alignment_trim.fasta_{{$tree_id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"></object>
   </details>
-
   @endif
 
 </div>
