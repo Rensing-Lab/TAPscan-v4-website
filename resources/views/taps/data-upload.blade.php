@@ -8,10 +8,11 @@
   <div class="row">
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
-    <h1 class="display-6">Upload Data to Databases</h1>
-    <p class="lead">Please fill the database in the correct order.</p>
+    <h1 class="display-6">Upload Data to TAPscan Database</h1>
+    <p class="lead">Please fill the database in the order presented below.</p>
     <hr class="my-1">
-    <p>TODO: info on file formats</p>
+    <p> More information about the required file formats can be found by clicking on the buttons below. Example files (used to populate TAPscan v4) are provided in our <a href="https://github.com/Rensing-Lab/TAPscan-v4-website/tree/main/_data" >TAPscan GitHub Repository</a>
+    </p>
   </div>
 </div>
 </div>
