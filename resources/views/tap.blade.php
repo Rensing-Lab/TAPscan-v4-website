@@ -109,27 +109,43 @@
   <br/>
   Download phylogenetic tree (Newick format):
   <br/>
-  @if (Storage::disk('public')->exists("trees/quicktree_reducedAlignment_".$id.".tre"))
-  <a href="/storage/trees/quicktree_reducedAlignment_{{$id}}.tre" download><button type="button" class="btn btn-info">NJ-tree</button></a>
+  @php $tree_id = str_replace('/', '_', $id); @endphp
+  @if (Storage::disk('public')->exists("trees/quicktree_reducedAlignment_".$tree_id.".tre"))
+  <a href="/storage/trees/quicktree_reducedAlignment_{{$tree_id}}.tre" download><button type="button" class="btn btn-info">NJ-tree</button></a>
+  @elseif (Storage::disk('public')->exists("trees/quicktree_alignment_".$tree_id.".tre"))
+  <a href="/storage/trees/quicktree_alignment_{{$tree_id}}.tre" download><button type="button" class="btn btn-info">NJ-tree</button></a>
   @endif
 
-  @if (Storage::disk('public')->exists("trees/MAFFT_reducedAlignment_trim.fasta_".$id.".treefile"))
-  <a href="/storage/trees/MAFFT_reducedAlignment_trim.fasta_{{$id}}.treefile" download><button type="button" class="btn btn-info">ML-tree</button></a>
+  @if (Storage::disk('public')->exists("trees/MAFFT_reducedAlignment_trim.fasta_".$tree_id.".treefile"))
+  <a href="/storage/trees/MAFFT_reducedAlignment_trim.fasta_{{$tree_id}}.treefile" download><button type="button" class="btn btn-info">ML-tree</button></a>
+  @elseif (Storage::disk('public')->exists("trees/MAFFT_alignment_trim.fasta_".$tree_id.".treefile"))
+  <a href="/storage/trees/MAFFT_alignment_trim.fasta_{{$tree_id}}.treefile" download><button type="button" class="btn btn-info">ML-tree</button></a>
   @endif
 
   <br/>
-  @if (Storage::disk('public')->exists("trees/svgs/quicktree_reducedAlignment_".$id.".tre.svg"))
+  @if (Storage::disk('public')->exists("trees/svgs/quicktree_reducedAlignment_".$tree_id.".tre.svg"))
   <details>
     <summary>View NJ Tree</summary>
-      <object data="/storage/trees/svgs/quicktree_reducedAlignment_{{$id}}.tre.svg" alt="Phylogenetic tree image for {{$id}}"/>
+      <object data="/storage/trees/svgs/quicktree_reducedAlignment_{{$tree_id}}.tre.svg" alt="Phylogenetic tree image for {{$id}}"/>
+  </details>
+  @elseif (Storage::disk('public')->exists("trees/svgs/quicktree_alignment_".$tree_id.".tre.svg"))
+  <details>
+    <summary>View NJ Tree</summary>
+      <object data="/storage/trees/svgs/quicktree_alignment_{{$tree_id}}.tre.svg" alt="Phylogenetic tree image for {{$id}}"/>
   </details>
   @endif
 
-  @if (Storage::disk('public')->exists("trees/svgs/MAFFT_reducedAlignment_trim.fasta_".$id.".treefile.svg"))
+  @if (Storage::disk('public')->exists("trees/svgs/MAFFT_reducedAlignment_trim.fasta_".$tree_id.".treefile.svg"))
   <details>
     <summary>View ML Tree</summary>
-      <object data="/storage/trees/svgs/MAFFT_reducedAlignment_trim.fasta_{{$id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"/>
+      <object data="/storage/trees/svgs/MAFFT_reducedAlignment_trim.fasta_{{$tree_id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"/>
   </details>
+  @elseif (Storage::disk('public')->exists("trees/svgs/MAFFT_alignment_trim.fasta_".$tree_id.".treefile.svg"))
+  <details>
+    <summary>View ML Tree</summary>
+      <object data="/storage/trees/svgs/MAFFT_alignment_trim.fasta_{{$tree_id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"/>
+  </details>
+
   @endif
 
 </div>
