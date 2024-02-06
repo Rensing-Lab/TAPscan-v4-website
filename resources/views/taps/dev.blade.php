@@ -8,7 +8,7 @@
      <h1 class="display-6">Dev View</h1>
      <p class="lead"> Below some stats and missing data to look at adding</p>
      <hr class="my-1">
-     <p> This is a temporary page to help with development</p>
+     <p> This is a temporary page to help with development. This page is automatically generate based on the contents of the current TAPscan v4 database, so will automatically change as we add more data. (If you think anything on this page is wrong, it might be, just let me know)!</p>
     </div>
   </div>
 </div>
@@ -22,21 +22,21 @@ sequences:       id, tap_id, sequence
 tap_infos        id, tap, text, reference, type
 -->
 
-<!-- { { dd(get_defined_vars()['__data']) }} -->
+<!-- { {  dd(get_defined_vars()['__data']) }} -->
 
 <h5>Some stats of data in database</h5>
-<br>
 Number of TAP families: {{ count($tap_count) }} <br>
 Number of TAP subfamilies: {{ count($tap_count2) }} <br>
 Number of TAPs with info: {{ count($db_tap_infos) }} <br>
 <br>
-
+Number of Species: {{count($db_species_tax_ids) }} <br>
+Number of Domains: {{count($db_domains) }} <br>
+Number of TAP Rules: {{count($db_tap_rules) }} <br>
+<br>
 
 <h5>Missing TapInfo Data</h5>
-<p>To add TAP info, we need a file with columns: <code>TAP_name, description, references, type (TR|TF|PT)</code></p>
-<p>Question: One of the descriptions Romy provided was for a TAP subfamily (MYST), should all subfamilies be listed on the main table? </p>
  <details>
-  <summary>TAP families with missing TapInfo:</summary>
+  <summary>TAP families with missing TapInfo</summary>
   <p>
   @foreach ($tap_count as $tap)
   @php $i = "missing" @endphp
@@ -54,7 +54,7 @@ Number of TAPs with info: {{ count($db_tap_infos) }} <br>
 </details>
 
 <details>
-  <summary>TAP subfamilies with missing TapInfo:</summary>
+  <summary>TAP subfamilies with missing TapInfo</summary>
   <p>
   @foreach ($tap_count2 as $tap)
   @php $i = "missing" @endphp
@@ -72,7 +72,7 @@ Number of TAPs with info: {{ count($db_tap_infos) }} <br>
 </details>
 
  <details>
-  <summary>Obsolete TapInfo:</summary>
+  <summary>Obsolete TapInfo (TapInfo in our database not corresponding to any TAP)</summary>
   <p>
   @foreach ($db_tap_infos as $info)
   @php $i = "unused" @endphp
@@ -94,10 +94,48 @@ Number of TAPs with info: {{ count($db_tap_infos) }} <br>
   @endforeach
   </p>
 </details>
+  <details>
+  <summary>TODOs, HOWTOs, Question, Comments, etc</summary>
+  <p>To add TAP info, we need a file with columns: <code>TAP_name, description, references, type (TR|TF|PT)</code></p>
+<p>Question: One of the descriptions Romy provided was for a TAP subfamily (MYST), should all subfamilies be listed on the main table? </p>
 
+  </details>
 <br>
 <h5>Missing Species Data</h5>
-<p></p>
+  <details>
+  <summary>Species in database without TAP results</summary>
+  <p>
+    @foreach ($db_species_tax_ids as $species)
+     @php $i = "none" @endphp
+     @foreach ($db_tap_table_species as $species2)
+       @if ($species->lettercode == $species2->species)
+        @php $i = "found" @endphp
+       @endif
+     @endforeach
+     @if ($i != "found")
+       {{$species->lettercode}} | {{$i}} <br>
+     @endif
+
+    @endforeach
+  </p>
+  </details>
+
+  <details>
+  <summary>Species with TAP results but not in database</summary>
+  <p>
+   @foreach ($db_tap_table_species as $species)
+      @php $i = "none" @endphp
+     @foreach ($db_species_tax_ids as $species2)
+       @if ($species->species == $species2->lettercode)
+        @php $i = "found" @endphp
+       @endif
+     @endforeach
+     @if ($i != "found")
+       {{$species->species}} | {{$i}} <br>
+     @endif
+   @endforeach
+  </p>
+  </details>
 
 <br>
 <h5>Missing Tree Data</h5>

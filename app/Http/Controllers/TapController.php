@@ -113,8 +113,22 @@ public function dev()
   $db_tap_infos = DB::table('tap_infos')->get()->toArray();
   $db_sequences = DB::table('sequences')->get()->toArray();
 
+  $db_tap_table_species = DB::table('taps')
+     ->selectRaw('SUBSTRING_INDEX(tap_id, "_",  1) as species')
+     ->distinct()
+     ->get()
+     ->toArray();
 
-  return view('taps.dev', ['tap_count' => $tap_count, 'tap_count2' => $tap_count2, 'db_taps' => $db_taps, 'dp_tap_rules' => $db_tap_rules, 'db_domains' => $db_domains, 'db_species_tax_ids' => $db_species_tax_ids, 'db_tap_infos' => $db_tap_infos, '$db_sequences' => $db_sequences]);
+  return view('taps.dev', ['tap_count' => $tap_count,
+                           'tap_count2' => $tap_count2,
+                           'db_taps' => $db_taps,
+                           'db_tap_rules' => $db_tap_rules,
+                           'db_domains' => $db_domains,
+                           'db_species_tax_ids' => $db_species_tax_ids,
+                           'db_tap_infos' => $db_tap_infos,
+                           'db_sequences' => $db_sequences,
+                           'db_tap_table_species' => $db_tap_table_species,
+   ]);
 
 }
 
