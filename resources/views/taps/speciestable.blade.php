@@ -25,7 +25,7 @@
   @foreach ($species_info as $s)
   <tr>
      <td>{{$s->lettercode}}</td>
-     <td>{{$s->name}}</td>
+     <td><a href="/species/{{$s->id}}"> {{$s->name}} </a></td>
      <td><a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{$s->taxid}}">{{$s->taxid}}</a></td>
   </tr>
   @endforeach
