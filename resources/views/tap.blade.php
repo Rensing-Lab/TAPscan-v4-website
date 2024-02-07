@@ -22,7 +22,6 @@
       </div>
     </div>
   </div>
-
   <div class="row">
     <div class="col-6">
       <table class="table table-sm table-bordered" style="height: 100%">
@@ -37,7 +36,7 @@
           </tr>
           <tr>
             <td>Number of species containing the TAP:</td>
-            <td>{{ $tap_species_number }}</td>
+            <td>{{$tap_species_number}} <a href="/speciestable/tap/{{$id}}"> (list)</a></td>
           </tr>
           <tr>
             <td>Number of available proteins:</td>
@@ -139,6 +138,7 @@
       <object data="/storage/trees/svgs/MAFFT_alignment_trim.fasta_{{$tree_id}}.treefile.svg" alt="Phylogenetic tree image for {{$id}}"></object>
   </details>
   @endif
+
 
 </div>
 

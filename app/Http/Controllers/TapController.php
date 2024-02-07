@@ -61,7 +61,7 @@ $circle_viz = DB::table('taps')
   return view('visualization.index', ['circle_viz' => $circle_viz]);
 }
 
-  public function tap_show($id)
+public function tap_show($id)
 {
       $tap_rules = TapController::tap_rules($id);
       $tap_species_number = TapController::tap_species_number($id);
@@ -159,12 +159,13 @@ public function domain_info()
 public function tap_species_number($id)
 {
     $tap_species_number = DB::table('taps')
-                ->selectRaw('SUBSTRING_INDEX(tap_id, "_",  1)')
+                ->selectRaw('SUBSTRING_INDEX(tap_id, "_",  1) as species')
                 ->where('tap_1','=', $id)
                 ->distinct()
                 ->get();
     return $tap_species_number;
 }
+
 
 public function tap_distribution($id)
 {
@@ -183,6 +184,29 @@ public function table(): View
 
     return view('taps.table', compact('table'));
 }
+
+public function taptable($id): View
+{
+   $species_ids = Tapcontroller::tap_species_number($id);
+
+   $species_array = array();
+   foreach($species_ids as $s)
+   {
+     array_push($species_array,$s->{'species'});
+   }
+   $species_info = DB::table('species_tax_ids')
+       ->whereIn('lettercode', $species_array)
+       ->get();
+
+   return view('taps.speciestable', [
+   'species_ids' => $species_ids,
+   'id' => $id,
+   'species_info' => $species_info,
+   ]);
+}
+
+
+
 
 public function index()
 {
