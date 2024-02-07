@@ -45,6 +45,7 @@
                                <a class="dropdown-item {{ (request()->is('tapinfo/table')) ? 'active' : '' }}" href="/tapinfo/table">Tap Info</a>
                                <a class="dropdown-item {{ (request()->is('domain/table')) ? 'active' : '' }}" href="/domain/table">Domains</a>
                                <a class="dropdown-item {{ (request()->is('news/table')) ? 'active' : '' }}" href="/news/table">News</a>
+                               <a class="dropdown-item" href="http://tapscan.plantcode.cup.uni-freiburg.de:8001/tapscan.plantcode.cup.uni-freiburg.de">Website Metrics</a>
                             </div>
                         </li>
                         @endauth
