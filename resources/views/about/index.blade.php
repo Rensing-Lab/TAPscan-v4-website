@@ -31,9 +31,15 @@
 
             <br><br>
             Protein names (e.g. in download and phylogenetic trees) are extended by a (typically five) letter code abbreviating the species,
-            e.g. ORYSA = <i>ORYza SAtiva</i>. Please see <a class="awith" href="/species-list">this table</a> for the alphabetically sorted codes.
+            e.g. ORYSA = <i>ORYza SAtiva</i>. Please see <a class="awith" href="/species-list">this table</a> for the alphabetically sorted codes.4
         </p>
-      {{-- <h5 class="card-title">fdsafsafa</h5> --}}
+        <p>
+        <b>Source code availability on GitHub:</b>
+        <ul>
+          <li>TAPscan website: <a target="_blank" href="https://github.com/Rensing-Lab/TAPscan-v4-website">Rensing-Lab/TAPscan-v4-website </a> </li>
+          <li>TAPscan classifiation tool: <a target="_blank" href="https://github.com/Rensing-Lab/TAPscan-classify">Rensing-Lab/TAPscan-classify</a> </li>
+        </ul>
+        </p>
     </div>
     <div class="card-footer text-muted text-center">
       Last updated 2024
