@@ -14,7 +14,7 @@
         <link rel="icon" href="{{ asset('img/favicon.ico') }}">
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <script defer data-domain="tapscan.plantcode.cup.uni-freiburg.de" src="http://tapscan.plantcode.cup.uni-freiburg.de/js/script.js"></script>
+        <script defer data-domain="tapscan.plantcode.cup.uni-freiburg.de:8001" src="http://tapscan.plantcode.cup.uni-freiburg.de/js/plausible.js"></script>
     </head>
     <body>
         <div class="container">
