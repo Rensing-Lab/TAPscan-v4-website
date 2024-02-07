@@ -36,7 +36,7 @@
           </tr>
           <tr>
             <td>Number of species containing the TAP:</td>
-            <td>{{$tap_species_number}} <a href="/speciestable/tap/{{$id}}"> (list)</a></td>
+            <td>{{ $tap_species_number }} <a href="/speciestable/tap/{{$id}}"> (list)</a></td>
           </tr>
           <tr>
             <td>Number of available proteins:</td>
@@ -47,17 +47,18 @@
     </div>
 
     <div class="col-6">
-      Domain rules:
+
+      Domain rules  <span href="#" data-toggle="tooltip" title="Green buttons indicate a 'should' rule. Red boxes indicate a 'should not' rule. Solid coloured boxes link to the corresponding PFAM page. Outlined boxes indicate custom domains."> <img src="/img/question-circle.svg"/> </span>:
       <?php $pfam=null ?>
       @foreach ($tap_rules as $rules)
         <?php $pfam=null ?>
         @foreach ($domain_info as $domain)
-	      @if ($domain->name === $rules->tap_2)
+        @if ($domain->name === $rules->tap_2)
             @if (str_starts_with($domain->pfam,"PF"))
-	        <?php $pfam = $domain->pfam; ?>
+          <?php $pfam = $domain->pfam; ?>
             @endif
           @endif
-	@endforeach
+      @endforeach
 
         <a @if($pfam)target="_blank" href="https://www.ebi.ac.uk/interpro/entry/pfam/{{ $pfam }}"@else href="/domain" @endif>
         @if ($rules->rule === "should")
@@ -65,8 +66,8 @@
         @endif
         @if ($rules->rule === "should not")
             <button type="button" @if($pfam)class="btn btn-danger" @else class="btn btn-outline-danger"@endif>{{$rules->tap_2}}</button>
-	@endif
-	</a>
+        @endif
+        </a>
       @endforeach
 
       <br/><br/>
