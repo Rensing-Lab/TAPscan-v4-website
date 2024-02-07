@@ -7,7 +7,7 @@
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
     <h1 class="display-6">TAPscan - Species View</h1>
-    <p class="lead">This is a list of all species covered by the TAPscan web page V4.
+    <p class="lead">This is a list of all species covered by the TAPscan web page v4.
     </br></br>
     Below you can explore the species in tree form. A <a href="/species-list">table</a> listing all species is also available.</p>
     <hr class="my-1">

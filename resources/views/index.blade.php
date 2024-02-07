@@ -9,7 +9,7 @@
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-6">TAPscan - Family View</h1>
-      <p class="lead">This is a list of all TAPs families covered by the TAPscan web page V4, in alphabetical order. Clicking them will lead you to a page with more details. There, the number of proteins containing the respective TAP is written in brackets after its name.
+      <p class="lead">This is a list of all TAPs families covered by the TAPscan web page v4, in alphabetical order. Clicking them will lead you to a page with more details. There, the number of proteins containing the respective TAP is written in brackets after its name.
       For a list of all species covered by TAPscan, please refer to this <a href="/species">species tree</a> or <a href="/species-list">species table</a>.
       </p>
       <hr class="my-1">
