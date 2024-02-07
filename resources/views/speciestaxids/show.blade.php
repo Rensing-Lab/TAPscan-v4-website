@@ -19,7 +19,7 @@
 <div class="card">
   <div class="card-header">
     <h5 class="card-title">Name: {{ $species->name }} ({{$species->lettercode }})</h5>
-    NCBI TaxID: <a href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ $species->taxid }}">{{ $species->taxid }} </a>
+    NCBI TaxID: <a target="_blank" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ $species->taxid }}">{{ $species->taxid }} </a>
   </div>
 
   <div class="card-body">
