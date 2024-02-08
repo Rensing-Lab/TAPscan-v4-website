@@ -9,6 +9,8 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class RegisteredUserController extends Controller
 {
@@ -19,7 +21,14 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+       $num_users = count(DB::table('users')->get());
+
+       if ($num_users == 0) {
+           return view('auth.register');
+       }
+       else{
+           return view('auth.registration-refused');
+       }
     }
 
     /**
