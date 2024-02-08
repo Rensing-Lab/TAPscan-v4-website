@@ -4,7 +4,6 @@
 
 @section('content')
 
-{ { dd(get_defined_vars()['__data']) }}
 
 <div class="container">
   <div class="row">
