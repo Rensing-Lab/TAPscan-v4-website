@@ -38,6 +38,10 @@ class TapController extends Controller
                 ->select('tap_1', DB::raw('count(*) as num'))
                 ->groupBy('tap_1');
 
+  $tap2_count = DB::table('taps')
+                ->select('tap_2', DB::raw('count(*) as num'))
+                ->groupBy('tap_2');
+
   $tap_infos = DB::table('tap_infos')
   ->rightJoinSub($tap_count, 'tap_count', function ($join) {
       $join->on('tap_infos.tap', '=', 'tap_count.tap_1');
@@ -46,8 +50,27 @@ class TapController extends Controller
   ->orderBy('tap_1')
   ->get();
 
+  $tap2_infos = DB::table('tap_infos')
+  ->rightJoinSub($tap2_count, 'tap_count', function ($join) {
+      $join->on('tap_infos.tap', '=', 'tap_count.tap_2');
+  })
+  ->select('tap_2','num', 'type')
+  ->orderBy('tap_2')
+  ->get();
 
-    return view('index', ['tap_count' => $tap_infos]);
+
+  $subfamilies = DB::table('taps')
+  ->select('tap_1', DB::raw('group_concat(distinct(tap_2)) as subfamilies'))
+  ->groupBy('tap_1')
+  ->orderBy('tap_1')
+  ->get();
+
+
+  return view('index', [
+              'tap_count' => $tap_infos->keyBy('tap_1'),
+              'tap2_count' => $tap2_infos->keyBy('tap_2'),
+              'subfamilies' => $subfamilies->keyBy('tap_1'),
+  ]);
 }
 
 public function circle_viz()

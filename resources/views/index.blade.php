@@ -4,6 +4,8 @@
 
 @section('content')
 
+{ { dd(get_defined_vars()['__data']) }}
+
 <div class="container">
   <div class="row">
   <div class="jumbotron jumbotron-fluid">
@@ -25,8 +27,10 @@
       </span>
       <br/>
       and is shown behind the TAP name, together with the TAP count among <a href="/species">the species dataset used here</a>:
-      <span class="badge badge-success badge-pill badge-tapcount"> TF | 42 </span>
+      <span class="badge badge-success badge-pill badge-tapcount"> TF | 42 </span><br>
+      Subfamilies are also included in this table, and named like: <b><code>Family:Subfamily</code></b>
       </p>
+
     </div>
   </div>
 </div>
@@ -48,9 +52,12 @@
 
 <div class="container">
   <div class="row row-cols-4">
+   @php $offset = 0 @endphp
    @foreach ($tap_count as $tap)
+
      @php
-     $i = (($loop->index-1)/4)%2;
+     $i = ((($loop->index-1)+$offset)/4)%2;
+     $mainindex = $loop->index;
      @endphp
      @if ($loop->index)
      <span class="border rounded tapcell @if($i==1) oddrow @else evenrow @endif" id="stuff">
@@ -59,6 +66,21 @@
        </div>
     </span>
     @endif
+
+    <!-- add subfamilies -->
+    @foreach (explode(',',$subfamilies[$tap->tap_1]->subfamilies)  as $subfamily)
+      @unless ($subfamily == '-')
+        @php $subtap = $tap2_count[$subfamily];
+          $offset = $offset + 1;
+          $i = (($mainindex-1+$offset)/4)%2;
+        @endphp
+        <span class="border rounded tapcell @if($i==1) oddrow @else evenrow @endif" id="stuff">
+          <div class="col justify-content-between align-items-center d-flex"><a class='taptext {{ $subtap->type ?? "NA" }}' href='/tap/{{ $subtap->tap_2}}'> {{$tap->tap_1}}:{{ $subtap->tap_2}} </a>
+            <span class="badge badge-success badge-pill badge-tapcount">{{ $subtap->type ?? "NA" }}  |  {{ str_pad($subtap->num,4,'    ',STR_PAD_LEFT) }}</span>
+          </div>
+        </span>
+      @endunless
+    @endforeach
   @endforeach
   </div>
 </div>
@@ -80,8 +102,7 @@
   @endphp
 
   @foreach ($family as $row)
-
-    @php
+       @php
     if ($row->class_id === 1) {
        $color = "green tablelink";
     }elseif ($row->class_id === 2) {
