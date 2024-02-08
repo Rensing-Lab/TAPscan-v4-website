@@ -45,9 +45,11 @@ sudo chmod -R a+rwx public storage
 
 ### Adding Data: Populating the database
 
-The `_data` folder contains all the data used to populate the TAPscan website. Data can be uploaded via the admin panel in the web interface, or via the commandline. For the initial data upload, we recommend using the commandline, because it can take quite some time.
+The `_data` folder contains all the data used to populate the TAPscan website.
 
-To load the TAPscan v4 data into the database:
+Data can be uploaded via the admin panel in the TAPscan web interface, or via the commandline. For the initial data upload, we recommend using the commandline, because it can take quite some time.
+
+To load the TAPscan v4 data into the database, follow the instructions below. To prepare your own data for upload, see the *"Preparing data for upload"* section.
 
 1. Run the importers
    - `make import-data`
