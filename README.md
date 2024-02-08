@@ -14,33 +14,24 @@ If you would like to run your own copy of TAPscan with your own data, you can fo
 
 ### Install TAPscan
 
-0. Clone this GitHub repo
+1. Clone this GitHub repo
+   - `https://github.com/Rensing-Lab/TAPscan-v4-website.git`
 
-1. Edit environment file with your settings:
+2. Edit environment file with your settings:
+   - `cp env.example .env` (copy the example configuration file)
+   - edit this `.env` file as needed
 
-```
-cp env.example .env  #create a copy of the example env file
-# edit .env file as needed
-```
-
-2. Start the application for the first time
-   -  `make first-run`
-
-This will run the application in docker. Once it has started successfully,  open a new terminal and run the configuration step:
-
-2. Apply configuration:
+3. Apply configuration:
    - `make configure`
-   - **Tip:** this step can be combined with the database population step (see next section) by doing `make configure-and-import` instead (but his will take quite some time)
+   - This may take a few minutes. When everything is ready, the containers will be stopped.
 
-This may take a few minutes. When everything is ready, the containers will be stopped. From now on, we can control TAPscan directly using the docker compose file.
-
-3. Start TAPscan application
+4. Start TAPscan application
    - `docker-compose up` (or `make run`)
 
-4. View  TAPscan application
+5. View  TAPscan application
    - By default the application will run at `http://0.0.0.0:8000`
 
-5. To stop the application
+6. To stop the application
    - `docker-compose down` (or `make stop`)
 
 **Troubleshooting**
@@ -58,16 +49,11 @@ The `_data` folder contains all the data used to populate the TAPscan website. D
 
 To load the TAPscan v4 data into the database:
 
-1. Start TAPscan
-   - `make first-run`
-   - wait until TAPscan is running (i.e no more new output in terminal)
-
-2. In a differenct terminal, run the importers
+1. Run the importers
    - `make import-data`
-   - This will take quite some time (> 1 hour)
-   - You can monitor progress in the first terminal window
+   - This will take quite some time (>1h for the v4 dataset)
    - When it is done, the container will shut down
-   - The data that is uploaded in this command is:
+   - The data that is uploaded to the database in this command is:
      ```
      _data/import-species/species_v4.csv
      _data/import-rules/rules_v81.txt
@@ -117,23 +103,37 @@ server {
 Steps to follow to make data ready for inclusion in TAPscan:
 
 ### Species informaion
-- file format
-- example
+- Format:
+	- Semicolon (`;`) separated file
+    - 8 columns: `lettercode;Kingiom/supergroup;phylum/clade; supergroup2;order;family;scientific name;NCBI TaxID`
+- Example: [TAPscanv4 Species file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-species/species_v4.csv)
 
 ### Rules
-- file format
-- example
+- Format:
+	- Semicolon (`;`) separated file
+    - 3 columns: `TAP family;Domain;Rule (should | should not)`
+- Example: [TAPscanv4 Rules file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-rules/rules_v81.txt)
 
 ### TAPs
+- Run the [TAPscan-classify](https://github.com/Rensing-Lab/TAPscan-classify) tool,
+- The subfamily classification outputs (`*.output.3`) can be uploaded directly into the TAPscan website
+- Format:
 
+- Example: [TAPscanv4 Tap file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-tap/taps_v4.csv)
 
-run TAPscan, and upload the `output.3` result files in the admin panel
+### TAP information
+- Format:
+  - TAB-separated file
+  - With 4 columns: `TAP name [TAB] Description [TAB] "reference1","reference2",.. [TAB] Type (TR|TF|PT)`
+  - References can be free-text citations. Preferably with a DOI link.
+- Example: [TAPscanv4 TapInfo file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-tapinfo/tapinfo_v4.csv)
 
-TODO: link to tapscan script and/or galaxy tool
-
-### TAP descriptions
-- file format
-- example
+### Domains file
+- Format:
+  - Semicolon (`;`) separated file
+  - With 2 columns: `Domain;PFAM ID`
+  - PFAM IDs start with `PF`, e.g. `PF00249`
+- Example: [TAPscanv4 TapInfo file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-domain/domains_v4.csv)
 
 
 
@@ -141,15 +141,7 @@ TODO: link to tapscan script and/or galaxy tool
 
 ### Deleting TAPscan
 
-To throw away your TAPscan images, containers, volumes, you can do the following. Use with care!
-
-```
-# remove all docker images, containers and volumes if setup goes wrong
-./vendor/bin/sail down --rmi all -v
-
-# this command is also run if you do
-make delete
-```
+To throw away your TAPscan images, containers, volumes, you run `make delete`. This will delete any data in the TAPscan database as well, so use with care!
 
 
 
