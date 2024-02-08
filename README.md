@@ -16,7 +16,7 @@ If you would like to run your own copy of TAPscan with your own data, you can fo
 
 0. Clone this GitHub repo
 
-1. Configure settings:
+1. Edit environment file with your settings:
 
 ```
 cp env.example .env  #create a copy of the example env file

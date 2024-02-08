@@ -21,6 +21,9 @@ services:
             - sail
         depends_on:
             - mysql.ananas
+        healthcheck:
+          test: ["CMD", 'curl', 'http://localhost:80']
+
     mysql.ananas:
         image: mysql:8.0
         ports:
@@ -37,7 +40,8 @@ services:
         networks:
             - sail
         healthcheck:
-          test: ["CMD", "mysqladmin", "ping"]
+          #test: ["CMD", "mysqladmin", "ping"]
+          test: ["CMD", 'mysqladmin', 'ping', '-h', 'localhost', '-u', 'root', '-p$$MYSQL_ROOT_PASSWORD']
 networks:
     sail:
         driver: bridge
