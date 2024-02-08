@@ -67,6 +67,7 @@ To load the TAPscan v4 data into the database, follow the instructions below. To
 3. To upload more data later, first create an admin user
    - navigate to `http://0.0.0.0:8000/register`
    - create an admin account
+   - Note that only one admin account can be made, make sure to remember your credentials!
 
 4. Upload data via the Admin panel.
    - Admin -> Data Upload and follow the instructions
