@@ -95,10 +95,10 @@ Number of TAP Rules: {{count($db_tap_rules) }} <br>
   </p>
 </details>
   <details>
-  <summary>TODOs, HOWTOs, Question, Comments, etc</summary>
-  <p>To add TAP info, we need a file with columns: <code>TAP_name, description, references, type (TR|TF|PT)</code></p>
-<p>Question: One of the descriptions Romy provided was for a TAP subfamily (MYST), should all subfamilies be listed on the main table? </p>
-
+  <summary>How to Fix</summary>
+  <p>To add TAP info, we need a tab-separate file with 4 columns: <code>TAP_name [TAB] description [TAB] "reference1","reference2" [TAB] type (TR|TF|PT)</code></p>
+  <p>Make sure the TAP_name matches those in TAPscan output</p>
+  <p><a target="_blank" href="https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-tap/taps_v4.csv">Example TAPs file</a></p>
   </details>
 <br>
 <h5>Missing Species Data</h5>
@@ -136,6 +136,14 @@ Number of TAP Rules: {{count($db_tap_rules) }} <br>
    @endforeach
   </p>
   </details>
+
+  <details>
+  <summary>How to Fix</summary>
+  <p>To add Species info, we need a semi-colon separated file with 8 columns: <code>lettercode;Kingiom/supergroup;phylum/clade; supergroup2;order;family;scientific name;NCBI TaxID</code></p>
+  <p>Make sure the lettercode matches those in TAPscan output</p>
+  <p><a target="_blank" href="https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-species/species_v4.csv">Example species file</a></p>
+  </details>
+
 
 <br>
 <h5>Missing Tree Data</h5>
