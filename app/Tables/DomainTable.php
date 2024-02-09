@@ -20,10 +20,10 @@ class DomainTable extends AbstractTable
         return (new Table())->model(Domain::class)
             ->routes([
                 'index'   => ['name' => 'domain.table'],
-                // 'create'  => ['name' => 'species.create'],
-                //'show' => ['name' => 'tapinfo.show'],
-                //'edit'    => ['name' => 'tapinfo.edit'],
-                //'destroy' => ['name' => 'tapinfo.destroy'],
+                // 'create'  => ['name' => 'domain.create'],
+                //'show' => ['name' => 'domain.show'],
+                'edit'    => ['name' => 'domain.edit'],
+                //'destroy' => ['name' => 'domain.destroy'],
             ])
             ->destroyConfirmationHtmlAttributes(fn(Domain $domain) => [
                 'data-confirm' => __('Are you sure you want to delete the entry :entry?', [

@@ -43,4 +43,31 @@ public function index()
     return view('domain.index', compact('table'));
 }
 
+public function edit(Domain $domains, $id)
+{
+  $domain_data = $domains::findOrFail($id);
+  return view('domain.edit',compact('domain_data'));
+}
+
+public function update(Request $request, $id)
+{
+    // read more on validation at http://laravel.com/docs/validation
+    $request->validate([
+        'name'     => 'required',
+        'pfam'     => 'required',
+    ]);
+
+    $dom = Domain::find($id);
+
+    $dom->name = $request->name;
+    $dom->pfam = $request->pfam;
+
+    // store
+    $dom->save();
+
+    return redirect()->route('domain.table')
+      ->with('success', 'Domain updated successfully');
+}
+
+
 }
