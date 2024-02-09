@@ -20,9 +20,9 @@ class TapInfoTable extends AbstractTable
         return (new Table())->model(TapInfo::class)
             ->routes([
                 'index'   => ['name' => 'tapinfo.table'],
-                // 'create'  => ['name' => 'species.create'],
+                //'create'  => ['name' => 'species.create'],
                 //'show' => ['name' => 'tapinfo.show'],
-                //'edit'    => ['name' => 'tapinfo.edit'],
+                'edit'    => ['name' => 'tapinfo.edit'],
                 //'destroy' => ['name' => 'tapinfo.destroy'],
             ])
             ->destroyConfirmationHtmlAttributes(fn(TapInfo $tapinfo) => [

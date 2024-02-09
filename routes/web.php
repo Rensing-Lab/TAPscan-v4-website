@@ -65,6 +65,7 @@ Route::post('domains/import', [DomainController::class, 'import'])->middleware([
 # other defaults
 Route::resource('species', SpeciesController::class);
 Route::resource('taps', TapController::class);
+Route::resource('tapinfo', TapInfoController::class);
 Route::resource('news', NewsController::class);
 Route::resource('rules', TapRulesController::class);
 Route::resource('domain', DomainController::class);
