@@ -1,3 +1,5 @@
+![](https://raw.githubusercontent.com/Rensing-Lab/TAPscan-v4-website/main/public/img/TAPscan_logo_v4.png)
+
 # TAPscan v4
 
 This repository contains the source code for the TAPscan v4 website: [tapscan.plantcode.cup.uni-freiburg.de](http://tapscan.plantcode.cup.uni-freiburg.de)
