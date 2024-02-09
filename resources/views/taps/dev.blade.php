@@ -138,11 +138,47 @@ Number of TAP Rules: {{count($db_tap_rules) }} <br>
   </details>
 
   <details>
+  <summary>Species without a fasta file:</summary>
+   @foreach ($db_species_tax_ids as $species)
+     @php $i = "none" @endphp
+     @if (Storage::disk('public')->exists("fasta/".$species->lettercode.".fa"))
+        @php $i = "found" @endphp
+     @endif
+     @if ($i != "found")
+       {{$species->lettercode}}.fa | {{$i}} <br>
+     @endif
+   @endforeach
+
+  </details>
+
+  <details>
+    <summary>Unused fasta files</summary>
+
+    @foreach ($fastafiles as $fasta)
+     @if ($fasta['type'] == 'file')
+      @php $s = str_replace('.fa','',$fasta['basename']); $i = "none"; @endphp
+      @foreach ($db_species_tax_ids as $species)
+       @if ($species->lettercode == $s)
+        @php $i="found"@endphp
+       @endif
+      @endforeach
+      @if ($i == 'none')
+        {{$s}}.fa unused <br>
+      @endif
+     @endif
+    @endforeach
+  </details>
+
+  <details>
   <summary>How to Fix</summary>
   <p>To add Species info, we need a semi-colon separated file with 8 columns: <code>lettercode;Kingiom/supergroup;phylum/clade; supergroup2;order;family;scientific name;NCBI TaxID</code></p>
   <p>Make sure the lettercode matches those in TAPscan output</p>
   <p><a target="_blank" href="https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-species/species_v4.csv">Example species file</a></p>
+  <p>
+  There should be a fasta file in `_data/fasta` for each species, named by lettercode, e.g. `ACTCH.fa`
+  </p>
   </details>
+
 
 
 <br>
