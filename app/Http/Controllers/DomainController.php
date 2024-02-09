@@ -69,5 +69,15 @@ public function update(Request $request, $id)
       ->with('success', 'Domain updated successfully');
 }
 
+public function destroy($id)
+{
+  $dom = Domain::find($id);
+  $dom->delete();
+
+  return redirect()->route('domain.table')
+    ->with('success', 'Domain deleted successfully');
+}
+
+
 
 }
