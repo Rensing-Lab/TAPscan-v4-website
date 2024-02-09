@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/Rensing-Lab/TAPscan-v4-website/main/public/img/TAPscan_logo_v4.png)
+![](public/img/TAPscan_logo_v4.png)
 
 # TAPscan v4
 
