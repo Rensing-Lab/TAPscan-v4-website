@@ -35,17 +35,10 @@
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>TaxID</strong>
+                    <strong>NCBI TaxID</strong>
                     <input type="text" name="taxid" value="{{ $species->taxid }}" class="form-control" placeholder="TaxID">
                 </div>
             </div>
-            {{-- <div class="col-xs-12 col-sm-12 col-md-12">
-                <div class="form-group">
-                    <strong>Price</strong>
-                    <input type="number" name="price" class="form-control" placeholder=""
-                        value="">
-                </div>
-            </div> --}}
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
