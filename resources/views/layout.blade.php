@@ -39,12 +39,14 @@
                            </a>
                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                <a class="dropdown-item {{ (request()->is('upload')) ? 'active' : '' }}" href="/data-upload">Data Upload</a>
-                               <a class="dropdown-item {{ (request()->is('taps')) ? 'active' : '' }}" href="/taps/table">TAPs</a>
-                               <a class="dropdown-item {{ (request()->is('rules')) ? 'active' : '' }}" href="/rules/table">TAP Rules</a>
+                               <hr>
                                <a class="dropdown-item {{ (request()->is('species/table')) ? 'active' : '' }}" href="/species/table">Species</a>
+                               <a class="dropdown-item {{ (request()->is('rules')) ? 'active' : '' }}" href="/rules/table">TAP Rules</a>
+                               <a class="dropdown-item {{ (request()->is('taps')) ? 'active' : '' }}" href="/taps/table">TAPs</a>
                                <a class="dropdown-item {{ (request()->is('tapinfo/table')) ? 'active' : '' }}" href="/tapinfo/table">Tap Info</a>
                                <a class="dropdown-item {{ (request()->is('domain/table')) ? 'active' : '' }}" href="/domain/table">Domains</a>
                                <a class="dropdown-item {{ (request()->is('news/table')) ? 'active' : '' }}" href="/news/table">News</a>
+                               <hr>
                                <a class="dropdown-item" target="_blank"  href="http://tapscan.plantcode.cup.uni-freiburg.de:8001/tapscan.plantcode.cup.uni-freiburg.de">Website Metrics</a>
                             </div>
                         </li>
