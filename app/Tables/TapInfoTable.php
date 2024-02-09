@@ -23,7 +23,7 @@ class TapInfoTable extends AbstractTable
                 'create'  => ['name' => 'tapinfo.create'],
                 //'show' => ['name' => 'tapinfo.show'],
                 'edit'    => ['name' => 'tapinfo.edit'],
-                //'destroy' => ['name' => 'tapinfo.destroy'],
+                'destroy' => ['name' => 'tapinfo.destroy'],
             ])
             ->destroyConfirmationHtmlAttributes(fn(TapInfo $tapinfo) => [
                 'data-confirm' => __('Are you sure you want to delete the entry :entry?', [

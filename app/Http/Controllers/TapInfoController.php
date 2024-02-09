@@ -21,33 +21,32 @@ class TapInfoController extends Controller
 {
 
   public function import(Request $request)
-{
+  {
     Excel::import(new TapInfoImport(), $request->file('file'));return redirect()->route('tapinfo.table')
         ->with('success', 'Products has been imported');
-}
+  }
 
 
-public function table(): View
-{
+  public function table(): View
+  {
     $table = (new TapInfoTable())->setup();
 
     return view('tapinfo.table', compact('table'));
-}
+  }
 
-public function index()
-{
-  return view('tapinfo.index');
-}
+  public function index()
+  {
+    return view('tapinfo.index');
+  }
 
-public function edit(TapInfo $new,  $id)
-{
-   $tapinfo_data = TapInfo::findOrFail($id);
-   return view('tapinfo.edit', compact('tapinfo_data'));
-}
+  public function edit(TapInfo $new,  $id)
+  {
+    $tapinfo_data = TapInfo::findOrFail($id);
+    return view('tapinfo.edit', compact('tapinfo_data'));
+  }
 
- public function update(Request $request, TapInfo $new, $id)
-   {        //
-
+  public function update(Request $request, TapInfo $new, $id)
+  {
        // validate
        // read more on validation at http://laravel.com/docs/validation
        $request->validate([
@@ -69,27 +68,35 @@ public function edit(TapInfo $new,  $id)
 
        return redirect()->route('tapinfo.table')
          ->with('success', 'TAP Info updated successfully');
-}
+  }
 
-public function create()
-{
+  public function create()
+  {
     return view('tapinfo.create');
-}
+  }
 
-public function store(Request $request)
-{
-  $request->validate([
-    'tap' => 'required',
-    'text' => 'required',
-    'reference' => 'required',
-    'type' => 'required',
-  ]);
+  public function store(Request $request)
+  {
+    $request->validate([
+      'tap' => 'required',
+      'text' => 'required',
+      'reference' => 'required',
+      'type' => 'required',
+    ]);
 
-  TapInfo::create($request->all());
+    TapInfo::create($request->all());
 
-  return redirect()->route('tapinfo.table')
-  ->with('success', 'TapInfo created successfully.');
-}
+    return redirect()->route('tapinfo.table')
+    ->with('success', 'TapInfo created successfully.');
+  }
 
+  public function destroy(TapInfo $newss, $id)
+  {
+    $tapinfo_data = $newss::find($id);
+    $tapinfo_data->delete();
+
+    return redirect()->route('tapinfo.table')
+      ->with('success', 'TAP info deleted successfully');
+   }
 
 }
