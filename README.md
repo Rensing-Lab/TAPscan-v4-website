@@ -66,7 +66,7 @@ To load the TAPscan v4 data from the `_data` folder into the TAPscan database, f
 1. Run the importers
    - `make import-data`
    - This will take quite some time (>1h for the v4 dataset)
-   - When it is done, the container will shut down
+   - When it is done, the containers will shut down
    - The data that is uploaded to the database with this command is:
      ```
      _data/import-species/species_v4.csv
@@ -77,13 +77,15 @@ To load the TAPscan v4 data from the `_data` folder into the TAPscan database, f
      ```
    - To run this importer with different data, simply replace the files mentioned above with your own.
 
-3. To upload more data later, or first create an admin user
+3. To upload more data later, first create an admin user
    - navigate to `http://0.0.0.0:8000/register`
    - create an admin account
-   - **Note:** only one admin account can be made, so make sure to remember your credentials!
+   - **Note:** only one account can be made, so make sure to remember your credentials!
 
-4. Upload data via the Admin panel on the website.
-   - In the top bar, go to *Admin -> Data Upload*, and follow the instructions
+4. Now there is an "Admin" section at the top of the page
+   - Here you can view (and edit) existing data
+   - Or upload additional data files under *Admin -> Data Upload*
+
 
 **TIP:** The data upload step can be combined with the first configuration step by using the command `make configure-and-import`
 
