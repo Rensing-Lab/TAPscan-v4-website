@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
-use App\Exports\TapRulesExport;
-use App\Imports\TapRulesImport;
 use Illuminate\Support\Facades\Route;
 use \Illuminate\View\View;
-use \App\Tables\TapRulesTable;
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Exports\TapRulesExport;
+use App\Imports\TapRulesImport;
+use App\Tables\TapRulesTable;
 use App\Models\TapRules;
 
 class TapRulesController extends Controller
@@ -87,8 +88,8 @@ public function show(TapRules $tapRules, $rule)
  */
 public function edit(TapRules $tapRules, $id)
 { //
-  $rules = $tapRules::findOrFail($id);
-  return view('rules.edit',compact('rules'));
+  $rule_data = $tapRules::findOrFail($id);
+  return view('rules.edit',compact('rule_data'));
 }
 
 /**
@@ -99,25 +100,26 @@ public function edit(TapRules $tapRules, $id)
  * @return \Illuminate\Http\Response
  */
 public function update(Request $request, TapRules $tapRules, $id)
-{        //
-
+{
     // validate
     // read more on validation at http://laravel.com/docs/validation
     $request->validate([
         'tap_1'       => 'required',
-        'rule'      => 'required|numeric'
+        'tap_2'       => 'required',
+        'rule'        => 'required'
     ]);
 
     $rules = TapRules::find($id);
 
     $rules->tap_1 = $request->tap_1;
+    $rules->tap_2 = $request->tap_2;
     $rules->rule = $request->rule;
 
         // store
     $rules->save();
 
-    return redirect()->route('species.index')
-      ->with('success', 'Product updated successfully');
+    return redirect()->route('rules.table')
+      ->with('success', 'Rule updated successfully');
 }
 
 /**
