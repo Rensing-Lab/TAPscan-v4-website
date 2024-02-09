@@ -41,10 +41,10 @@ class TapTable extends AbstractTable
     protected function columns(Table $table): void
     {
         $table->column('tap_id')->sortable()->searchable()->title('TAP ID');
-        $table->column('tap_1')->sortable()->searchable()->title('TAP 1');
-        $table->column('tap_2')->sortable()->searchable()->title('TAP 2');
+        $table->column('tap_1')->sortable()->searchable()->title('TAP Family');
+        $table->column('tap_2')->sortable()->searchable()->title('TAP SubFamily');
         $table->column('count')->sortable()->title('Count');
-        $table->column('tap_3')->sortable()->title('TAP 3');
+        $table->column('tap_3')->sortable()->title('Domain');
     }
 
     /**
