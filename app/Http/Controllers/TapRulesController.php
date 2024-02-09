@@ -52,7 +52,7 @@ public function export()
  */
 public function create()
 {
-    //
+   return view('rules.create');
 }
 
 /**
@@ -63,7 +63,17 @@ public function create()
  */
 public function store(Request $request)
 {
-    //
+    $request->validate([
+      'tap_1' => 'required',
+      'tap_2' => 'required',
+      'rule' => 'required',
+    ]);
+
+    TapRules::create($request->all());
+
+    return redirect()->route('rules.table')
+    ->with('success', 'Rule created successfully.');
+
 }
 
 /**
