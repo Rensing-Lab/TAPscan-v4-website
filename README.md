@@ -27,7 +27,7 @@ If you would like to run your own copy of TAPscan with your own data, you can fo
    - `git clone https://github.com/Rensing-Lab/TAPscan-v4-website.git`
 
 2. Edit environment file with your settings:
-   - Copy the example configuration file: `cp env.example .env`
+   - Copy the example configuration file: `cp env_example .env`
    - Edit this `.env` file as needed
    - Make sure to change the database password (`'${DB_PASSWORD}'`)
    - To change the port the TAPscan application runs on (default `8000`), edit the `docker-compose.yml` file (line 12).
@@ -56,17 +56,17 @@ sudo chmod -R a+rwx public storage
 
 ### Adding Data: Populating the database
 
-The `_data` folder contains all the data used to populate the TAPscan website.
+The `_data` folder contains all the data we used to populate the main [TAPscan website](http://tapscan.plantcode.cup.uni-freiburg.de/).
 
-Data can be uploaded via the admin panel in the TAPscan web interface, or via the commandline. For the initial data upload, we recommend using the commandline, because it can take quite some time.
+Data can be uploaded via the admin panel in the TAPscan web interface, or via the commandline. For the initial data upload, we recommend using the commandline, because this step can take quite some time.
 
-To load the TAPscan v4 data into the database, follow the instructions below. To prepare your own data for upload, see the *"Preparing data for upload"* section.
+To load the TAPscan v4 data from the `_data` folder into the TAPscan database, follow the instructions below. To prepare your own data for upload, see the *"Preparing data for upload"* section.
 
 1. Run the importers
    - `make import-data`
    - This will take quite some time (>1h for the v4 dataset)
    - When it is done, the container will shut down
-   - The data that is uploaded to the database in this command is:
+   - The data that is uploaded to the database with this command is:
      ```
      _data/import-species/species_v4.csv
      _data/import-rules/rules_v81.txt
@@ -74,16 +74,18 @@ To load the TAPscan v4 data into the database, follow the instructions below. To
      _data/import-tapinfo/tapinfo_v4.csv
      _data/import-domains/domains_v4.csv
      ```
+   - To run this importer with different data, simply replace the files mentioned above with your own.
 
-3. To upload more data later, first create an admin user
+3. To upload more data later, or first create an admin user
    - navigate to `http://0.0.0.0:8000/register`
    - create an admin account
-   - Note that only one admin account can be made, make sure to remember your credentials!
+   - **Note:** only one admin account can be made, so make sure to remember your credentials!
 
-4. Upload data via the Admin panel.
-   - Admin -> Data Upload and follow the instructions
+4. Upload data via the Admin panel on the website.
+   - In the top bar, go to *Admin -> Data Upload*, and follow the instructions
 
 **TIP:** The data upload step can be combined with the first configuration step by using the command `make configure-and-import`
+
 
 ### Deleting TAPscan
 
