@@ -28,16 +28,20 @@
 
     <p>
       This table lists all the TAPs found for species <i>{{$species->name}}</i>.
+
+
       Click on a TAP family to view more details, including sequences.
     </p>
 
-    <p>The colour of the TAP name corresponds to the TAP class:
+
+    <p>The colour of the TAP family name corresponds to the TAP class:
       <span style="background-color:#317b22; color: #ffffff; font-weight: bolder">
         <span class="TF">TF</span>, <span class="TR">TR</span> and <span class="PT">PT</span>
       </span>
       <br/>
-      and is shown behind the TAP name, together with the species count:
-      <span class="badge badge-success badge-pill badge-tapcount"> TF | 42 </span>
+      and is shown behind the TAP name, together with the TAP count:
+      <span class="badge badge-success badge-pill badge-tapcount"> TF | 42 </span><br>
+      Subfamilies are also included in this table, and named like: <b><code>Family:Subfamily</code></b>
     </p>
   </div>
 </div>
@@ -57,21 +61,44 @@
 }
 </style>
 
+
 <div class="container">
-  <div class="row row-cols-5">
+  <div class="row row-cols-4">
+    @php $offset = 0 @endphp
     @foreach ($tap_count as $tap => $value)
       @php
-      $i = (($loop->index-1)/5)%2;
+      $i = (($loop->index-1+$offset)/4)%2;
+      $mainindex = $loop->index;
       @endphp
+
+      <!--{ {$species_families[$tap][0]->tap_1}}-->
 
       @if ($loop->index)
         <span class="border rounded @if($i==1) oddrow @else evenrow @endif {{ $tap_info->where('tap',$tap)->first()->type ?? 'NA'}}" id="stuff">
- 	   <div class="col justify-content-between align-items-center d-flex">
-             <a class="{{ $tap_info->where('tap',$tap)->first()->type ?? 'NA'}}" href='/species/{{ $id }}/tap/{{ $tap }}'> {{ $tap }} </a>
-             <span class="badge badge-success badge-pill badge-tapcount"> {{ $tap_info->where('tap',$tap)->first()->type ?? "NA" }} | {{ $value }} </span>
-           </div>
-	 </span>
-       @endif
+ 	      <div class="col justify-content-between align-items-center d-flex">
+            <a class="{{ $tap_info->where('tap',$tap)->first()->type ?? 'NA'}}" href='/species/{{ $id }}/subtap/{{ $tap }}'> {{ $tap }} </a>
+            <span class="badge badge-success badge-pill badge-tapcount"> {{ $tap_info->where('tap',$tap)->first()->type ?? "NA" }} | {{ $value }} </span>
+          </div>
+	    </span>
+
+        <!-- add subfamilies -->
+        @foreach (explode(',',$subfamilies[$tap]->subfamilies)  as $subfamily)
+          @unless ($subfamily == '-')
+            @php $subtap = $tap2_count[$subfamily];
+              $offset = $offset + 1;
+              $i = (($mainindex-1+$offset)/4)%2;
+            @endphp
+
+          <span class="border rounded @if($i==1) oddrow @else evenrow @endif {{ $tap_info->where('tap',$subfamily)->first()->type ?? 'NA'}}" id="stuff">
+ 	      <div class="col justify-content-between align-items-center d-flex">
+            <a class="{{ $tap_info->where('tap',$subfamily)->first()->type ?? 'NA'}}" href='/species/{{ $id }}/tap/{{ $subfamily }}'> {{$tap}}:{{ $subfamily }} </a>
+            <span class="badge badge-success badge-pill badge-tapcount"> {{ $tap_info->where('tap',$subfamily)->first()->type ?? "NA" }} | {{ $tap2_count[$subfamily] }} </span>
+          </div>
+	    </span>
+
+          @endunless
+        @endforeach
+      @endif
     @endforeach
   </div>
 </div>

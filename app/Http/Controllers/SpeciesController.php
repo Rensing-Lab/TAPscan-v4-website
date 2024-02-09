@@ -128,10 +128,32 @@ class SpeciesController extends Controller
     {
       $species = $speciesTaxId::findOrFail($specie);
       $tap_count = SpeciesTaxId::find($specie)->taps->sortBy('tap_1')->countBy('tap_1');
+
+      $tap2_count = SpeciesTaxId::find($specie)->taps->sortBy('tap_2')->countBy('tap_2');
+
+      $species_subfamilies = SpeciesTaxId::find($specie)->taps->sortBy('tap_2')->groupBy('tap_2');
+      $species_families = SpeciesTaxId::find($specie)->taps->sortBy('tap_1')->groupBy('tap_1');
+
+
       $tap_info = DB::table('tap_infos')
 	          ->get();
-      return view('speciestaxids.show', ['tap_count' => $tap_count, 'species' => $species, 'id' => $specie, 'tap_info' => $tap_info]);
-        //
+
+      $subfamilies = DB::table('taps')
+        ->select('tap_1', DB::raw('group_concat(distinct(tap_2)) as subfamilies'))
+        ->groupBy('tap_1')
+        ->orderBy('tap_1')
+        ->get();
+
+      return view('speciestaxids.show', [
+               'tap_count' => $tap_count,
+               'tap2_count' => $tap2_count,
+               'species' => $species,
+               'id' => $specie,
+               'species_families' => $species_families,
+               'species_subfamilies' => $species_subfamilies,
+               'subfamilies' => $subfamilies->keyBy('tap_1'),
+               'tap_info' => $tap_info
+      ]);
     }
 
     public function show_tap(SpeciesTaxId $speciesTaxId, $specie, $tap_name)

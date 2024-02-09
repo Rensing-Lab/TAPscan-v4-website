@@ -413,6 +413,108 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   return view('taps.species', ['species_id' => $species_id, 'tap_name' => $tap_name, 'species_full_name' => $species_full_name]);
 }
 
+
+
+// Same function but for subfamilies
+public function show_species_sub($species_id, $tap_name, Request $request)
+{
+
+#https://www.biob.in/2017/09/extracting-multiple-fasta-sequences.html
+function get_seq($x) { // Get Sequence and Sequence Name
+ $fl = explode(PHP_EOL, $x);
+ $sh1 = trim(array_shift($fl));
+ $sh2 = explode(" ", $sh1);
+ $sh = $sh2[0];
+ if($sh == null) {
+  $sh = "UNKNOWN SEQUENCE";
+ }
+ $fl = array_filter($fl);
+ $seq = "";
+ foreach($fl as $str) {
+  $seq .= trim($str);
+ }
+ $seq = strtoupper($seq);
+ $seq = preg_replace("/[^ACDEFGHIKLMNPQRSTVWY]/i", "", $seq);
+ if ((count($fl) < 1) || (strlen($seq) == 0)) {
+  #print "Sequence is Empty!!";
+  #exit();
+  return array($sh, $seq);
+ } else {
+  return array($sh, $seq);
+ }
+}
+
+function fas_get($x) { // Read Multiple FASTA Sequences
+ $gtr = substr($x, 1);
+ $sqs = explode(">", $gtr);
+ if (count($sqs) > 1) {
+  foreach ($sqs as $sq) {
+   $spair = get_seq($sq);
+   $spairs[$spair[0]] = $spair[1];
+   // $spairs['id'][] = $spair[0];
+   // $spairs['sequence'][] = $spair[1];
+  }
+  return $spairs;
+ } else {
+  $spair = get_seq($gtr);
+  return array($spair[0] => $spair[1]);
+ }
+}
+
+  $species_name = SpeciesTaxId::find($species_id)->lettercode;
+  $species_full_name = SpeciesTaxId::find($species_id)->name;
+  $fasta_path = '/public/fasta/' . $species_name . '.fa';
+  $fasta = Storage::get($fasta_path);
+  $test = fas_get($fasta);
+  $test2 = collect($test);
+
+  $test3 = SpeciesTaxId::find($species_id)->taps->where('tap_2', $tap_name);
+  $items_name = $test3->pluck('tap_id')->flip();
+  $intersect = $test2->intersectbyKeys($items_name);
+
+  #dd(collect($child_arr));
+  $test6 = [];
+
+ $i = 0;
+ foreach ($intersect as $key => $value){
+  // $intersect->each(function ($item, $key) {
+    $intersect2[]['id'] = $key;
+    $intersect2[$i]['sequence'] = $value;
+    $intersect2[$i]['tap_1'] = Tap::where('tap_id', $key)->select('tap_1')->first()->tap_1;
+    $intersect2[$i]['tap_2'] = Tap::where('tap_id', $key)->select('tap_2')->first()->tap_2;
+    $i++;
+  };
+  // dd($intersect2);
+
+      if ($request->ajax($species_id)) {
+        return DataTables::of($intersect2)
+          // return Datatables::of($intersect)
+                  ->addIndexColumn()
+                  // ->addColumn('action', function($row){
+                  //
+                  //        $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+                  //
+                  //         return $btn;
+                  // })
+                  // ->rawColumns(['action'])
+                  ->make(true);
+      };
+
+  return view('taps.species', ['species_id' => $species_id, 'tap_name' => $tap_name, 'species_full_name' => $species_full_name]);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * Show the form for creating a new resource.
  *

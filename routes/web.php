@@ -31,6 +31,7 @@ Route::get('/', [TapController::class, 'tap_count'])->name('tap.index');
 Route::get('/tap/{id}', [TapController::class, 'tap_show'])->where('id', '.*'); // ab damit in den resource controller
 Route::get('/search', [TapController::class, 'search'])->name('search');
 Route::get('/species/{species_id}/tap/{tap_name}', [TapController::class, 'show_species'])->where('tap_name', '.*')->name('taps.species');
+Route::get('/species/{species_id}/subtap/{tap_name}', [TapController::class, 'show_species_sub'])->where('tap_name', '.*')->name('taps.species');
 Route::get('/species-list', [SpeciesController::class, 'species_list'])->name('species.list');
 Route::get('/speciestable/tap/{id}', [TapController::class, 'taptable'])->where('id', '.*')->name('taps.speciestable');
 Route::get('/about', function () {
