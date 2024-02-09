@@ -13,12 +13,7 @@ use Spatie\Searchable\Search;
 use Yajra\DataTables\Facades\DataTables;
 
 use App\Models\TapInfo;
-//use App\Models\SpeciesTaxId;
-//use App\Models\TapRules;
-
-//use App\Exports\TapExport;
 use App\Imports\TapInfoImport;
-//use App\Tables\TapTable;
 use App\Tables\TapInfoTable;
 
 
@@ -76,12 +71,18 @@ public function edit(TapInfo $new,  $id)
          ->with('success', 'TAP Info updated successfully');
 }
 
+public function create()
+{
+    return view('tapinfo.create');
+}
 
 public function store(Request $request)
 {
   $request->validate([
-    'name' => 'required',
-    'content' => 'required'
+    'tap' => 'required',
+    'text' => 'required',
+    'reference' => 'required',
+    'type' => 'required',
   ]);
 
   TapInfo::create($request->all());

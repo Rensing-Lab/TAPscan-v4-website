@@ -20,7 +20,7 @@ class TapInfoTable extends AbstractTable
         return (new Table())->model(TapInfo::class)
             ->routes([
                 'index'   => ['name' => 'tapinfo.table'],
-                //'create'  => ['name' => 'species.create'],
+                'create'  => ['name' => 'tapinfo.create'],
                 //'show' => ['name' => 'tapinfo.show'],
                 'edit'    => ['name' => 'tapinfo.edit'],
                 //'destroy' => ['name' => 'tapinfo.destroy'],
