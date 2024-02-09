@@ -133,9 +133,8 @@ public function destroy(TapRules $tapRules, $id)
   $rules = TapRules::find($id);
   $rules->delete();
 
-  return redirect()->route('species.index')
-    ->with('success', 'Product deleted successfully');
-    //
+  return redirect()->route('rules.table')
+    ->with('success', 'Rule deleted successfully');
 }
 
 public function __construct()

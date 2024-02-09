@@ -23,7 +23,7 @@ class TapRulesTable extends AbstractTable
               // 'create'  => ['name' => 'rules.create'],
               // 'show' => ['name' => 'rules.show'],
               'edit'    => ['name' => 'rules.edit'],
-              // 'destroy' => ['name' => 'rules.destroy'],
+              'destroy' => ['name' => 'rules.destroy'],
             ]);
     }
 
