@@ -9,6 +9,9 @@ Below you will find some documentation about installation, configuration and dat
 3. [Configuring a web server](#configure-web-server)
 
 
+TAPscan is written in the [Laravel PHP framework](https://laravel.com/), and everything (application and database) is run in [Docker](https://www.docker.com/) containers.
+
+
 ## First time setup
 
 If you would like to run your own copy of TAPscan with your own data, you can follow the following procedure.
@@ -21,11 +24,13 @@ If you would like to run your own copy of TAPscan with your own data, you can fo
 ### Install TAPscan
 
 1. Clone this GitHub repo
-   - `https://github.com/Rensing-Lab/TAPscan-v4-website.git`
+   - `git clone https://github.com/Rensing-Lab/TAPscan-v4-website.git`
 
 2. Edit environment file with your settings:
-   - `cp env.example .env` (copy the example configuration file)
-   - edit this `.env` file as needed
+   - Copy the example configuration file: `cp env.example .env`
+   - Edit this `.env` file as needed
+   - Make sure to change the database password (`'${DB_PASSWORD}'`)
+   - To change the port the TAPscan application runs on (default `8000`), edit the `docker-compose.yml` file (line 12).
 
 3. Apply configuration:
    - `make configure`
