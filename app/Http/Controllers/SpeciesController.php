@@ -182,11 +182,11 @@ class SpeciesController extends Controller
         $species->name = $request->name;
         $species->taxid = $request->taxid;
 
-            // store
+        // store
         $species->save();
 
-        return redirect()->route('species.index')
-          ->with('success', 'Product updated successfully');
+        return redirect()->route('species.table')
+          ->with('success', 'Species updated successfully');
 }
 
     /**
