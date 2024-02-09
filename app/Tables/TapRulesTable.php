@@ -22,7 +22,7 @@ class TapRulesTable extends AbstractTable
               'index'   => ['name' => 'rules.table'],
               // 'create'  => ['name' => 'rules.create'],
               // 'show' => ['name' => 'rules.show'],
-              // 'edit'    => ['name' => 'rules.edit'],
+              'edit'    => ['name' => 'rules.edit'],
               // 'destroy' => ['name' => 'rules.destroy'],
             ]);
     }
@@ -36,8 +36,8 @@ class TapRulesTable extends AbstractTable
      */
     protected function columns(Table $table): void
     {
-        $table->column('tap_1')->sortable()->title('TAP 1')->searchable();
-        $table->column('tap_2')->sortable()->title('TAP 2');
+        $table->column('tap_1')->sortable()->title('TAP Family')->searchable();
+        $table->column('tap_2')->sortable()->title('Domain');
         $table->column('rule')->title('Rule');
         // $table->column('created_at')->dateTimeFormat('d/m/Y H:i')->sortable();
         // $table->column('updated_at')->dateTimeFormat('d/m/Y H:i')->sortable(true, 'desc');
