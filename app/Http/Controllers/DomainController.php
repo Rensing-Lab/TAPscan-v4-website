@@ -78,6 +78,24 @@ public function destroy($id)
     ->with('success', 'Domain deleted successfully');
 }
 
+public function create()
+{
+   return view('domain.create');
+}
+
+public function store(Request $request)
+{
+    $request->validate([
+      'name' => 'required',
+      'pfam' => 'required',
+    ]);
+
+    Domain::create($request->all());
+
+    return redirect()->route('domain.table')
+    ->with('success', 'Rule created successfully.');
+
+}
 
 
 }

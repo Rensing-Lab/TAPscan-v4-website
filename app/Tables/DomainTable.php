@@ -20,7 +20,7 @@ class DomainTable extends AbstractTable
         return (new Table())->model(Domain::class)
             ->routes([
                 'index'   => ['name' => 'domain.table'],
-                // 'create'  => ['name' => 'domain.create'],
+                'create'  => ['name' => 'domain.create'],
                 //'show' => ['name' => 'domain.show'],
                 'edit'    => ['name' => 'domain.edit'],
                 'destroy' => ['name' => 'domain.destroy'],
