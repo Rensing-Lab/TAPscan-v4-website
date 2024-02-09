@@ -2,6 +2,12 @@
 
 This repository contains the source code for the TAPscan v4 website: [tapscan.plantcode.cup.uni-freiburg.de](http://tapscan.plantcode.cup.uni-freiburg.de)
 
+Below you will find some documentation about installation, configuration and data import
+
+1. [First-time setup](#first-time-setup)
+2. [Preparing data for upload](#preparing-data-for-upload)
+3. [Configuring a web server](#configure-web-server)
+
 
 ## First time setup
 
@@ -74,32 +80,11 @@ To load the TAPscan v4 data into the database, follow the instructions below. To
 
 **TIP:** The data upload step can be combined with the first configuration step by using the command `make configure-and-import`
 
+### Deleting TAPscan
 
-### Configure Web server
+To throw away your TAPscan images, containers, volumes, you run `make delete`.
+This will delete any data in the TAPscan database as well, so use with care!
 
-To serve the TAPscan website you need a bit of configuration of a webserver such as Apache or NGINX.
-
-Below is an example nginx configuration:
-
-```
-server {
-  listen 80 default_server;
-  listen [::]:80 default_server;
-
-  root /home/tapscan/TAPscan-v4-website;
-
-  server_name tapscan.plantcode.cup.uni-freiburg.de;
-
-  location / {
-    proxy_pass http://0.0.0.0:8000;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
-}
-```
 
 ## Preparing data for upload
 
@@ -140,11 +125,34 @@ Steps to follow to make data ready for inclusion in TAPscan:
 
 
 
-## Debug/dev notes
+## Configure Web Server
 
-### Deleting TAPscan
+To serve the TAPscan website you need a bit of configuration of a webserver such as Apache or NGINX.
 
-To throw away your TAPscan images, containers, volumes, you run `make delete`. This will delete any data in the TAPscan database as well, so use with care!
+Below is an example nginx configuration:
+
+```
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  root /home/tapscan/TAPscan-v4-website;
+
+  server_name tapscan.plantcode.cup.uni-freiburg.de;
+
+  location / {
+    proxy_pass http://0.0.0.0:8000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
+```
+
+
+
 
 
 
