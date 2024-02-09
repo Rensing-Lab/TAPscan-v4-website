@@ -27,8 +27,7 @@ If you would like to run your own copy of TAPscan with your own data, you can fo
    - `git clone https://github.com/Rensing-Lab/TAPscan-v4-website.git`
 
 2. Edit environment file with your settings:
-   - Copy the example configuration file: `cp env_example .env`
-   - Edit this `.env` file as needed
+   - Edit the `.env` file as needed
    - Make sure to change the database password (`'${DB_PASSWORD}'`)
    - To change the port the TAPscan application runs on (default `8000`), edit the `docker-compose.yml` file (line 12).
 
