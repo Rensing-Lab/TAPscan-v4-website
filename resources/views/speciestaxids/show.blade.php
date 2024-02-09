@@ -27,7 +27,7 @@
     <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
 
     <p>
-      This table lists all the TAPs found for species {{$species->name}}.
+      This table lists all the TAPs found for species <i>{{$species->name}}</i>.
       Click on a TAP family to view more details, including sequences.
     </p>
 
