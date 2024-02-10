@@ -30,7 +30,7 @@ If you would like to run your own copy of TAPscan with your own data, you can fo
 
 2. Edit environment file with your settings:
    - Edit the `.env` file as needed
-   - Make sure to change the database password (`'${DB_PASSWORD}'`)
+   - Make sure to change the database password (`'DB_PASSWORD'`)
    - To change the port the TAPscan application runs on (default `8000`), edit the `docker-compose.yml` file (line 12).
 
 3. Apply configuration:
