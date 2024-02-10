@@ -1089,6 +1089,66 @@
             "install-path": "../egulias/email-validator"
         },
         {
+            "name": "ellgreen/laravel-loadfile",
+            "version": "2.0.0",
+            "version_normalized": "2.0.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ellgreen/laravel-loadfile.git",
+                "reference": "ed31a0cf068473dd548bf43d37ded68cb23094be"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ellgreen/laravel-loadfile/zipball/ed31a0cf068473dd548bf43d37ded68cb23094be",
+                "reference": "ed31a0cf068473dd548bf43d37ded68cb23094be",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^8.0|^9.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0|^7.0",
+                "phpunit/phpunit": "^9",
+                "squizlabs/php_codesniffer": "^3.6",
+                "vimeo/psalm": "^4.7"
+            },
+            "time": "2022-02-16T17:31:21+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "EllGreen\\LaravelLoadFile\\Laravel\\Providers\\LaravelLoadFileServiceProvider"
+                    ],
+                    "aliases": {
+                        "LoadFile": "EllGreen\\LaravelLoadFile\\Laravel\\Facades\\LoadFile"
+                    }
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "EllGreen\\LaravelLoadFile\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ellis Green",
+                    "email": "devellisper@outlook.com"
+                }
+            ],
+            "description": "A package to help with loading files into MySQL tables",
+            "support": {
+                "issues": "https://github.com/ellgreen/laravel-loadfile/issues",
+                "source": "https://github.com/ellgreen/laravel-loadfile/tree/2.0.0"
+            },
+            "install-path": "../ellgreen/laravel-loadfile"
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.17.0",
             "version_normalized": "4.17.0.0",

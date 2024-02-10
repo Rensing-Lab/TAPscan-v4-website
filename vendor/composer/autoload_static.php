@@ -188,6 +188,7 @@ class ComposerStaticInit6b61051ad2c4ef4e37c234e6f79831d3
         ),
         'E' => 
         array (
+            'EllGreen\\LaravelLoadFile\\' => 25,
             'Egulias\\EmailValidator\\' => 23,
         ),
         'D' => 
@@ -579,6 +580,10 @@ class ComposerStaticInit6b61051ad2c4ef4e37c234e6f79831d3
         'Facade\\FlareClient\\' => 
         array (
             0 => __DIR__ . '/..' . '/facade/flare-client-php/src',
+        ),
+        'EllGreen\\LaravelLoadFile\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src',
         ),
         'Egulias\\EmailValidator\\' => 
         array (
@@ -1433,6 +1438,21 @@ class ComposerStaticInit6b61051ad2c4ef4e37c234e6f79831d3
         'Egulias\\EmailValidator\\Warning\\QuotedString' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/QuotedString.php',
         'Egulias\\EmailValidator\\Warning\\TLD' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/TLD.php',
         'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/Warning.php',
+        'EllGreen\\LaravelLoadFile\\Builder\\Builder' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Builder/Builder.php',
+        'EllGreen\\LaravelLoadFile\\Builder\\Concerns\\HasColumns' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Builder/Concerns/HasColumns.php',
+        'EllGreen\\LaravelLoadFile\\Builder\\Concerns\\HasFields' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Builder/Concerns/HasFields.php',
+        'EllGreen\\LaravelLoadFile\\Builder\\Concerns\\HasFile' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Builder/Concerns/HasFile.php',
+        'EllGreen\\LaravelLoadFile\\Builder\\Concerns\\HasLines' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Builder/Concerns/HasLines.php',
+        'EllGreen\\LaravelLoadFile\\Builder\\Concerns\\IgnoresLines' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Builder/Concerns/IgnoresLines.php',
+        'EllGreen\\LaravelLoadFile\\Builder\\Concerns\\IsLowPriorityOrConcurrent' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Builder/Concerns/IsLowPriorityOrConcurrent.php',
+        'EllGreen\\LaravelLoadFile\\Builder\\Concerns\\ReplacesOrIgnores' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Builder/Concerns/ReplacesOrIgnores.php',
+        'EllGreen\\LaravelLoadFile\\Builder\\Concerns\\SetsValues' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Builder/Concerns/SetsValues.php',
+        'EllGreen\\LaravelLoadFile\\CompiledQuery' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/CompiledQuery.php',
+        'EllGreen\\LaravelLoadFile\\Exceptions\\CompilationException' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Exceptions/CompilationException.php',
+        'EllGreen\\LaravelLoadFile\\Grammar' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Grammar.php',
+        'EllGreen\\LaravelLoadFile\\Laravel\\Facades\\LoadFile' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Laravel/Facades/LoadFile.php',
+        'EllGreen\\LaravelLoadFile\\Laravel\\Providers\\LaravelLoadFileServiceProvider' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Laravel/Providers/LaravelLoadFileServiceProvider.php',
+        'EllGreen\\LaravelLoadFile\\Laravel\\Traits\\LoadsFiles' => __DIR__ . '/..' . '/ellgreen/laravel-loadfile/src/Laravel/Traits/LoadsFiles.php',
         'Facade\\FlareClient\\Api' => __DIR__ . '/..' . '/facade/flare-client-php/src/Api.php',
         'Facade\\FlareClient\\Concerns\\HasContext' => __DIR__ . '/..' . '/facade/flare-client-php/src/Concerns/HasContext.php',
         'Facade\\FlareClient\\Concerns\\UsesTime' => __DIR__ . '/..' . '/facade/flare-client-php/src/Concerns/UsesTime.php',
