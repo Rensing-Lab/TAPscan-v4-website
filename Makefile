@@ -1,6 +1,6 @@
 configure:
 	./vendor/bin/sail up -d
-	./check_container_status.sh tapscan-v4-website-mysql.tapscan-1
+	./check_container_status.sh tapscan_v4_mysql
 	./vendor/bin/sail artisan config:cache
 	./vendor/bin/sail artisan key:generate
 	./vendor/bin/sail artisan migrate:install
@@ -13,13 +13,13 @@ configure:
 
 import-data:
 	./vendor/bin/sail up -d
-	./check_container_status.sh tapscan-v4-website-mysql.tapscan-1
+	./check_container_status.sh tapscan_v4_mysql
 	./vendor/bin/sail artisan import:tapscan_data
 	./vendor/bin/sail down
 
 configure-and-import:
 	./vendor/bin/sail up -d
-	./check_container_status.sh tapscan-v4-website-mysql.tapscan-1
+	./check_container_status.sh tapscan_v4_mysql
 	./vendor/bin/sail artisan config:cache
 	./vendor/bin/sail artisan key:generate
 	./vendor/bin/sail artisan migrate:install

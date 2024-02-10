@@ -2,6 +2,7 @@
 version: '3'
 services:
     laravel.tapscan:
+        container_name: tapscan_v4_laravel
         build:
             context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
@@ -25,6 +26,7 @@ services:
 
     mysql.tapscan:
         image: mysql:8.0
+        container_name: tapscan_v4_mysql
         ports:
             - '3307:3306'
         environment:
