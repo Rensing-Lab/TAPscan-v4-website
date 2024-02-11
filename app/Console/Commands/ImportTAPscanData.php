@@ -69,12 +69,13 @@ class ImportTAPscanData extends Command
       // TAPS
       $file = '/data/import-tap/taps_v4.csv';
       //$file = '/data/import-tap/source/ACTCH.output.3';
-      //$file = '/var/lib/mysql-files/taps_v4.csv';
 
       $this->info('Importing TAPs from '.$file.' ... (this may take a while)');
       if (!file_exists($file)) {
         $this->error('CSV file not found!'); return;
       }
+      # This file is too big for Excel import (would take hours to import, so we do it differently
+      # Cuts the import time from hours to seconds (!)
       //Excel::import(new TapImport(), $file);
 
       LoadFile::file($file, $local = true)
@@ -93,9 +94,11 @@ class ImportTAPscanData extends Command
         ->fieldsEnclosedBy('"')
         ->set(['created_at' => now()])
         ->set(['updated_at' => now()])
-        ->set(['code_id'    => DB::raw("(select id from species_tax_ids where lettercode=@tap_id limit 1)")])
+        //->set(['code_id'    => DB::raw("(select id from species_tax_ids where lettercode=SUBSTRING_INDEX(@tap_id, '_', 1 ) collate utf8mb4_0900_ai_ci)")])
         ->load();
 
+
+      DB::raw("update taps set taps.code_id = (select id from species_tax_ids where lettercode = SUBSTRING(taps.tap_id,'_',1))");
       //$t = DB::table('taps')->get();
       //foreach ($t as $tap)
       //{
