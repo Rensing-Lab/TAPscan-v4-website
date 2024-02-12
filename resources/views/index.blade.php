@@ -74,7 +74,7 @@
           $i = (($mainindex-1+$offset)/4)%2;
         @endphp
         <span class="border rounded tapcell @if($i==1) oddrow @else evenrow @endif" id="stuff">
-          <div class="col justify-content-between align-items-center d-flex"><a class='taptext {{ $subtap->type ?? "NA" }}' href='/tap/{{ $subtap->tap_2}}'> {{$tap->tap_1}}:{{ $subtap->tap_2}} </a>
+          <div class="col justify-content-between align-items-center d-flex"><a class='taptext {{ $subtap->type ?? "NA" }}' href='/subtap/{{ $subtap->tap_2}}'> {{$tap->tap_1}}:{{ $subtap->tap_2}} </a>
             <span class="badge badge-success badge-pill badge-tapcount">{{ $subtap->type ?? "NA" }}  |  {{ str_pad($subtap->num,4,'    ',STR_PAD_LEFT) }}</span>
           </div>
         </span>

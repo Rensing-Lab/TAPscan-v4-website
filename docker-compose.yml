@@ -29,6 +29,8 @@ services:
         container_name: tapscan_v4_mysql
         ports:
             - '3307:3306'
+        command:
+            - '--local_infile=1'
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             MYSQL_DATABASE: '${DB_DATABASE}'

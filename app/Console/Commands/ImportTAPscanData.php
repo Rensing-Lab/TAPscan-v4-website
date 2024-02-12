@@ -4,12 +4,16 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\SpeciesTaxId;
+use Illuminate\Support\Facades\DB;
 
 use App\Imports\DomainImport;
 use App\Imports\SpeciesImport;
 use App\Imports\TapImport;
 use App\Imports\TapInfoImport;
 use App\Imports\TapRulesImport;
+
+use EllGreen\LaravelLoadFile\Laravel\Facades\LoadFile;
 
 class ImportTAPscanData extends Command
 {
@@ -65,11 +69,37 @@ class ImportTAPscanData extends Command
       // TAPS
       $file = '/data/import-tap/taps_v4.csv';
       //$file = '/data/import-tap/source/ACTCH.output.3';
+
       $this->info('Importing TAPs from '.$file.' ... (this may take a while)');
       if (!file_exists($file)) {
         $this->error('CSV file not found!'); return;
       }
-      Excel::import(new TapImport(), $file);
+      # This file is too big for Excel import (would take hours to import, so we do it differently
+      # Cuts the import time from hours to seconds (!)
+      //Excel::import(new TapImport(), $file);
+
+      LoadFile::file($file, $local = true)
+        ->into('taps')
+        ->columns([
+          'tap_id',
+          //DB::raw('@tap_id'),
+          'tap_1',
+          'tap_2',
+          'count',
+          'tap_3',
+        ])
+        ->ignoreLines(1)
+        ->fieldsTerminatedBy(';')
+        ->fieldsEscapedBy('\\\\')
+        ->fieldsEnclosedBy('"')
+        ->set(['created_at' => now()])
+        ->set(['updated_at' => now()])
+        //->set(['code_id'    => DB::raw("(select id from species_tax_ids where species_tax_ids.lettercode=SUBSTRING_INDEX(@tap_id, '_', 1 ) collate utf8mb4_0900_ai_ci)")])
+        ->load();
+
+
+      DB::statement("UPDATE taps SET code_id = (SELECT id FROM species_tax_ids WHERE species_tax_ids.lettercode = SUBSTRING_INDEX(taps.tap_id,'_',1))");
+
       $this->info('TAPs import completed successfully!');
 
       // TAP INFO
