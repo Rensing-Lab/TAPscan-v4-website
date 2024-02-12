@@ -65,7 +65,6 @@ To load the TAPscan v4 data from the `_data` folder into the TAPscan database, f
 
 1. Run the importers
    - `make import-data`
-   - This will take quite some time (>1h for the v4 dataset)
    - When it is done, the containers will shut down
    - The data that is uploaded to the database with this command is:
      ```
