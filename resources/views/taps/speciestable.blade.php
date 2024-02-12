@@ -6,8 +6,8 @@
   <div class="row">
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
-        <h1 class="display-6">Species containing TAP: {{$id}}</h1>
-        <p class="lead"> Below is the table of species in which TAP {{$id}} was found. Click on a TaxID to go to the corresponding NCBI page</p>
+        <h1 class="display-6">Species containing TAP @if($isSubtap) Subfamily @else Family: @endif {{$id}} (total: {{$numspecies}})</h1>
+        <p class="lead"> Below is the table of species in which TAP {{$id}} was found. Click on a species name to go to the species page, or click on a TaxID to go to the corresponding NCBI page</p>
         <hr class="my-1">
       </div>
     </div>

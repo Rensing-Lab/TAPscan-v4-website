@@ -288,8 +288,10 @@ public function tapstable(string $id, bool $isSubtap): View
 
    return view('taps.speciestable', [
    'species_ids' => $species_ids,
+   'numspecies'  => $species_ids->count(),
    'id' => $id,
    'species_info' => $species_info,
+   'isSubtap'    => $isSubtap,
    ]);
 }
 
