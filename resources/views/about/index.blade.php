@@ -31,7 +31,7 @@
 
             <br><br>
             Protein names (e.g. in download and phylogenetic trees) are extended by a (typically five) letter code abbreviating the species,
-            e.g. ORYSA = <i>ORYza SAtiva</i>. Please see <a class="awith" href="/species-list">this table</a> for the alphabetically sorted codes.4
+            e.g. ORYSA = <i>ORYza SAtiva</i>. Please see <a class="awith" href="/species-list">this table</a> for the alphabetically sorted codes.
         </p>
         <p>
         <b>Source code availability on GitHub:</b>
