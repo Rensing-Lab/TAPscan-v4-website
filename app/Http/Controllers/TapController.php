@@ -440,6 +440,7 @@ function fas_get($x) { // Read Multiple FASTA Sequences
 
   $species_name = SpeciesTaxId::find($species_id)->lettercode;
   $species_full_name = SpeciesTaxId::find($species_id)->name;
+  $species_taxid = SpeciesTaxId::find($species_id)->taxid;
   $fasta_path = '/public/fasta/' . $species_name . '.fa';
   $fasta = Storage::get($fasta_path);
   $test = fas_get($fasta);
@@ -457,6 +458,7 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   // $intersect->each(function ($item, $key) {
     $intersect2[]['id'] = $key;
     $intersect2[$i]['sequence'] = $value;
+    $intersect2[$i]['plaza'] = [$species_taxid,ltrim(strstr($key,'_'),'_')];
     $intersect2[$i]['tap_1'] = Tap::where('tap_id', $key)->select('tap_1')->first()->tap_1;
     $intersect2[$i]['tap_2'] = Tap::where('tap_id', $key)->select('tap_2')->first()->tap_2;
     $i++;
@@ -530,6 +532,7 @@ function fas_get($x) { // Read Multiple FASTA Sequences
 
   $species_name = SpeciesTaxId::find($species_id)->lettercode;
   $species_full_name = SpeciesTaxId::find($species_id)->name;
+  $species_taxid = SpeciesTaxId::find($species_id)->taxid;
   $fasta_path = '/public/fasta/' . $species_name . '.fa';
   $fasta = Storage::get($fasta_path);
   $test = fas_get($fasta);
@@ -547,6 +550,7 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   // $intersect->each(function ($item, $key) {
     $intersect2[]['id'] = $key;
     $intersect2[$i]['sequence'] = $value;
+    $intersect2[$i]['plaza'] = [$species_taxid,ltrim(strstr($key,'_'),'_')];
     $intersect2[$i]['tap_1'] = Tap::where('tap_id', $key)->select('tap_1')->first()->tap_1;
     $intersect2[$i]['tap_2'] = Tap::where('tap_id', $key)->select('tap_2')->first()->tap_2;
     $i++;

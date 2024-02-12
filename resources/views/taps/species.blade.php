@@ -24,6 +24,7 @@ table td {
                   <th>TAP 1</th>
                   <th>TAP 2</th>
                   <th>Sequence</th>
+                  <th>Links</th>
               </tr>
           </thead>
           <tbody>
@@ -61,6 +62,11 @@ table td {
               {data: 'tap_1', name: 'tap_1', searchable: true, width: '8%'},
               {data: 'tap_2', name: 'tap_2', searchable: true, width: '8%'},
               {data: 'sequence', name: 'sequence', searchable: true, width: '75%'},
+              {data: 'plaza', name: 'plaza', searchable: true, width: '5%',
+              render: function ( data, type, row, meta ) {
+                return '<a target="_blank" href="https://bioinformatics.psb.ugent.be/plaza/genes/redirect_gene/'+data[0]+'/'+data[1]+'"> PLAZA </a>';
+              }},
+
 
 
               // {data: 'email', name: 'email'},
