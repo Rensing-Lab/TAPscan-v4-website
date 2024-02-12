@@ -76,7 +76,7 @@
       @if ($loop->index)
         <span class="border rounded @if($i==1) oddrow @else evenrow @endif {{ $tap_info->where('tap',$tap)->first()->type ?? 'NA'}}" id="stuff">
  	      <div class="col justify-content-between align-items-center d-flex">
-            <a class="{{ $tap_info->where('tap',$tap)->first()->type ?? 'NA'}}" href='/species/{{ $id }}/subtap/{{ $tap }}'> {{ $tap }} </a>
+            <a class="{{ $tap_info->where('tap',$tap)->first()->type ?? 'NA'}}" href='/species/{{ $id }}/tap/{{ $tap }}'> {{ $tap }} </a>
             <span class="badge badge-success badge-pill badge-tapcount"> {{ $tap_info->where('tap',$tap)->first()->type ?? "NA" }} | {{ $value }} </span>
           </div>
 	    </span>
@@ -91,7 +91,7 @@
 
           <span class="border rounded @if($i==1) oddrow @else evenrow @endif {{ $tap_info->where('tap',$subfamily)->first()->type ?? 'NA'}}" id="stuff">
  	      <div class="col justify-content-between align-items-center d-flex">
-            <a class="{{ $tap_info->where('tap',$subfamily)->first()->type ?? 'NA'}}" href='/species/{{ $id }}/tap/{{ $subfamily }}'> {{$tap}}:{{ $subfamily }} </a>
+            <a class="{{ $tap_info->where('tap',$subfamily)->first()->type ?? 'NA'}}" href='/species/{{ $id }}/subtap/{{ $subfamily }}'> {{$tap}}:{{ $subfamily }} </a>
             <span class="badge badge-success badge-pill badge-tapcount"> {{ $tap_info->where('tap',$subfamily)->first()->type ?? "NA" }} | {{ $tap2_count[$subfamily] }} </span>
           </div>
 	    </span>

@@ -84,29 +84,58 @@ $circle_viz = DB::table('taps')
   return view('visualization.index', ['circle_viz' => $circle_viz]);
 }
 
-public function tap_show($id)
+
+
+public function subtap_show(string $id)
+{
+  return TapController::showtap($id,true);
+}
+public function tap_show( string $id)
+{
+  return TapController::showtap($id,false);
+}
+public function showtap(string $id, bool $isSubtap)
 {
       $tap_rules = TapController::tap_rules($id);
-      $tap_species_number = TapController::tap_species_number($id);
-      $tap_distribution = TapController::tap_distribution($id);
       $tap_info = TapController::tap_info($id);
-      $tap_count = TapController::tap_count_proteins($id);
-      $tap_array = $tap_info[0]->reference ?? null;
-      $domain_info = TapController::domain_info();
 
-      $tap_show = DB::table('taps')
+      if($isSubtap){
+          $tap_distribution = TapController::subtap_distribution($id);
+          $tap_species_number = TapController::subtap_species_number($id);
+          $tap_count = DB::table('taps')
+                ->select('tap_2')
+                ->where('tap_2',$id)
+                ->groupBy('tap_2')->count();
+          $tap_show = DB::table('taps')
+                  ->where('tap_2','=', $id)
+                  ->get();
+      }
+      else{
+          $tap_distribution = TapController::tap_distribution($id);
+          $tap_species_number = TapController::tap_species_number($id);
+          $tap_count = DB::table('taps')
+                ->select('tap_1')
+                ->where('tap_1',$id)
+                ->groupBy('tap_1')->count();
+          $tap_show = DB::table('taps')
                   ->where('tap_1','=', $id)
                   ->get();
                   // ->dump();
+      }
+      $tap_array = $tap_info[0]->reference ?? null;
+      $domain_info = TapController::domain_info();
+
       return view('tap', ['tap_show' => $tap_show,
                           'tap_rules' => $tap_rules,
                           'id' => $id,
                           'tap_species_number' => $tap_species_number->count(),
                           'tap_distribution' => $tap_distribution,
-			  'tap_info' => $tap_info,
-			  'domain_info' => $domain_info,
+		            	  'tap_info' => $tap_info,
+			              'domain_info' => $domain_info,
+                          'isSubtap'  => $isSubtap,
                           'tap_count' => $tap_count]);
 }
+
 
 public function tap_count_proteins($id)
 {
@@ -192,12 +221,30 @@ public function tap_species_number($id)
     return $tap_species_number;
 }
 
-
+public function subtap_species_number($id)
+{
+    $tap_species_number = DB::table('taps')
+                ->selectRaw('SUBSTRING_INDEX(tap_id, "_",  1) as species')
+                ->where('tap_2','=', $id)
+                ->distinct()
+                ->get();
+    return $tap_species_number;
+}
 public function tap_distribution($id)
 {
   $tap_distribution = DB::table('taps')
               ->selectRaw('SUBSTRING_INDEX(tap_id, "_",  1)as name, COUNT(*) as test')
               ->where('tap_1','=', $id)
+              ->groupBy('name')
+              ->orderBy('test')
+              ->get();
+  return $tap_distribution;
+}
+public function subtap_distribution($id)
+{
+  $tap_distribution = DB::table('taps')
+              ->selectRaw('SUBSTRING_INDEX(tap_id, "_",  1)as name, COUNT(*) as test')
+              ->where('tap_2','=', $id)
               ->groupBy('name')
               ->orderBy('test')
               ->get();
@@ -211,10 +258,25 @@ public function table(): View
     return view('taps.table', compact('table'));
 }
 
-public function taptable($id): View
+public function subtaptable(string $id): View
 {
-   $species_ids = Tapcontroller::tap_species_number($id);
+    return TapController::tapstable($id,true);
 
+}
+public function taptable(string $id): View
+{
+    return TapController::tapstable($id,false);
+}
+
+
+public function tapstable(string $id, bool $isSubtap): View
+{
+   if($isSubtap){
+     $species_ids = TapController::subtap_species_number($id);
+   }
+   else{
+     $species_ids = TapController::tap_species_number($id);
+   }
    $species_array = array();
    foreach($species_ids as $s)
    {
@@ -503,7 +565,7 @@ function fas_get($x) { // Read Multiple FASTA Sequences
                   ->make(true);
       };
 
-  return view('taps.species', ['species_id' => $species_id, 'tap_name' => $tap_name, 'species_full_name' => $species_full_name]);
+  return view('taps.subtapspecies', ['species_id' => $species_id, 'tap_name' => $tap_name, 'species_full_name' => $species_full_name]);
 }
 
 

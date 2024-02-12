@@ -6,7 +6,7 @@
   <div class="row">
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
-        <h1 class="display-6">TAP Family: {{$id}}</h1>
+        <h1 class="display-6">TAP @if($isSubtap) Subfamily: @else Family: @endif {{$id}}</h1>
         <p class="lead">{{ $tap_info[0]->text ?? "Description missing"}}</p>
         <hr class="my-1">
         <p>References:<br>
@@ -36,7 +36,7 @@
           </tr>
           <tr>
             <td>Number of species containing the TAP:</td>
-            <td>{{ $tap_species_number }} <a href="/speciestable/tap/{{$id}}"> (list)</a></td>
+            <td>{{ $tap_species_number }} @if($isSubtap)<a href="/speciestable/subtap/{{$id}}"> (list)</a>@else <a href="/speciestable/tap/{{$id}}"> (list)</a>@endif </td>
           </tr>
           <tr>
             <td>Number of available proteins:</td>
