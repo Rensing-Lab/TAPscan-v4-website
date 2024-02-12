@@ -94,18 +94,11 @@ class ImportTAPscanData extends Command
         ->fieldsEnclosedBy('"')
         ->set(['created_at' => now()])
         ->set(['updated_at' => now()])
-        //->set(['code_id'    => DB::raw("(select id from species_tax_ids where lettercode=SUBSTRING_INDEX(@tap_id, '_', 1 ) collate utf8mb4_0900_ai_ci)")])
+        //->set(['code_id'    => DB::raw("(select id from species_tax_ids where species_tax_ids.lettercode=SUBSTRING_INDEX(@tap_id, '_', 1 ) collate utf8mb4_0900_ai_ci)")])
         ->load();
 
 
-      DB::raw("update taps set taps.code_id = (select id from species_tax_ids where lettercode = SUBSTRING(taps.tap_id,'_',1))");
-      //$t = DB::table('taps')->get();
-      //foreach ($t as $tap)
-      //{
-        //$c = SpeciesTaxId::where('lettercode', strstr($tap->tap_id, "_", true))->first()->id ?? NULL;
-        //$tap->update(['code_id' => $c]);
-        //DB::table('taps')->where('id', $tap->id)->update(['code_id' => $c]);
-      //}
+      DB::statement("UPDATE taps SET code_id = (SELECT id FROM species_tax_ids WHERE species_tax_ids.lettercode = SUBSTRING_INDEX(taps.tap_id,'_',1))");
 
       $this->info('TAPs import completed successfully!');
 
