@@ -65,11 +65,18 @@ class TapController extends Controller
   ->orderBy('tap_1')
   ->get();
 
+  $numspecies = DB::table('species_tax_ids')->get()->count();
+  $numtaps = $tap_infos->count()-1;
+  $numsubtaps = $tap2_infos->count()-1;
+
 
   return view('index', [
               'tap_count' => $tap_infos->keyBy('tap_1'),
               'tap2_count' => $tap2_infos->keyBy('tap_2'),
               'subfamilies' => $subfamilies->keyBy('tap_1'),
+              'numspecies' => $numspecies,
+              'numtaps' => $numtaps,
+              'numsubtaps' => $numsubtaps,
   ]);
 }
 

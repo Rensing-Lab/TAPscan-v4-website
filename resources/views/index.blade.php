@@ -4,13 +4,12 @@
 
 @section('content')
 
-
 <div class="container">
   <div class="row">
   <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-6">TAPscan - Family View</h1>
-      <p class="lead">This is a list of all TAPs families covered by the TAPscan web page v4, in alphabetical order. Clicking them will lead you to a page with more details. There, the number of proteins containing the respective TAP is written in brackets after its name.
+      <p class="lead">This is a list of all TAPs (sub)families covered by TAPscan v4, in alphabetical order. Clicking on a TAP family will lead you to a page with more details.
       For a list of all species covered by TAPscan, please refer to this <a href="/species">species tree</a> or <a href="/species-list">species table</a>.
       </p>
       <hr class="my-1">
@@ -20,16 +19,16 @@
          <i>transcriptional regulators</i> (TRs, acting as part of the transcription core complex, via unspecific binding, protein-protein interaction or chromatin modification)
          and <i>putative TAPs</i> (PTs), the role of which needs to be determined.
       </p>
-      <p>The colour of the TAP name corresponds to the TAP class:
+      <p>The TAP class is indicated through th colour of the TAP name:
       <span style="background-color:#317b22; color: #ffffff; font-weight: bolder">
-        <span class="TF">TF</span>, <span class="TR">TR</span> and <span class="PT">PT</span>
+        &nbsp;<span class="TF">TF</span>, <span class="TR">TR</span> and <span class="PT">PT</span>&nbsp;
       </span>
       <br/>
-      and is shown behind the TAP name, together with the TAP count among <a href="/species">the species dataset used here</a>:
+      and is also shown behind the TAP name, together with the TAP count among all <a href="/species">species covered by TAPscan v4</a>:
       <span class="badge badge-success badge-pill badge-tapcount"> TF | 42 </span><br>
-      Subfamilies are also included in this table, and named like: <b><code>Family:Subfamily</code></b>
+      Subfamilies are also included in this table, and indicated as: <b><code>Family:Subfamily</code></b>
       </p>
-
+      <p>TAPscan v4 currently covers {{$numtaps}} TAP families and {{$numsubtaps}} subfamilies across {{$numspecies}} species.</p>
     </div>
   </div>
 </div>
