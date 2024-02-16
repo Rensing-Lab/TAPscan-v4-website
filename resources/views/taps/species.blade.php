@@ -16,7 +16,8 @@ table td {
 }
 </style>
   <div class="container-fluid">
-      <h1>Table of Species {{ $species_full_name }} with TAP {{ $tap_name }}</h1>
+      <h1>Table of Species <i>{{ $species_full_name }}</i> with TAP <b>{{ $tap_name }}</b></h1>
+      <br>
       <table class="table table-bordered data-table" width="20px">
           <thead>
               <tr>
