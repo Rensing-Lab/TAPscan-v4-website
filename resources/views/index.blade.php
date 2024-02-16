@@ -24,9 +24,9 @@
         &nbsp;<span class="TF">TF</span>, <span class="TR">TR</span> and <span class="PT">PT</span>&nbsp;
       </span>
       <br/>
-      and is also shown behind the TAP name, together with the TAP count among all <a href="/species">species covered by TAPscan v4</a>:
+      and is shown behind the TAP name, with the TAP count among all <a href="/species">TAPscan v4 species</a>:
       <span class="badge badge-success badge-pill badge-tapcount"> TF | 42 </span><br>
-      Subfamilies are also included in this table, and indicated as: <b><code>Family:Subfamily</code></b>
+      Subfamilies are also included in this table, and indicated as: <b><i>Family:Subfamily</i></b>
       </p>
       <p>TAPscan v4 currently covers {{$numtaps}} TAP families and {{$numsubtaps}} subfamilies across {{$numspecies}} species.</p>
     </div>
@@ -73,7 +73,7 @@
           $i = (($mainindex-1+$offset)/4)%2;
         @endphp
         <span class="border rounded tapcell @if($i==1) oddrow @else evenrow @endif" id="stuff">
-          <div class="col justify-content-between align-items-center d-flex"><a class='taptext {{ $subtap->type ?? "NA" }}' href='/subtap/{{ $subtap->tap_2}}'> {{$tap->tap_1}}:{{ $subtap->tap_2}} </a>
+          <div class="col justify-content-between align-items-center d-flex"><a class='taptext {{ $subtap->type ?? "NA" }}' href='/subtap/{{ $subtap->tap_2}}'><i> {{$tap->tap_1}}:{{ $subtap->tap_2}} </i></a>
             <span class="badge badge-success badge-pill badge-tapcount">{{ $subtap->type ?? "NA" }}  |  {{ str_pad($subtap->num,4,'    ',STR_PAD_LEFT) }}</span>
           </div>
         </span>
