@@ -20,9 +20,9 @@ table td {
           <thead>
               <tr>
                   <th>No</th>
-                  <th>ID</th>
-                  <th>TAP 1</th>
-                  <th>TAP 2</th>
+                  <th>TAP ID</th>
+                  <th>TAP Family</th>
+                  <th>Subfamily</th>
                   <th>Sequence</th>
                   <th>Links</th>
               </tr>
@@ -64,10 +64,10 @@ table td {
           columns: [
               {data: 'DT_RowIndex', name: 'DT_RowIndex', width:'1%'},
               {data: 'id', name: 'id', searchable: true, width: '8%'},
-              {data: 'tap_1', name: 'tap_1', searchable: true, width: '8%'},
+              {data: 'tap_1', name: 'tap_1', searchable: true, width: '10%'},
               {data: 'tap_2', name: 'tap_2', searchable: true, width: '8%'},
-              {data: 'sequence', name: 'sequence', searchable: true, width: '75%'},
-              {data: 'plaza', name: 'plaza', searchable: true, width: '5%',
+              {data: 'sequence', name: 'sequence', searchable: true, width: '74%'},
+              {data: 'plaza', name: 'plaza', searchable: true, width: '4%',
               render: function ( data, type, row, meta ) {
                 if (data[0]==undefined) {return "";}
                 return '<a href="https://bioinformatics.psb.ugent.be/plaza/genes/redirect_gene/'+data[0]+'/'+data[1]+'"> PLAZA </a>';
