@@ -6,15 +6,26 @@ This repository contains the source code for the TAPscan v4 website: [tapscan.pl
 
 Below you will find some documentation about installation, configuration and data import
 
-1. [First-time setup](#first-time-setup)
+1. [Installation](#installation)
+   - [Install Dependencies](#install-dependencies)
+   - [Install TAPscan](#install-tapscan)
+   - [Configure web server](#configure-web-server)
+   - [Populating the database](#populating-the-database)
+   - [Deleting TAPscan](#deleting-tapscan)
 2. [Preparing data for upload](#preparing-data-for-upload)
-3. [Configuring a web server](#configure-web-server)
+   - [Sequence Files](#sequence-files)
+   - [Species Information](#species-information)
+   - [Rules](#rules)
+   - [TAPs](#taps)
+   - [TAP Information](#tap-information)
+   - [Domain Information](#domains-file)
+   - [Trees](#trees)
 
 
 TAPscan is written in the [Laravel PHP framework](https://laravel.com/), and everything (application and database) is run in [Docker](https://www.docker.com/) containers.
 
 
-## First time setup
+## Installation
 
 If you would like to run your own copy of TAPscan with your own data, you can follow the following procedure.
 
@@ -54,8 +65,34 @@ If you encounter permission errors when viewing the website, please set the foll
 sudo chmod -R a+rwx public storage
 ```
 
+### Configure Web Server
 
-### Adding Data: Populating the database
+To serve the TAPscan website you need a bit of configuration of a webserver such as Apache or NGINX.
+
+Below is an example nginx configuration:
+
+```
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  root /home/tapscan/TAPscan-v4-website;
+
+  server_name tapscan.plantcode.cup.uni-freiburg.de;
+
+  location / {
+    proxy_pass http://0.0.0.0:8000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+  }
+}
+```
+
+
+### Populating the database
 
 The `_data` folder contains all the data we used to populate the main [TAPscan website](http://tapscan.plantcode.cup.uni-freiburg.de/).
 
@@ -99,7 +136,12 @@ This will delete any data in the TAPscan database as well, so use with care!
 
 Steps to follow to make data ready for inclusion in TAPscan:
 
-### Species informaion
+### Sequence Files
+Create a fasta file per species, place it in the `_data/fasta` folder, named by their lettercode, e.g. `ACTCH.fa, ZYGCI.fa` etc.
+
+These are the fasta files you will run the TAPscan classify script on. The lettercode must match the species information file of the next step.
+
+### Species information
 - Format:
 	- Semicolon (`;`) separated file
     - 8 columns: `lettercode;Kingiom/supergroup;phylum/clade; supergroup2;order;family;scientific name;NCBI TaxID`
@@ -112,7 +154,7 @@ Steps to follow to make data ready for inclusion in TAPscan:
 - Example: [TAPscanv4 Rules file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-rules/rules_v81.txt)
 
 ### TAPs
-- Run the [TAPscan-classify](https://github.com/Rensing-Lab/TAPscan-classify) tool,
+- Run the [TAPscan-classify](https://github.com/Rensing-Lab/TAPscan-classify) tool on your sequence files,
 - The subfamily classification outputs (`*.output.3`) can be uploaded directly into the TAPscan website
 - Format:
 
@@ -132,33 +174,19 @@ Steps to follow to make data ready for inclusion in TAPscan:
   - PFAM IDs start with `PF`, e.g. `PF00249`
 - Example: [TAPscanv4 TapInfo file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-domain/domains_v4.csv)
 
+### Trees
 
-
-## Configure Web Server
-
-To serve the TAPscan website you need a bit of configuration of a webserver such as Apache or NGINX.
-
-Below is an example nginx configuration:
-
-```
-server {
-  listen 80 default_server;
-  listen [::]:80 default_server;
-
-  root /home/tapscan/TAPscan-v4-website;
-
-  server_name tapscan.plantcode.cup.uni-freiburg.de;
-
-  location / {
-    proxy_pass http://0.0.0.0:8000;
-    proxy_http_version 1.1;
-    proxy_set_header Upgrade $http_upgrade;
-    proxy_set_header Connection 'upgrade';
-    proxy_set_header Host $host;
-    proxy_cache_bypass $http_upgrade;
-  }
-}
-```
+- TODO: get script to generate trees from Romy and add here
+- Newick trees (NJ and MJ) may be added for each TAP
+- These are placed in the folder `_data/trees` and currently found if named like on of the following:
+  - `MAFFT_aligntment_trim.fasta_LETTERCODE.treefile`
+  - `MAFFT_reducedAligntment_trim.fasta_LETTERCODE.treefile`
+  - `quicktree_alignment_LETTERCODE.tre`
+  - `quicktree_reducedAlignment_LETTERCODE.tre`
+- Tree Images:
+  - Run the script in `_data/trees/svgs/generate_svgs.sh`
+  - This will automatically create images for all the Newick trees in your folde
+  - Note that your trees must used NCBI TaxIds in order to include the taxonomy in the image.
 
 
 
