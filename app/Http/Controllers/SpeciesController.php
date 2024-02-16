@@ -74,7 +74,7 @@ class SpeciesController extends Controller
           $data2[] = [
                 'id' => $species->id,
                 'parent' => 'family_'.$species->family()->value('family'),
-                'text' => $species->name
+                'text' => $species->name.' &#128065;'
           ];
 
        return view('speciestaxids.index', ['species_tree'=>json_encode($data2)]);
