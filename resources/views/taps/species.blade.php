@@ -3,6 +3,7 @@
 @extends('layout')
 
 @section('content')
+
 <style>
 table {
     table-layout: fixed;
@@ -46,7 +47,12 @@ table td {
           processing: true,
           serverSide: true,
           searching: true,
-          ajax: "{{ route('taps.species', ['species_id' => $species_id, 'tap_name' => $tap_name]) }}",
+          ajax: {
+            url: "{{ route('taps.species', ['species_id' => $species_id, 'tap_name' => $tap_name]) }}",
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("Problem getting sequences, please check the fasta file for this species.");
+            }
+          },
           dom: 'Blfrtip',
               buttons: [
                    {
@@ -64,6 +70,7 @@ table td {
               {data: 'sequence', name: 'sequence', searchable: true, width: '75%'},
               {data: 'plaza', name: 'plaza', searchable: true, width: '5%',
               render: function ( data, type, row, meta ) {
+                if (data[0]==undefined) {return "";}
                 return '<a target="_blank" href="https://bioinformatics.psb.ugent.be/plaza/genes/redirect_gene/'+data[0]+'/'+data[1]+'"> PLAZA </a>';
               }},
 

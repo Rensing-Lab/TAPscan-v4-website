@@ -438,6 +438,8 @@ function fas_get($x) { // Read Multiple FASTA Sequences
  }
 }
 
+  $intersect2 = null;
+  $intersect = null;
   $species_name = SpeciesTaxId::find($species_id)->lettercode;
   $species_full_name = SpeciesTaxId::find($species_id)->name;
   $species_taxid = SpeciesTaxId::find($species_id)->taxid;
@@ -463,7 +465,16 @@ function fas_get($x) { // Read Multiple FASTA Sequences
     $intersect2[$i]['tap_2'] = Tap::where('tap_id', $key)->select('tap_2')->first()->tap_2;
     $i++;
   };
-  // dd($intersect2);
+
+   //if the fasta file does not match the one used to generate the TAPscan results (i.e. mismatch in read headers), intersect2 will be empty. Create a dummy entry with error message in that case.
+   //dd($intersect2);
+   if ($intersect2 == null){
+      $intersect2[]['id']="";
+      $intersect2[0]['sequence'] = "Error obtaining sequences. Please check the fasta file for this species.";
+      $intersect2[0]['plaza'] = "";
+      $intersect2[0]['tap_1'] = "";
+      $intersect2[0]['tap_2'] = "";
+   }
 
       if ($request->ajax($species_id)) {
         return DataTables::of($intersect2)
@@ -479,7 +490,20 @@ function fas_get($x) { // Read Multiple FASTA Sequences
                   ->make(true);
       };
 
-  return view('taps.species', ['species_id' => $species_id, 'tap_name' => $tap_name, 'species_full_name' => $species_full_name]);
+  return view('taps.species', [
+              'species_id' => $species_id,
+              'tap_name' => $tap_name,
+              'species_full_name' => $species_full_name,
+              //'intersect2' => $intersect2,
+              //'fasta_path' => $fasta_path,
+              //'fasta' => $fasta,
+              //'intersect'  => $intersect,
+              //'test' => $test,
+              //'test2' => $test2,
+              'test3' => $test3,
+              'items_name' => $items_name,
+
+    ]);
 }
 
 
@@ -529,7 +553,8 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   return array($spair[0] => $spair[1]);
  }
 }
-
+  $intersect2 = null;
+  $intersect = null;
   $species_name = SpeciesTaxId::find($species_id)->lettercode;
   $species_full_name = SpeciesTaxId::find($species_id)->name;
   $species_taxid = SpeciesTaxId::find($species_id)->taxid;
@@ -556,6 +581,13 @@ function fas_get($x) { // Read Multiple FASTA Sequences
     $i++;
   };
   // dd($intersect2);
+    if ($intersect2 == null){
+      $intersect2[]['id']="";
+      $intersect2[0]['sequence'] = "Error obtaining sequences. Please check the fasta file for this species.";
+      $intersect2[0]['plaza'] = "";
+      $intersect2[0]['tap_1'] = "";
+      $intersect2[0]['tap_2'] = "";
+   }
 
       if ($request->ajax($species_id)) {
         return DataTables::of($intersect2)
