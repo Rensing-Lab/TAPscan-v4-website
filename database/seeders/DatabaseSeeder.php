@@ -45,7 +45,15 @@ TAPscan was published December 2017, please cite: <br>
 
         DB::table('news')->insert([
             'name' => "TAPscan v4 is out!",
-            'content' => "We are happy to announce a new version of TAPscan (this website)!",
+            'content' => '
+We are happy to announce the new version 4 of TAPscan. This comprehensive update includes the addition of 18 new (sub) families, allowing TAPscan v4 to detect 138 TAP families. This update also includes an updated web interface, which enables to interactively explore the TAP data. By incorporating the <a target="_blank" href="https://github.com/Rensing-Lab/Genome-Zoo"> Genomezoo dataset</a>, in addition to TAP data of the Archaeplastida, now also data of selected fungi, mammals, SAR group species, bacteria and archaea is made available throughout the TAPscan web interface.
+<br><br>
+TAPscan v4 has also been made available as a Galaxy tool as part of the European Galaxy server (<a target="_blank" href="https://usegalaxy.eu">usegalaxy.eu</a>).
+<br><br>
+In addition, the TAP information derived from the recently published (updated) genomes of Takakia lepidozioides (Hu et al., 2023), Mesotaenium endlicherianum  (Dadras et al., 2023) and Zygnema circumcarinatum (Feng et al., 2023) is made available.
+<br><br>
+More information about the update can be found within the TAPscan v4 publication in The Plant Journal (in submission)!
+',
             'created_at' => date("Y-m-d H:i:s") ,
             'updated_at' => date("Y-m-d H:i:s") ,
 
