@@ -67,7 +67,7 @@
 
     <!-- add subfamilies -->
     @foreach (explode(',',$subfamilies[$tap->tap_1]->subfamilies)  as $subfamily)
-      @unless ($subfamily == '-')
+      @unless ($subfamily == '-' or $subfamily == $tap->tap_1)
         @php $subtap = $tap2_count[$subfamily];
           $offset = $offset + 1;
           $i = (($mainindex-1+$offset)/4)%2;

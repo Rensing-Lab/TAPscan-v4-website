@@ -65,6 +65,15 @@ class TapController extends Controller
   ->orderBy('tap_1')
   ->get();
 
+  $subfamcount = 0;
+  foreach ($subfamilies as $fam){
+   foreach (explode(',',$fam->subfamilies) as $subfam){
+     if($subfam != $fam->tap_1 and $subfam != '-'){
+      $subfamcount+=1;
+     }
+   }
+  }
+
   $numspecies = DB::table('species_tax_ids')->get()->count();
   $numtaps = $tap_infos->count()-1;
   $numsubtaps = $tap2_infos->count()-1;
@@ -76,7 +85,7 @@ class TapController extends Controller
               'subfamilies' => $subfamilies->keyBy('tap_1'),
               'numspecies' => $numspecies,
               'numtaps' => $numtaps,
-              'numsubtaps' => $numsubtaps,
+              'numsubtaps' => $subfamcount,
   ]);
 }
 
