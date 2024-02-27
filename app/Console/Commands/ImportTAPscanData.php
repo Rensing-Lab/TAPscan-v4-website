@@ -58,7 +58,7 @@ class ImportTAPscanData extends Command
       $this->info('Species import completed successfully!');
 
       // RULES
-      $file = '/data/import-rules/rules_v81.txt';
+      $file = '/data/import-rules/rules_v82.txt';
       $this->info('Importing rules from '.$file.' ...');
       if (!file_exists($file)) {
         $this->error('CSV file not found!'); return;

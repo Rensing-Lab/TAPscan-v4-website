@@ -106,7 +106,7 @@ To load the TAPscan v4 data from the `_data` folder into the TAPscan database, f
    - The data that is uploaded to the database with this command is:
      ```
      _data/import-species/species_v4.csv
-     _data/import-rules/rules_v81.txt
+     _data/import-rules/rules_v82.txt
      _data/import-taps/taps_v4.csv
      _data/import-tapinfo/tapinfo_v4.csv
      _data/import-domains/domains_v4.csv
@@ -151,7 +151,7 @@ These are the fasta files you will run the TAPscan classify script on. The lette
 - Format:
 	- Semicolon (`;`) separated file
     - 3 columns: `TAP family;Domain;Rule (should | should not)`
-- Example: [TAPscanv4 Rules file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-rules/rules_v81.txt)
+- Example: [TAPscanv4 Rules file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-rules/rules_v82.txt)
 
 ### TAPs
 - Run the [TAPscan-classify](https://github.com/Rensing-Lab/TAPscan-classify) tool on your sequence files,
