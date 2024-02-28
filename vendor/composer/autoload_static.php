@@ -101,6 +101,7 @@ class ComposerStaticInit6b61051ad2c4ef4e37c234e6f79831d3
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Spatie\\Searchable\\' => 18,
+            'Silber\\PageCache\\' => 17,
         ),
         'R' => 
         array (
@@ -374,6 +375,10 @@ class ComposerStaticInit6b61051ad2c4ef4e37c234e6f79831d3
         'Spatie\\Searchable\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-searchable/src',
+        ),
+        'Silber\\PageCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/silber/page-cache/src',
         ),
         'Rap2hpoutre\\FastExcel\\' => 
         array (
@@ -6615,6 +6620,10 @@ class ComposerStaticInit6b61051ad2c4ef4e37c234e6f79831d3
         'SebastianBergmann\\Type\\UnknownType' => __DIR__ . '/..' . '/sebastian/type/src/type/UnknownType.php',
         'SebastianBergmann\\Type\\VoidType' => __DIR__ . '/..' . '/sebastian/type/src/type/VoidType.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
+        'Silber\\PageCache\\Cache' => __DIR__ . '/..' . '/silber/page-cache/src/Cache.php',
+        'Silber\\PageCache\\Console\\ClearCache' => __DIR__ . '/..' . '/silber/page-cache/src/Console/ClearCache.php',
+        'Silber\\PageCache\\LaravelServiceProvider' => __DIR__ . '/..' . '/silber/page-cache/src/LaravelServiceProvider.php',
+        'Silber\\PageCache\\Middleware\\CacheResponse' => __DIR__ . '/..' . '/silber/page-cache/src/Middleware/CacheResponse.php',
         'Spatie\\Searchable\\Exceptions\\InvalidModelSearchAspect' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/Exceptions/InvalidModelSearchAspect.php',
         'Spatie\\Searchable\\Exceptions\\InvalidSearchableModel' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/Exceptions/InvalidSearchableModel.php',
         'Spatie\\Searchable\\ModelSearchAspect' => __DIR__ . '/..' . '/spatie/laravel-searchable/src/ModelSearchAspect.php',

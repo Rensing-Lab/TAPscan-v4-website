@@ -178,6 +178,9 @@ return [
 
         Yajra\DataTables\DataTablesServiceProvider::class,
 
+        //page caching
+        Silber\PageCache\LaravelServiceProvider::class,
+
     ],
 
     /*

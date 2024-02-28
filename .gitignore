@@ -1,6 +1,7 @@
 node_modules/
 public/hot/
 public/storage/
+public/page-cache/
 storage/*.key
 storage/
 mysql-dump/
