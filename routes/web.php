@@ -29,6 +29,8 @@ use App\Http\Controllers\DomainController;
 # Main pages
 Route::get('/', [TapController::class, 'tap_count'])->name('tap.index');
 
+Route::get('/families', [TapController::class, 'tap_count'])->name('tap.index');
+
 Route::get('/tap/{id}', [TapController::class, 'tap_show'])->where('id', '.*');
 Route::get('/subtap/{id}', [TapController::class, 'subtap_show'])->where('id', '.*');
 
