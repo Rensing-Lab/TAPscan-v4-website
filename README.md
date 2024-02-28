@@ -76,17 +76,27 @@ server {
   listen 80 default_server;
   listen [::]:80 default_server;
 
-  root /home/tapscan/TAPscan-v4-website;
+  root /var/www/html/tapscan-v4/public;
 
   server_name tapscan.plantcode.cup.uni-freiburg.de;
 
+  location = / {
+    try_files /page-cache/families.html @tapscan;
+  }
+
   location / {
+    try_files /page-cache/$uri.html /page-cache/$uri.json /page-cache/$uri.xml /index.php?$query_string @tapscan;
+  }
+
+  location @tapscan {
     proxy_pass http://0.0.0.0:8000;
     proxy_http_version 1.1;
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection 'upgrade';
     proxy_set_header Host $host;
     proxy_cache_bypass $http_upgrade;
+
+
   }
 }
 ```
@@ -122,6 +132,8 @@ To load the TAPscan v4 data from the `_data` folder into the TAPscan database, f
    - Here you can view (and edit) existing data
    - Or upload additional data files under *Admin -> Data Upload*
 
+5. Put the per-species fasta files in `_data/fasta/`. These should be named like `LETTERCODE.fa`.
+   The fasta files used in the TAPscan v4 website can be found in our [Rensing-Lab/Genome-Zoo GitHub repo](https://github.com/Rensing-Lab/Genome-Zoo).
 
 **TIP:** The data upload step can be combined with the first configuration step by using the command `make configure-and-import`
 
