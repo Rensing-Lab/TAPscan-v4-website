@@ -12,8 +12,8 @@ the file `taps_v4_allfamilyclassifications.csv` is a concatenation of all of the
 To concatenate all the per-species files, removing the headers:
 
 ```bash
-echo "familiy classifications for all species" > taps_all.output.3
-tail -n +2 -q source/*.output.3 >> taps_all.output.3
+echo "familiy classifications for all species" > taps_v4.csv
+tail -n +2 -q source/*.output.3 >> taps_v4.csv
 ```
 
 or to split an all-species file into a set of per-species files:
