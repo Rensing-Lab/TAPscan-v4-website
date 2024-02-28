@@ -1,7 +1,11 @@
+clean:
+	./vendor/bin/sail artisan page-cache:clear
+
 configure:
 	./vendor/bin/sail up -d
 	./check_container_status.sh tapscan_v4_mysql
 	./vendor/bin/sail composer update
+	./vendor/bin/sail artisan page-cache:clear
 	./vendor/bin/sail artisan cache:clear
 	./vendor/bin/sail artisan config:cache
 	./vendor/bin/sail artisan key:generate
@@ -22,6 +26,7 @@ configure-and-import:
 	./vendor/bin/sail up -d
 	./check_container_status.sh tapscan_v4_mysql
 	./vendor/bin/sail composer update
+	./vendor/bin/sail artisan page-cache:clear
 	./vendor/bin/sail artisan cache:clear
 	./vendor/bin/sail artisan config:cache
 	./vendor/bin/sail artisan key:generate
