@@ -127,12 +127,14 @@ class SpeciesController extends Controller
     public function show(SpeciesTaxId $speciesTaxId, $specie)
     {
       $species = $speciesTaxId::findOrFail($specie);
-      $tap_count = SpeciesTaxId::find($specie)->taps->sortBy('tap_1')->countBy('tap_1');
+      $tap1 = $species->taps->sortBy('tap_1');
+      $tap2 = $species->taps->sortBy('tap_2');
 
-      $tap2_count = SpeciesTaxId::find($specie)->taps->sortBy('tap_2')->countBy('tap_2');
+      $tap_count = $tap1->countBy('tap_1');
+      $tap2_count = $tap2->countBy('tap_2');
 
-      $species_subfamilies = SpeciesTaxId::find($specie)->taps->sortBy('tap_2')->groupBy('tap_2');
-      $species_families = SpeciesTaxId::find($specie)->taps->sortBy('tap_1')->groupBy('tap_1');
+      $species_subfamilies = $tap2->groupBy('tap_2');
+      $species_families = $tap1->groupBy('tap_1');
 
 
       $tap_info = DB::table('tap_infos')
@@ -152,7 +154,7 @@ class SpeciesController extends Controller
                'species_families' => $species_families,
                'species_subfamilies' => $species_subfamilies,
                'subfamilies' => $subfamilies->keyBy('tap_1'),
-               'tap_info' => $tap_info
+               'tap_info' => $tap_info->keyBy('tap'),
       ]);
     }
 

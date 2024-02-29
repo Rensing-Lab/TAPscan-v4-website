@@ -74,10 +74,10 @@
       <!--{ {$species_families[$tap][0]->tap_1}}-->
 
       @if ($loop->index)
-        <span class="border rounded @if($i==1) oddrow @else evenrow @endif {{ $tap_info->where('tap',$tap)->first()->type ?? 'NA'}}" id="stuff">
+        <span class="border rounded @if($i==1) oddrow @else evenrow @endif {{ $tap_info[$tap]->type ?? 'NA'}}" id="stuff">
  	      <div class="col justify-content-between align-items-center d-flex">
-            <a class="{{ $tap_info->where('tap',$tap)->first()->type ?? 'NA'}}" href='/species/{{ $id }}/tap/{{ $tap }}'> {{ $tap }} </a>
-            <span class="badge badge-success badge-pill badge-tapcount"> {{ $tap_info->where('tap',$tap)->first()->type ?? "NA" }} | {{ $value }} </span>
+            <a class="{{ $tap_info[$tap]->type ?? 'NA'}}" href='/species/{{ $id }}/tap/{{ $tap }}'> {{ $tap }} </a>
+            <span class="badge badge-success badge-pill badge-tapcount"> {{ $tap_info[$tap]->type ?? "NA" }} | {{ $value }} </span>
           </div>
 	    </span>
 
@@ -89,10 +89,10 @@
               $i = (($mainindex-1+$offset)/4)%2;
             @endphp
 
-          <span class="border rounded @if($i==1) oddrow @else evenrow @endif {{ $tap_info->where('tap',$subfamily)->first()->type ?? 'NA'}}" id="stuff">
+          <span class="border rounded @if($i==1) oddrow @else evenrow @endif {{ $tap_info[$subfamily]->type ?? 'NA'}}" id="stuff">
  	      <div class="col justify-content-between align-items-center d-flex">
-            <a class="{{ $tap_info->where('tap',$subfamily)->first()->type ?? 'NA'}}" href='/species/{{ $id }}/subtap/{{ $subfamily }}'> {{$tap}}:{{ $subfamily }} </a>
-            <span class="badge badge-success badge-pill badge-tapcount"> {{ $tap_info->where('tap',$subfamily)->first()->type ?? "NA" }} | {{ $tap2_count[$subfamily] ?? 'NA' }} </span>
+            <a class="{{  $tap_info[$subfamily]->type ?? 'NA'}}" href='/species/{{ $id }}/subtap/{{ $subfamily }}'> {{$tap}}:{{ $subfamily }} </a>
+            <span class="badge badge-success badge-pill badge-tapcount"> {{  $tap_info[$subfamily]->type ?? "NA" }} | {{ $tap2_count[$subfamily] ?? 'NA' }} </span>
           </div>
 	    </span>
 
