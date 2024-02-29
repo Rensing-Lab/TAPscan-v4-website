@@ -40,7 +40,7 @@ configure-and-import:
 	./vendor/bin/sail down
 
 run:
-	docker-compose up
+	docker-compose up -d
 stop:
 	docker-compose down
 restart:
@@ -48,4 +48,6 @@ restart:
 
 delete: # use with care, will delete everything!
 	./vendor/bin/sail down --rmi all -v
+
+rebuild: delete configure-and-import run #use with care, will delete everything and rebuild from scratch
 
