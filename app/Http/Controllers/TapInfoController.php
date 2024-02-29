@@ -15,7 +15,7 @@ use Yajra\DataTables\Facades\DataTables;
 use App\Models\TapInfo;
 use App\Imports\TapInfoImport;
 use App\Tables\TapInfoTable;
-
+use App\Tables\TapInfoTableSimple;
 
 class TapInfoController extends Controller
 {
@@ -36,7 +36,8 @@ class TapInfoController extends Controller
 
   public function index()
   {
-    return view('tapinfo.index');
+    $table = (new TapInfoTableSimple())->setup();
+    return view('tapinfo.index',compact('table'));
   }
 
   public function edit(TapInfo $new,  $id)

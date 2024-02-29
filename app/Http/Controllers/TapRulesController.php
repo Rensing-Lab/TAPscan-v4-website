@@ -10,6 +10,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\TapRulesExport;
 use App\Imports\TapRulesImport;
 use App\Tables\TapRulesTable;
+use App\Tables\TapRulesTableSimple;
 use App\Models\TapRules;
 
 class TapRulesController extends Controller
@@ -33,7 +34,7 @@ public function export()
  */
  public function index(): View
  {
-     $table = (new TapRulesTable())->setup();
+     $table = (new TapRulesTableSimple())->setup();
 
      return view('rules.index', compact('table'));
  }

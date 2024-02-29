@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 use \Illuminate\View\View;
 use \App\Tables\TapTable;
+use \App\Tables\TapTableSimple;
 use Illuminate\Support\Facades\Storage;
 use App\Models\SpeciesTaxId;
 use App\Models\TapRules;
@@ -93,13 +94,13 @@ public function circle_viz()
 {
 $circle_viz = DB::table('taps')
               ->selectRaw('tap_1,count(*) as num')
+              ->where('tap_1','!=','0_no_family_found')
               ->groupBy('tap_1')
               ->get();
 
               // ->dump();
-  return view('visualization.index', ['circle_viz' => $circle_viz]);
+  return view('data.index', ['circle_viz' => $circle_viz]);
 }
-
 
 
 public function subtap_show(string $id)
@@ -316,7 +317,9 @@ public function tapstable(string $id, bool $isSubtap): View
 
 public function index()
 {
-  return view('taps.index');
+  $table = (new TapTableSimple())->setup();
+
+  return view('taps.index', compact('table'));
 }
 
 public function initialization()
