@@ -45,7 +45,7 @@ Route::get('/search', [TapController::class, 'search'])->name('search');
 Route::get('/about', function () {
   return view('about.index');
 });
-
+Route::get('/data', [TapController::class, 'circle_viz'])->name('data.index');
 
 # Admin tables
 Route::get('/news/table', [NewsController::class, 'table'])->middleware(['auth'])->name('news.table');
