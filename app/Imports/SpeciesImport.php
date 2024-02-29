@@ -23,6 +23,8 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
     */
     public function collection(Collection $rows)
     {
+      $rows->shift(); # skip header line
+
       foreach ($rows as $row)
       {
 
