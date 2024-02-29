@@ -27,6 +27,13 @@ class AddIndexToTaps extends Migration {
 
         });
 
+        Schema::table('species_tax_ids', function(Blueprint $table)
+        {
+            $table->index('id');
+            $table->index('lettercode');
+
+        });
+
     }
 
     /**
@@ -46,6 +53,13 @@ class AddIndexToTaps extends Migration {
         Schema::table('tap_infos', function (Blueprint $table)
         {
             $table->dropIndex(['tap']);
+
+        });
+
+        Schema::table('species_tax_ids', function (Blueprint $table)
+        {
+            $table->dropIndex(['id']);
+            $table->dropIndex(['lettercode']);
 
         });
 
