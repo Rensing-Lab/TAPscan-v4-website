@@ -29,6 +29,9 @@ font-size:12px;
 
 @auth
 <h3>Admin Area</h3>
+
+<p>Below you can perform various admin activities, such as uploading data from files, or editing existing database entries.</p>
+
 <a href="/data-upload"><button type="button" class="btn btn-secondary btn-square-md">Data Upload</button></a>
 <a href="/species/table"><button type="button" class="btn btn-primary btn-square-md">Species</button></a>
 <a href="/rules/table"><button type="button" class="btn btn-primary btn-square-md">Rules</button></a>
