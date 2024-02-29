@@ -80,6 +80,30 @@ server {
 
   server_name tapscan.plantcode.cup.uni-freiburg.de;
 
+  location / {
+    proxy_pass http://0.0.0.0:8000;
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection 'upgrade';
+    proxy_set_header Host $host;
+    proxy_cache_bypass $http_upgrade;
+
+
+  }
+}
+```
+
+If you load a large amount of data into your database, and the homepage becomes slow to load, you can utilize the page caching functionality of TAPscan. Below is the sample nginx configuration which will try serving the cached html page first:
+
+```
+server {
+  listen 80 default_server;
+  listen [::]:80 default_server;
+
+  root /var/www/html/tapscan-v4/public;
+
+  server_name tapscan.plantcode.cup.uni-freiburg.de;
+
   location = / {
     try_files /page-cache/families.html @tapscan;
   }
@@ -99,6 +123,12 @@ server {
 
   }
 }
+```
+
+Note that in this case, the page cache must be cleared whenever new data is loaded or changes to the pages are made. This can be done by runnin
+
+```
+make clean
 ```
 
 
