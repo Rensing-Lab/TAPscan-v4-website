@@ -27,16 +27,18 @@ use App\Http\Controllers\DomainController;
 // });
 
 # Main pages
+
+# routes in this group will be cached. This speeds up the website for large amounts of data
 Route::group(['middleware' => ['page-cache']], function () {
   Route::get('/', [TapController::class, 'tap_count'])->name('tap.index');
   Route::get('/families', [TapController::class, 'tap_count'])->name('tap.index');
+  Route::get('/species/{species_id}/tap/{tap_name}', [TapController::class, 'show_species'])->where('tap_name', '.*')->name('taps.species');
+  Route::get('/species/{species_id}/subtap/{tap_name}', [TapController::class, 'show_species_sub'])->where('tap_name', '.*')->name('taps.subtapspecies');
 });
 
 Route::get('/tap/{id}', [TapController::class, 'tap_show'])->where('id', '.*');
 Route::get('/subtap/{id}', [TapController::class, 'subtap_show'])->where('id', '.*');
 
-Route::get('/species/{species_id}/tap/{tap_name}', [TapController::class, 'show_species'])->where('tap_name', '.*')->name('taps.species');
-Route::get('/species/{species_id}/subtap/{tap_name}', [TapController::class, 'show_species_sub'])->where('tap_name', '.*')->name('taps.subtapspecies');
 Route::get('/species-list', [SpeciesController::class, 'species_list'])->name('species.list');
 Route::get('/speciestable/tap/{id}', [TapController::class, 'taptable'])->where('id', '.*')->name('taps.speciestable');
 Route::get('/speciestable/subtap/{id}', [TapController::class, 'subtaptable'])->where('id', '.*')->name('taps.speciestable');
