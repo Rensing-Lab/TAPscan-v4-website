@@ -49,13 +49,15 @@ If you would like to run your own copy of TAPscan with your own data, you can fo
    - This may take a few minutes. When everything is ready, the containers will be stopped.
 
 4. Start TAPscan application
-   - `docker-compose up` (or `make run`)
+   - `docker-compose up -d` (or `make run`)
 
 5. View  TAPscan application
    - By default the application will run at `http://0.0.0.0:8000`
+   - no data is loaded yet, please see  [Preparing data for upload](#preparing-data-for-upload)
 
 6. To stop the application
    - `docker-compose down` (or `make stop`)
+
 
 **Troubleshooting**
 
@@ -173,6 +175,7 @@ To load the TAPscan v4 data from the `_data` folder into the TAPscan database, f
 To throw away your TAPscan images, containers, volumes, you run `make delete`.
 This will delete any data in the TAPscan database as well, so use with care!
 
+To delete and rebuild TAPscan from the data in the `_data` folder, you can use `make rebuild`
 
 ## Preparing data for upload
 
