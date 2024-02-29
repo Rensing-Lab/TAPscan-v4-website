@@ -30,7 +30,7 @@
         "@fortawesome/fontawesome-free": "^5.15.4",
         "jstree": "^3.3.12",
         "phylotree": "^1.0.13",
-        "plotly.js": "^2.5.1",
+        "plotly.js": "^2.25.2",
         "plotly.js-dist": "^2.5.1"
     }
 }
