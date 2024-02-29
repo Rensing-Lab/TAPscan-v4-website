@@ -53,11 +53,12 @@
                         </li>
                         -->
                         @endauth
-                        <li class="nav-item {{ (request()->is('news*')) ? 'active' : '' }}">
-                            <a class="nav-link" href="/news">News</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link {{ (request()->is('data*')) ? 'active' : '' }}" href="/data">Data</a>
+                        </li>
+                        <li class="nav-item {{ (request()->is('news*')) ? 'active' : '' }}">
+                            <a class="nav-link" href="/news">News</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ (request()->is('about*')) ? 'active' : '' }}" href="/about">About</a>
