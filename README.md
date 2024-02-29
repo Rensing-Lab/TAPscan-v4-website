@@ -125,7 +125,7 @@ server {
 }
 ```
 
-Note that in this case, the page cache must be cleared whenever new data is loaded or changes to the pages are made. This can be done by runnin
+Note that in this case, the page cache must be cleared whenever new data is loaded or changes to the pages are made. This can be done by running
 
 ```
 make clean
@@ -158,9 +158,9 @@ To load the TAPscan v4 data from the `_data` folder into the TAPscan database, f
    - create an admin account
    - **Note:** only one account can be made, so make sure to remember your credentials!
 
-4. Now there is an "Admin" section at the top of the page
+4. Now there is an "Admin" section on the Data page (`http://0.0.0.0:8000/data`)
    - Here you can view (and edit) existing data
-   - Or upload additional data files under *Admin -> Data Upload*
+   - Or upload additional data files under *Data Upload*
 
 5. Put the per-species fasta files in `_data/fasta/`. These should be named like `LETTERCODE.fa`.
    The fasta files used in the TAPscan v4 website can be found in our [Rensing-Lab/Genome-Zoo GitHub repo](https://github.com/Rensing-Lab/Genome-Zoo).

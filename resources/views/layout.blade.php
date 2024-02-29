@@ -33,6 +33,7 @@
                             <a class="nav-link" href="/species">Species</a>
                         </li>
                         @auth
+                        <!--
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Admin
@@ -50,6 +51,7 @@
                                <a class="dropdown-item" target="_blank"  href="http://tapscan.plantcode.cup.uni-freiburg.de:8001/tapscan.plantcode.cup.uni-freiburg.de">Website Metrics</a>
                             </div>
                         </li>
+                        -->
                         @endauth
                         <li class="nav-item {{ (request()->is('news*')) ? 'active' : '' }}">
                             <a class="nav-link" href="/news">News</a>
