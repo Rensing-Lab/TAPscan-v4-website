@@ -187,24 +187,30 @@ These are the fasta files you will run the TAPscan classify script on. The lette
 - Format:
 	- Semicolon (`;`) separated file
     - 8 columns: `lettercode;Kingiom/supergroup;phylum/clade; supergroup2;order;family;scientific name;NCBI TaxID`
+    - First line assumed to be header line
 - Example: [TAPscanv4 Species file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-species/species_v4.csv)
 
 ### Rules
 - Format:
 	- Semicolon (`;`) separated file
     - 3 columns: `TAP family;Domain;Rule (should | should not)`
+    - No header line
 - Example: [TAPscanv4 Rules file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-rules/rules_v82.txt)
 
 ### TAPs
 - Run the [TAPscan-classify](https://github.com/Rensing-Lab/TAPscan-classify) tool on your sequence files,
 - The subfamily classification outputs (`*.output.3`) can be uploaded directly into the TAPscan website
 - Format:
+  - Semicolon (';') separate file
+  - columns `GENE_ID;TAP_FAMILY;SUBFAMILY;NUMBER_OF_FAMILIES_FOUND;DOMAINS;`
+  - First line assumed to be a header line
 
 - Example: [TAPscanv4 Tap file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-tap/taps_v4.csv)
 
 ### TAP information
 - Format:
   - TAB-separated file
+  - No header line
   - With 4 columns: `TAP name [TAB] Description [TAB] "reference1","reference2",.. [TAB] Type (TR|TF|PT)`
   - References can be free-text citations. Preferably with a DOI link.
 - Example: [TAPscanv4 TapInfo file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-tapinfo/tapinfo_v4.csv)
@@ -213,6 +219,7 @@ These are the fasta files you will run the TAPscan classify script on. The lette
 - Format:
   - Semicolon (`;`) separated file
   - With 2 columns: `Domain;PFAM ID`
+  - No header line
   - PFAM IDs start with `PF`, e.g. `PF00249`
 - Example: [TAPscanv4 TapInfo file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-domain/domains_v4.csv)
 
