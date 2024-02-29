@@ -34,6 +34,7 @@ Route::group(['middleware' => ['page-cache']], function () {
   Route::get('/families', [TapController::class, 'tap_count'])->name('tap.index');
   Route::get('/species/{species_id}/tap/{tap_name}', [TapController::class, 'show_species'])->where('tap_name', '.*')->name('taps.species');
   Route::get('/species/{species_id}/subtap/{tap_name}', [TapController::class, 'show_species_sub'])->where('tap_name', '.*')->name('taps.subtapspecies');
+  Route::get('/species/{specie}', [SpeciesController::class, 'show'])->where('specie', '.*')->name('speciestaxids.show');
 });
 
 Route::get('/tap/{id}', [TapController::class, 'tap_show'])->where('id', '.*');
