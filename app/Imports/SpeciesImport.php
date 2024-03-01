@@ -63,50 +63,58 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
           ]
         );
 
-
+        $taxonomy=$kingdom.'|'.$clade;
         Clade::updateOrCreate(
           [
-            'clade'    => $clade,
+            'ancestry'    => $taxonomy,
           ],
           [
+            'ancestry'    => $taxonomy,
             'clade'     => $clade,
             'kingdom_id'     =>  Kingdom::where('kingdom',$kingdom)->first()->id ?? NULL,
           ]
         );
 
+        $taxonomy=$taxonomy.'|'.$supergroup;
         Supergroup::updateOrCreate(
           [
-            'supergroup'    => $supergroup,
+            'ancestry'    => $taxonomy,
           ],
           [
+            'ancestry'    => $taxonomy,
             'supergroup'     => $supergroup,
             'clade_id'     =>  Clade::where('clade',$clade)->first()->id ?? NULL,
           ]
         );
 
+        $taxonomy=$taxonomy.'|'.$order;
         Order::updateOrCreate(
           [
-            'order'    => $order,
+            'ancestry'    => $taxonomy,
           ],
           [
+            'ancestry'    => $taxonomy,
             'order'     => $order,
             'supergroup_id' => Supergroup::where('supergroup',$supergroup)->first()->id ?? NULL,
           ]
         );
 
+        $taxonomy=$taxonomy.'|'.$family;
         Family::updateOrCreate(
           [
-            'family'    => $family,
+            'ancestry'    => $taxonomy,
           ],
           [
+            'ancestry'    => $taxonomy,
             'family'     => $family,
             'order_id'     =>  Order::where('order',$order)->first()->id ?? NULL,
           ]
         );
 
+        $taxonomy=$taxonomy.'|'.$lettercode;
         SpeciesTaxId::updateOrCreate(
           [
-            'lettercode'    => $lettercode,
+            'ancestry'      => $taxonomy,
           ],
           [
             'name'     => $name,
@@ -117,7 +125,7 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
             'supergroup_id' => Supergroup::where('supergroup',$supergroup)->first()->id ?? NULL,
             'order_id'     =>  Order::where('order',$order)->first()->id ?? NULL,
             'family_id'     => Family::where('family',$family)->first()->id ?? NULL,
-
+            'ancestry'    => $taxonomy,
           ]
         );
       }
