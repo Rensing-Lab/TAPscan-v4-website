@@ -414,7 +414,7 @@ LOTJApt;Archaeplastida;eudicots;rosids;Fabales;Fabaceae;Lotus japonicus;34305
 LUFAE;Archaeplastida;eudicots;rosids;Cucurbitales;Cucurbitaceae;Luffa aegyptiaca;3670
 LUPAL;Archaeplastida;eudicots;rosids;Fabales;Fabaceae;Lupinus albus;3870
 LUPAN;Archaeplastida;eudicots;rosids;Fabales;Fabaceae;Lupinus angustifolius;3871
-MACCO;Archaeplastida;eudicots;stem eudicots;Ranunculales;Papaveraceae;Macleaya cordata;56857
+MACCO;Archaeplastida;eudicots;stem_eudicots;Ranunculales;Papaveraceae;Macleaya cordata;56857
 MAGM1;Bacteria;Alphaproteobacteria;-;Magnetococcales;Magnetococcaceae;Magnetococcus marinus MC-1;156889
 MAGMA;Bacteria;Alphaproteobacteria;-;Rhodospirillales;Rhodospirillaceae;Magnetospirillum magneticum AMB-1;342108
 MALBA;Archaeplastida;eudicots;rosids;Rosales;Rosaceae;Malus baccata;106549
