@@ -75,7 +75,9 @@ class TapController extends Controller
    }
   }
 
-  $numspecies = DB::table('species_tax_ids')->get()->count();
+  $numspecies = DB::table('species_tax_ids')
+                ->distinct('ancestry')
+                ->count();
   $numtaps = $tap_infos->count()-1;
   $numsubtaps = $tap2_infos->count()-1;
 

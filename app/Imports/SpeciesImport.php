@@ -111,7 +111,7 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
           ]
         );
 
-        $taxonomy=$taxonomy.'|'.$lettercode;
+        $taxonomy=$taxonomy.'|'.$name;
         SpeciesTaxId::updateOrCreate(
           [
             'ancestry'      => $taxonomy,
