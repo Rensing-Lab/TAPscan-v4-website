@@ -28,68 +28,95 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
       foreach ($rows as $row)
       {
 
+        //$lettercode = trim($row[0],'abcdefghijklmnopqrstuvwxyz'); // only the initial uppercase part
+        //$lettercode = preg_split('/(?=[a-z])/',$row[0])[0];
+        $lettercode = $row[0];
+        $name = $row[6];
+        $taxid = $row[7];
+
+        // taxonomy, handle missing data '-' in a way that doesnt break our tree
+        $kingdom = $row[1];
+        $clade = $row[2];
+        if($clade == '-'){
+          $clade='_'.$clade.'_'.$kingdom;
+        }
+        $supergroup = $row[3];
+        if($supergroup == '-'){
+          $supergroup='_'.$supergroup.'_'.$clade.'_'.$kingdom;
+        }
+        $order = $row[4];
+        if($order == '-'){
+          $order='_'.$order.'_'.$supergroup.'_'.$clade.'_'.$kingdom;
+        }
+        $family = $row[5];
+        if($family == '-'){
+          $family='_'.$family.'_'.$order.'_'.$supergroup.'_'.$clade.'_'.$kingdom;
+        }
+
+
         Kingdom::updateOrCreate(
           [
-            'kingdom'    => $row[1],
+            'kingdom'    => $kingdom,
           ],
           [
-            'kingdom'     => $row[1],
+            'kingdom'     => $kingdom,
           ]
         );
 
+
         Clade::updateOrCreate(
           [
-            'clade'    => $row[2],
+            'clade'    => $clade,
           ],
           [
-            'clade'     => $row[2],
-            'kingdom_id'     =>  Kingdom::where('kingdom',$row[1])->first()->id ?? NULL,
+            'clade'     => $clade,
+            'kingdom_id'     =>  Kingdom::where('kingdom',$kingdom)->first()->id ?? NULL,
           ]
         );
 
         Supergroup::updateOrCreate(
           [
-            'supergroup'    => $row[3],
+            'supergroup'    => $supergroup,
           ],
           [
-            'supergroup'     => $row[3],
-            'clade_id'     =>  Clade::where('clade',$row[2])->first()->id ?? NULL,
+            'supergroup'     => $supergroup,
+            'clade_id'     =>  Clade::where('clade',$clade)->first()->id ?? NULL,
           ]
         );
 
         Order::updateOrCreate(
           [
-            'order'    => $row[4],
+            'order'    => $order,
           ],
           [
-            'order'     => $row[4],
-            'supergroup_id' => Supergroup::where('supergroup',$row[3])->first()->id ?? NULL,
+            'order'     => $order,
+            'supergroup_id' => Supergroup::where('supergroup',$supergroup)->first()->id ?? NULL,
           ]
         );
 
         Family::updateOrCreate(
           [
-            'family'    => $row[5],
+            'family'    => $family,
           ],
           [
-            'family'     => $row[5],
-            'order_id'     =>  Order::where('order',$row[4])->first()->id ?? NULL,
+            'family'     => $family,
+            'order_id'     =>  Order::where('order',$order)->first()->id ?? NULL,
           ]
         );
 
         SpeciesTaxId::updateOrCreate(
           [
-            'lettercode'    => $row[0],
+            'lettercode'    => $lettercode,
           ],
           [
-            'name'     => $row[6],
-            'taxid'     => $row[7],
-            'lettercode'     => $row[0],
-            'kingdom_id'     =>  Kingdom::where('kingdom',$row[1])->first()->id ?? NULL,
-            'clade_id'     =>  Clade::where('clade',$row[2])->first()->id ?? NULL,
-            'supergroup_id' => Supergroup::where('supergroup',$row[3])->first()->id ?? NULL,
-            'order_id'     =>  Order::where('order',$row[4])->first()->id ?? NULL,
-            'family_id'     => Family::where('family',$row[5])->first()->id ?? NULL,
+            'name'     => $name,
+            'taxid'     => $taxid,
+            'lettercode'     => $lettercode,
+            'kingdom_id'     =>  Kingdom::where('kingdom',$kingdom)->first()->id ?? NULL,
+            'clade_id'     =>  Clade::where('clade',$clade)->first()->id ?? NULL,
+            'supergroup_id' => Supergroup::where('supergroup',$supergroup)->first()->id ?? NULL,
+            'order_id'     =>  Order::where('order',$order)->first()->id ?? NULL,
+            'family_id'     => Family::where('family',$family)->first()->id ?? NULL,
 
           ]
         );
