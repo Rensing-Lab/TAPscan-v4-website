@@ -32,48 +32,48 @@ class SpeciesController extends Controller
        $species_order = Order::all()->keyBy('order');
        $species_family = Family::all()->keyBy('family');
 
-// create loop to get every kingdom,order,family and write stuff
+       // create loop to get every kingdom,order,family and write output for jstree
        $data2 = [];
 
        foreach ($species_kingdom as $kingdom)
         $data2[] = [
-              'id' => 'kingdom_'.$kingdom->kingdom,
+              'id' => $kingdom->kingdom,
               'parent' => '#',
               'text' => $kingdom->kingdom,
         ];
 
         foreach ($species_clade as $clade)
          $data2[] = [
-               'id' => 'clade_'.$clade->clade,
-               'parent' => 'kingdom_'.$clade->kingdom()->value('kingdom'),
+               'id' => $clade->ancestry,
+               'parent' => substr($clade->ancestry, 0, strrpos($clade->ancestry, '|')),
                'text' => preg_replace('/^_.*/','no clade',$clade->clade),
          ];
 
          foreach ($species_supergroup as $supergroup)
           $data2[] = [
-                'id' => 'supergroup_'.$supergroup->supergroup,
-                'parent' => 'clade_'.$supergroup->clade()->value('clade'),
+                'id' => $supergroup->ancestry,
+                'parent' => substr($supergroup->ancestry, 0, strrpos($supergroup->ancestry, '|')),
                 'text' => preg_replace('/^_.*/','no supergroup',$supergroup->supergroup),
           ];
 
           foreach ($species_order as $order)
            $data2[] = [
-                 'id' => 'order_'.$order->order,
-                 'parent' => 'supergroup_'.$order->supergroup()->value('supergroup'),
+                 'id' => $order->ancestry,
+                 'parent' => substr($order->ancestry, 0, strrpos($order->ancestry, '|')),
                  'text' => preg_replace('/^_.*/','no order',$order->order),
            ];
 
            foreach ($species_family as $family)
             $data2[] = [
-                  'id' => 'family_'.$family->family,
-                  'parent' => 'order_'.$family->order()->value('order'),
+                  'id' => $family->ancestry,
+                  'parent' => substr($family->ancestry, 0, strrpos($family->ancestry, '|')),
                   'text' => preg_replace('/^_.*/','no family',$family->family),
             ];
 
          foreach ($species_tree as $species)
           $data2[] = [
                 'id' => $species->id,
-                'parent' => 'family_'.$species->family()->value('family'),
+                'parent' => substr($species->ancestry, 0, strrpos($species->ancestry, '|')),
                 'text' => $species->name.' ('.$species->lettercode.') &#128065;'
           ];
 
