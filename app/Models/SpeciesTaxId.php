@@ -10,7 +10,7 @@ use Spatie\Searchable\SearchResult;
 
 class SpeciesTaxId extends Model implements Searchable
 {
-    protected $fillable = ['name','taxid','lettercode','family_id','order_id','supergroup_id','clade_id','kingdom_id'];
+    protected $fillable = ['name','taxid','lettercode','family_id','order_id','supergroup_id','clade_id','kingdom_id','ancestry'];
     use HasFactory;
 
     public function family()

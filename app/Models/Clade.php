@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Clade extends Model
 {
-    protected $fillable = ['clade','kingdom_id'];
+    protected $fillable = ['clade','kingdom_id','ancestry'];
     use HasFactory;
 
     public function speciesTaxId()

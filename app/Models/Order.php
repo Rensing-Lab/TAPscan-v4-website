@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-  protected $fillable = ['order','supergroup_id'];
+  protected $fillable = ['order','supergroup_id','ancestry'];
   use HasFactory;
 
   public function speciesTaxId()

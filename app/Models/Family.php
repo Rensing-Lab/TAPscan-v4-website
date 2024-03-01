@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Family extends Model
 {
-    protected $fillable = ['family','order_id'];
+    protected $fillable = ['family','order_id','ancestry'];
     // protected $table = 'families';
     use HasFactory;
 

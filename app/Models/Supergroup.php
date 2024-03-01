@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Supergroup extends Model
 {
-  protected $fillable = ['supergroup','clade_id'];
+  protected $fillable = ['supergroup','clade_id','ancestry'];
   use HasFactory;
 
   public function speciesTaxId()
