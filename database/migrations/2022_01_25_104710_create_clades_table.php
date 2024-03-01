@@ -15,7 +15,8 @@ class CreateCladesTable extends Migration
     {
         Schema::create('clades', function (Blueprint $table) {
             $table->id();
-            $table->string('clade')->unique();
+            $table->string('clade');
+            $table->string('ancestry',500)->unique();
             $table->timestamps();
             $table->foreignId('kingdom_id')->nullable()->constrained('kingdoms');
         });

@@ -15,7 +15,8 @@ class CreateFamiliesTable extends Migration
     {
         Schema::create('families', function (Blueprint $table) {
             $table->id();
-            $table->string('family')->unique();
+            $table->string('family');
+            $table->string('ancestry',500)->unique();
             $table->timestamps();
             $table->foreignId('order_id')->nullable()->constrained('orders');
         });

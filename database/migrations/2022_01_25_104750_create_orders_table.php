@@ -15,7 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('order')->unique();
+            $table->string('order');
+            $table->string('ancestry',500)->unique();
             $table->timestamps();
             $table->foreignId('supergroup_id')->nullable()->constrained('supergroups');
         });

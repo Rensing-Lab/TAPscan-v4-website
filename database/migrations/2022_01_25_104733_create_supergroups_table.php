@@ -15,7 +15,8 @@ class CreateSupergroupsTable extends Migration
     {
         Schema::create('supergroups', function (Blueprint $table) {
             $table->id();
-            $table->string('supergroup')->unique();
+            $table->string('supergroup');
+            $table->string('ancestry',500)->unique();
             $table->timestamps();
             $table->foreignId('clade_id')->nullable()->constrained('clades');
         });

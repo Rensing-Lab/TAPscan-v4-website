@@ -17,6 +17,7 @@ class CreateSpeciesTaxIdsTable extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedInteger('taxid');
+            $table->string('ancestry',500);
             $table->timestamps();
         });
     }
