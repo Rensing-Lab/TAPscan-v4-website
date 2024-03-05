@@ -37,21 +37,22 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
         // taxonomy, handle missing data '-' in a way that doesnt break our tree
         $kingdom = $row[1];
         $clade = $row[2];
-        if($clade == '-'){
-          $clade='_'.$clade.'_'.$kingdom;
-        }
+        #if($clade == '-'){
+        #  $clade='_'.$clade.'_'.$kingdom;
+        #}
         $supergroup = $row[3];
-        if($supergroup == '-'){
-          $supergroup='_'.$supergroup.'_'.$clade.'_'.$kingdom;
-        }
+        #if($supergroup == '-'){
+          #$supergroup='_'.$supergroup.'_'.$clade.'_'.$kingdom;
+          #$supergroup='none';
+        #}
         $order = $row[4];
-        if($order == '-'){
-          $order='_'.$order.'_'.$supergroup.'_'.$clade.'_'.$kingdom;
-        }
+        #if($order == '-'){
+        #  $order='_'.$order.'_'.$supergroup.'_'.$clade.'_'.$kingdom;
+        #}
         $family = $row[5];
-        if($family == '-'){
-          $family='_'.$family.'_'.$order.'_'.$supergroup.'_'.$clade.'_'.$kingdom;
-        }
+        #if($family == '-'){
+        #  $family='_'.$family.'_'.$order.'_'.$supergroup.'_'.$clade.'_'.$kingdom;
+        #}
 
 
         Kingdom::updateOrCreate(
@@ -63,6 +64,7 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
           ]
         );
 
+        $parent=$kingdom;
         $taxonomy=$kingdom.'|'.$clade;
         Clade::updateOrCreate(
           [
@@ -71,10 +73,11 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
           [
             'ancestry'    => $taxonomy,
             'clade'     => $clade,
-            'kingdom_id'     =>  Kingdom::where('kingdom',$kingdom)->first()->id ?? NULL,
+            'kingdom_id'     =>  Kingdom::where('kingdom',$parent)->first()->id ?? NULL,
           ]
         );
 
+        $parent=$taxonomy;
         $taxonomy=$taxonomy.'|'.$supergroup;
         Supergroup::updateOrCreate(
           [
@@ -83,10 +86,11 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
           [
             'ancestry'    => $taxonomy,
             'supergroup'     => $supergroup,
-            'clade_id'     =>  Clade::where('clade',$clade)->first()->id ?? NULL,
+            'clade_id'     =>  Clade::where('ancestry',$parent)->first()->id ?? NULL,
           ]
         );
 
+        $parent=$taxonomy;
         $taxonomy=$taxonomy.'|'.$order;
         Order::updateOrCreate(
           [
@@ -95,10 +99,11 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
           [
             'ancestry'    => $taxonomy,
             'order'     => $order,
-            'supergroup_id' => Supergroup::where('supergroup',$supergroup)->first()->id ?? NULL,
+            'supergroup_id' => Supergroup::where('ancestry',$parent)->first()->id ?? NULL,
           ]
         );
 
+        $parent=$taxonomy;
         $taxonomy=$taxonomy.'|'.$family;
         Family::updateOrCreate(
           [
@@ -107,11 +112,12 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
           [
             'ancestry'    => $taxonomy,
             'family'     => $family,
-            'order_id'     =>  Order::where('order',$order)->first()->id ?? NULL,
+            'order_id'     =>  Order::where('ancestry',$parent)->first()->id ?? NULL,
           ]
         );
 
-        $taxonomy=$taxonomy.'|'.$name;
+        $parent=$taxonomy;
+        $taxonomy=$taxonomy.'|'.$name.$lettercode;
         SpeciesTaxId::updateOrCreate(
           [
             'ancestry'      => $taxonomy,
@@ -124,7 +130,7 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
             'clade_id'     =>  Clade::where('clade',$clade)->first()->id ?? NULL,
             'supergroup_id' => Supergroup::where('supergroup',$supergroup)->first()->id ?? NULL,
             'order_id'     =>  Order::where('order',$order)->first()->id ?? NULL,
-            'family_id'     => Family::where('family',$family)->first()->id ?? NULL,
+            'family_id'     => Family::where('ancestry',$parent)->first()->id ?? NULL,
             'ancestry'    => $taxonomy,
           ]
         );
