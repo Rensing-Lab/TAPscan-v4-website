@@ -472,6 +472,17 @@ function fas_get($x) { // Read Multiple FASTA Sequences
     $test = fas_get($fasta);
     $test2 = collect($test);
     $intersect = $test2->intersectbyKeys($items_name);
+
+    $i = 0;
+    foreach ($intersect as $key => $value){
+      // $intersect->each(function ($item, $key) {
+      $intersect2[]['id'] = $key;
+      $intersect2[$i]['sequence'] = $value;
+      $intersect2[$i]['plaza'] = [$species_taxid,ltrim(strstr($key,'_'),'_')];
+      $intersect2[$i]['tap_1'] = Tap::where('tap_id', $key)->select('tap_1')->first()->tap_1;
+      $intersect2[$i]['tap_2'] = Tap::where('tap_id', $key)->select('tap_2')->first()->tap_2;
+      $i++;
+    };
   }
   else{
     $intersect2[]['id']="";
@@ -481,20 +492,9 @@ function fas_get($x) { // Read Multiple FASTA Sequences
     $intersect2[0]['tap_2'] = "";
   }
 
- $i = 0;
- foreach ($intersect as $key => $value){
-  // $intersect->each(function ($item, $key) {
-    $intersect2[]['id'] = $key;
-    $intersect2[$i]['sequence'] = $value;
-    $intersect2[$i]['plaza'] = [$species_taxid,ltrim(strstr($key,'_'),'_')];
-    $intersect2[$i]['tap_1'] = Tap::where('tap_id', $key)->select('tap_1')->first()->tap_1;
-    $intersect2[$i]['tap_2'] = Tap::where('tap_id', $key)->select('tap_2')->first()->tap_2;
-    $i++;
-  };
-
    //if the fasta file does not match the one used to generate the TAPscan results (i.e. mismatch in read headers), intersect2 will be empty. Create a dummy entry with error message in that case.
    //dd($intersect2);
-   if ($intersect2 == null){
+   if ($intersect2 == []){
       $intersect2[]['id']="";
       $intersect2[0]['sequence'] = "Error obtaining sequences. FASTA file ".$species_name.".fa does not match the file used to obtain TAPscan classify results.";
       $intersect2[0]['plaza'] = "";
@@ -594,6 +594,18 @@ function fas_get($x) { // Read Multiple FASTA Sequences
     $test = fas_get($fasta);
     $test2 = collect($test);
     $intersect = $test2->intersectbyKeys($items_name);
+
+    $i = 0;
+    foreach ($intersect as $key => $value){
+      // $intersect->each(function ($item, $key) {
+      $intersect2[]['id'] = $key;
+      $intersect2[$i]['sequence'] = $value;
+      $intersect2[$i]['plaza'] = [$species_taxid,ltrim(strstr($key,'_'),'_')];
+      $intersect2[$i]['tap_1'] = Tap::where('tap_id', $key)->select('tap_1')->first()->tap_1;
+      $intersect2[$i]['tap_2'] = Tap::where('tap_id', $key)->select('tap_2')->first()->tap_2;
+      $i++;
+    };
+
   }
   else{
     $intersect2[]['id']="";
@@ -604,24 +616,14 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   }
 
 
- $i = 0;
- foreach ($intersect as $key => $value){
-  // $intersect->each(function ($item, $key) {
-    $intersect2[]['id'] = $key;
-    $intersect2[$i]['sequence'] = $value;
-    $intersect2[$i]['plaza'] = [$species_taxid,ltrim(strstr($key,'_'),'_')];
-    $intersect2[$i]['tap_1'] = Tap::where('tap_id', $key)->select('tap_1')->first()->tap_1;
-    $intersect2[$i]['tap_2'] = Tap::where('tap_id', $key)->select('tap_2')->first()->tap_2;
-    $i++;
-  };
-  // dd($intersect2);
-    if ($intersect2 == null){
+    // dd($intersect2);
+    if ($intersect2 == []){
       $intersect2[]['id']="";
       $intersect2[0]['sequence'] = "Error obtaining sequences. FASTA file ".$species_name.".fa does not match the file used to obtain TAPscan classify results.";
       $intersect2[0]['plaza'] = "";
       $intersect2[0]['tap_1'] = "";
       $intersect2[0]['tap_2'] = "";
-   }
+    }
 
       if ($request->ajax($species_id)) {
         return DataTables::of($intersect2)
