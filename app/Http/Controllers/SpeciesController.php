@@ -149,6 +149,12 @@ class SpeciesController extends Controller
         ->orderBy('tap_1')
         ->get();
 
+      $kingdom = Kingdom::where('id', $species->kingdom_id)->first()->kingdom;
+      $clade = Clade::where('id', $species->clade_id)->first()->clade;
+      $supergroup= Supergroup::where('id', $species->supergroup_id)->first()->supergroup;
+      $order = Order::where('id', $species->order_id)->first()->order;
+      $family = Family::where('id', $species->family_id)->first()->family;
+
       return view('speciestaxids.show', [
                'tap_count' => $tap_count,
                'tap2_count' => $tap2_count,
@@ -158,6 +164,12 @@ class SpeciesController extends Controller
                'species_subfamilies' => $species_subfamilies,
                'subfamilies' => $subfamilies->keyBy('tap_1'),
                'tap_info' => $tap_info->keyBy('tap'),
+               'kingdom' => $kingdom,
+               'clade' => $clade,
+               'supergroup' => $supergroup,
+               'order' => $order,
+               'family' => $family,
+
       ]);
     }
 

@@ -19,8 +19,9 @@
 <div class="card">
   <div class="card-header">
     <h5 class="card-title">Name: {{ $species->name }}</h5>
+    Taxonomy: <i>{{$kingdom}} -> {{$clade}} -> {{$supergroup}} -> {{$order}} -> {{$family}} -> {{$species->name}}</i><br>
+    NCBI TaxID: <a target="_blank" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ $species->taxid }}">{{ $species->taxid }} </a><br>
     Lettercode: {{$species->lettercode}}<br>
-    NCBI TaxID: <a target="_blank" href="https://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id={{ $species->taxid }}">{{ $species->taxid }} </a>
   </div>
 
   <div class="card-body">

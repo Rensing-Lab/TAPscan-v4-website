@@ -64,74 +64,70 @@ class SpeciesImport implements ToCollection,WithCustomCsvSettings
           ]
         );
 
-        $parent=$kingdom;
-        $taxonomy=$kingdom.'|'.$clade;
+        $kingdom_taxonomy=$kingdom;
+        $clade_taxonomy=$kingdom.'|'.$clade;
         Clade::updateOrCreate(
           [
-            'ancestry'    => $taxonomy,
+            'ancestry'    => $clade_taxonomy,
           ],
           [
-            'ancestry'    => $taxonomy,
+            'ancestry'    => $clade_taxonomy,
             'clade'     => $clade,
-            'kingdom_id'     =>  Kingdom::where('kingdom',$parent)->first()->id ?? NULL,
+            'kingdom_id'     =>  Kingdom::where('kingdom',$kingdom_taxonomy)->first()->id ?? NULL,
           ]
         );
 
-        $parent=$taxonomy;
-        $taxonomy=$taxonomy.'|'.$supergroup;
+        $supergroup_taxonomy=$clade_taxonomy.'|'.$supergroup;
         Supergroup::updateOrCreate(
           [
-            'ancestry'    => $taxonomy,
+            'ancestry'    => $supergroup_taxonomy,
           ],
           [
-            'ancestry'    => $taxonomy,
+            'ancestry'    => $supergroup_taxonomy,
             'supergroup'     => $supergroup,
-            'clade_id'     =>  Clade::where('ancestry',$parent)->first()->id ?? NULL,
+            'clade_id'     =>  Clade::where('ancestry',$clade_taxonomy)->first()->id ?? NULL,
           ]
         );
 
-        $parent=$taxonomy;
-        $taxonomy=$taxonomy.'|'.$order;
+        $order_taxonomy=$supergroup_taxonomy.'|'.$order;
         Order::updateOrCreate(
           [
-            'ancestry'    => $taxonomy,
+            'ancestry'    => $order_taxonomy,
           ],
           [
-            'ancestry'    => $taxonomy,
+            'ancestry'    => $order_taxonomy,
             'order'     => $order,
-            'supergroup_id' => Supergroup::where('ancestry',$parent)->first()->id ?? NULL,
+            'supergroup_id' => Supergroup::where('ancestry',$supergroup_taxonomy)->first()->id ?? NULL,
           ]
         );
 
-        $parent=$taxonomy;
-        $taxonomy=$taxonomy.'|'.$family;
+        $family_taxonomy=$order_taxonomy.'|'.$family;
         Family::updateOrCreate(
           [
-            'ancestry'    => $taxonomy,
+            'ancestry'    => $family_taxonomy,
           ],
           [
-            'ancestry'    => $taxonomy,
+            'ancestry'    => $family_taxonomy,
             'family'     => $family,
-            'order_id'     =>  Order::where('ancestry',$parent)->first()->id ?? NULL,
+            'order_id'     =>  Order::where('ancestry',$order_taxonomy)->first()->id ?? NULL,
           ]
         );
 
-        $parent=$taxonomy;
-        $taxonomy=$taxonomy.'|'.$name.$lettercode;
+        $species_taxonomy=$family_taxonomy.'|'.$name.'|'.$lettercode;
         SpeciesTaxId::updateOrCreate(
           [
-            'ancestry'      => $taxonomy,
+            'ancestry'      => $species_taxonomy,
           ],
           [
             'name'     => $name,
             'taxid'     => $taxid,
             'lettercode'     => $lettercode,
             'kingdom_id'     =>  Kingdom::where('kingdom',$kingdom)->first()->id ?? NULL,
-            'clade_id'     =>  Clade::where('clade',$clade)->first()->id ?? NULL,
-            'supergroup_id' => Supergroup::where('supergroup',$supergroup)->first()->id ?? NULL,
-            'order_id'     =>  Order::where('order',$order)->first()->id ?? NULL,
-            'family_id'     => Family::where('ancestry',$parent)->first()->id ?? NULL,
-            'ancestry'    => $taxonomy,
+            'clade_id'     =>  Clade::where('ancestry',$clade_taxonomy)->first()->id ?? NULL,
+            'supergroup_id' => Supergroup::where('ancestry',$supergroup_taxonomy)->first()->id ?? NULL,
+            'order_id'     =>  Order::where('ancestry',$order_taxonomy)->first()->id ?? NULL,
+            'family_id'     => Family::where('ancestry',$family_taxonomy)->first()->id ?? NULL,
+            'ancestry'    => $species_taxonomy,
           ]
         );
       }
