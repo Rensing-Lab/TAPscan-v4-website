@@ -46,8 +46,12 @@ stop:
 restart:
 	docker-compose restart
 
-delete: # use with care, will delete everything!
+delete: # use with care, will delete everything, volumes (your database) and docker containers and images, everything!
 	./vendor/bin/sail down --rmi all -v
+
+wipe: # removes volumes (your database), keeps docker images
+	./vendor/bin/sail down -v
 
 rebuild: delete configure-and-import run #use with care, will delete everything and rebuild from scratch
 
+recreate: wipe configure-and-import run #use with care, will delete your database and rebuild it
