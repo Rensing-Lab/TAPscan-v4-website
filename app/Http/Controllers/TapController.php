@@ -385,8 +385,6 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   $test3 = SpeciesTaxId::find($id)->taps;
   $items_name = $test3->pluck('tap_id')->flip();
   $intersect = $test2->intersectbyKeys($items_name);
-  #dd(collect($child_arr));
-  $test6 = [];
 
  $i = 0;
  foreach ($intersect as $key => $value){
@@ -459,22 +457,22 @@ function fas_get($x) { // Read Multiple FASTA Sequences
  }
 }
 
-  $intersect2 = null;
-  $intersect = null;
+  $intersect2 = [];
+  $intersect = [];
   $species_name = SpeciesTaxId::find($species_id)->lettercode;
   $species_full_name = SpeciesTaxId::find($species_id)->name;
   $species_taxid = SpeciesTaxId::find($species_id)->taxid;
-  $fasta_path = '/public/fasta/' . $species_name . '.fa';
-  $fasta = Storage::get($fasta_path);
-  $test = fas_get($fasta);
-  $test2 = collect($test);
 
   $test3 = SpeciesTaxId::find($species_id)->taps->where('tap_1', $tap_name);
   $items_name = $test3->pluck('tap_id')->flip();
-  $intersect = $test2->intersectbyKeys($items_name);
 
-  #dd(collect($child_arr));
-  $test6 = [];
+  $fasta_path = '/public/fasta/' . $species_name . '.fa';
+  if(file_exists(Storage::path($fasta_path))){
+    $fasta = Storage::get($fasta_path);
+    $test = fas_get($fasta);
+    $test2 = collect($test);
+    $intersect = $test2->intersectbyKeys($items_name);
+  }
 
  $i = 0;
  foreach ($intersect as $key => $value){
@@ -574,22 +572,23 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   return array($spair[0] => $spair[1]);
  }
 }
-  $intersect2 = null;
-  $intersect = null;
+  $intersect2 = [];
+  $intersect = [];
   $species_name = SpeciesTaxId::find($species_id)->lettercode;
   $species_full_name = SpeciesTaxId::find($species_id)->name;
   $species_taxid = SpeciesTaxId::find($species_id)->taxid;
-  $fasta_path = '/public/fasta/' . $species_name . '.fa';
-  $fasta = Storage::get($fasta_path);
-  $test = fas_get($fasta);
-  $test2 = collect($test);
 
   $test3 = SpeciesTaxId::find($species_id)->taps->where('tap_2', $tap_name);
   $items_name = $test3->pluck('tap_id')->flip();
-  $intersect = $test2->intersectbyKeys($items_name);
 
-  #dd(collect($child_arr));
-  $test6 = [];
+  $fasta_path = '/public/fasta/' . $species_name . '.fa';
+   if(file_exists(Storage::path($fasta_path))){
+    $fasta = Storage::get($fasta_path);
+    $test = fas_get($fasta);
+    $test2 = collect($test);
+    $intersect = $test2->intersectbyKeys($items_name);
+  }
+
 
  $i = 0;
  foreach ($intersect as $key => $value){
