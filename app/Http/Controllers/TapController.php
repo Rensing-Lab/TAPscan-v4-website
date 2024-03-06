@@ -473,6 +473,13 @@ function fas_get($x) { // Read Multiple FASTA Sequences
     $test2 = collect($test);
     $intersect = $test2->intersectbyKeys($items_name);
   }
+  else{
+    $intersect2[]['id']="";
+    $intersect2[0]['sequence'] = "FASTA file ".$species_name.".fa not found.";
+    $intersect2[0]['plaza'] = "";
+    $intersect2[0]['tap_1'] = "";
+    $intersect2[0]['tap_2'] = "";
+  }
 
  $i = 0;
  foreach ($intersect as $key => $value){
@@ -489,7 +496,7 @@ function fas_get($x) { // Read Multiple FASTA Sequences
    //dd($intersect2);
    if ($intersect2 == null){
       $intersect2[]['id']="";
-      $intersect2[0]['sequence'] = "Error obtaining sequences. Please check the fasta file for this species.";
+      $intersect2[0]['sequence'] = "Error obtaining sequences. FASTA file ".$species_name.".fa does not match the file used to obtain TAPscan classify results.";
       $intersect2[0]['plaza'] = "";
       $intersect2[0]['tap_1'] = "";
       $intersect2[0]['tap_2'] = "";
@@ -582,11 +589,18 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   $items_name = $test3->pluck('tap_id')->flip();
 
   $fasta_path = '/public/fasta/' . $species_name . '.fa';
-   if(file_exists(Storage::path($fasta_path))){
+  if(file_exists(Storage::path($fasta_path))){
     $fasta = Storage::get($fasta_path);
     $test = fas_get($fasta);
     $test2 = collect($test);
     $intersect = $test2->intersectbyKeys($items_name);
+  }
+  else{
+    $intersect2[]['id']="";
+    $intersect2[0]['sequence'] = "FASTA file ".$species_name.".fa not found.";
+    $intersect2[0]['plaza'] = "";
+    $intersect2[0]['tap_1'] = "";
+    $intersect2[0]['tap_2'] = "";
   }
 
 
@@ -603,7 +617,7 @@ function fas_get($x) { // Read Multiple FASTA Sequences
   // dd($intersect2);
     if ($intersect2 == null){
       $intersect2[]['id']="";
-      $intersect2[0]['sequence'] = "Error obtaining sequences. Please check the fasta file for this species.";
+      $intersect2[0]['sequence'] = "Error obtaining sequences. FASTA file ".$species_name.".fa does not match the file used to obtain TAPscan classify results.";
       $intersect2[0]['plaza'] = "";
       $intersect2[0]['tap_1'] = "";
       $intersect2[0]['tap_2'] = "";
