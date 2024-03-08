@@ -43,7 +43,7 @@
   "checkbox" : {
     "keep_selected_style" : false
   },
-  "plugins" : ["contextmenu","wholerow","search"]
+  "plugins" : ["contextmenu","wholerow","search","sort"]
   });
 
   var to = false;
