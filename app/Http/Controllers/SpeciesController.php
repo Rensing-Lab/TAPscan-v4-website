@@ -39,35 +39,35 @@ class SpeciesController extends Controller
         $data2[] = [
               'id' => $kingdom->kingdom,
               'parent' => '#',
-              'text' => $kingdom->kingdom,
+              'text' => ucfirst($kingdom->kingdom),
         ];
 
         foreach ($species_clade as $clade)
          $data2[] = [
                'id' => $clade->ancestry,
                'parent' => $species_kingdom[$clade->kingdom_id]->kingdom,
-               'text' => $clade->clade,
+               'text' => ucfirst($clade->clade),
          ];
 
          foreach ($species_supergroup as $supergroup)
           $data2[] = [
                 'id' => $supergroup->ancestry,
                 'parent' => $species_clade[$supergroup->clade_id]->ancestry,
-                'text' => $supergroup->supergroup,
+                'text' => ucfirst($supergroup->supergroup),
           ];
 
           foreach ($species_order as $order)
            $data2[] = [
                  'id' => $order->ancestry,
                  'parent' => $species_supergroup[$order->supergroup_id]->ancestry,
-                 'text' => $order->order,
+                 'text' => ucfirst($order->order),
            ];
 
            foreach ($species_family as $family)
             $data2[] = [
                   'id' => $family->ancestry,
                   'parent' => $species_order[$family->order_id]->ancestry,
-                  'text' => $family->family,
+                  'text' => ucfirst($family->family),
             ];
 
          foreach ($species_tree as $species)
