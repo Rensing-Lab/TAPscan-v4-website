@@ -28,7 +28,7 @@
       <span class="badge badge-success badge-pill badge-tapcount"> TF | 42 </span><br>
       Subfamilies are also included in this table, and indicated as: <b><i>Family:Subfamily</i></b>
       </p>
-      <p>TAPscan v4 currently covers {{$numtaps+$numsubtaps}} TAP families (including {{$numsubtaps}} subfamilies) across {{$numspecies}} species.</p>
+      <p>TAPscan v4 currently covers {{$numtaps+$numsubtaps}} TAP families (including {{$numsubtaps}} subfamilies) across {{$numspecies}} species/strains.</p>
     </div>
   </div>
 </div>
