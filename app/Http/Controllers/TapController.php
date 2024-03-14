@@ -252,7 +252,7 @@ public function subtap_species_number($id)
 public function tap_distribution($id)
 {
   $tap_distribution = DB::table('taps')
-              ->selectRaw('SUBSTRING_INDEX(tap_id, "_",  1)as name, COUNT(*) as test')
+              ->selectRaw('SUBSTRING_INDEX(tap_id, "_",  1) as name, COUNT(*) as test')
               ->where('tap_1','=', $id)
               ->groupBy('name')
               ->orderBy('test')
@@ -478,7 +478,7 @@ function fas_get($x) { // Read Multiple FASTA Sequences
       // $intersect->each(function ($item, $key) {
       $intersect2[]['id'] = $key;
       $intersect2[$i]['sequence'] = $value;
-      $intersect2[$i]['plaza'] = [$species_taxid,ltrim(strstr($key,'_'),'_')];
+      $intersect2[$i]['plaza'] = [$species_taxid,preg_replace('/^(mt_|pl_|pt_|org_|tr_|chl_|hl_|hc_|lc_)/', '', ltrim(strstr($key,'_'),'_'))];
       $intersect2[$i]['tap_1'] = Tap::where('tap_id', $key)->select('tap_1')->first()->tap_1;
       $intersect2[$i]['tap_2'] = Tap::where('tap_id', $key)->select('tap_2')->first()->tap_2;
       $i++;
