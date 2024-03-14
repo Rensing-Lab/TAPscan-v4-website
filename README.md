@@ -198,12 +198,11 @@ Valid suffixes are:
 _mt : mitochondria
 _pl : plasmids
 _pt : plastids
-_hc :
-_hl :
+_hc : high conﬁdence proteins
 _chl : chloroplast
 _tr : transcriptome
-_lc :
-_org :
+_lc : low conﬁdence proteins
+_org : organelle proteins (if the origin of the organelle proteins is not clear)
 ```
 
 These are the fasta files you will run the TAPscan classify script on. The lettercode must match the species information file of the next step.
