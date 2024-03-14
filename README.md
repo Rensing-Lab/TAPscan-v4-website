@@ -163,6 +163,8 @@ To load the TAPscan v4 data from the `_data` folder into the TAPscan database, f
 4. Now there is an "Admin" section on the Data page (`http://0.0.0.0:8000/data`)
    - Here you can view (and edit) existing data
    - Or upload additional data files under *Data Upload*
+   - We highly recommend updating the source files in the `_data` folder, and running `make recreate` or `make rebuild`
+     instead of uploading new data via the Admin Upload panel only.
 
 5. Put the per-species fasta files in `_data/fasta/`. These should be named like `LETTERCODE.fa`.
    The fasta files used in the TAPscan v4 website can be found in our [Rensing-Lab/Genome-Zoo GitHub repo](https://github.com/Rensing-Lab/Genome-Zoo).
@@ -181,8 +183,27 @@ To delete and rebuild TAPscan from the data in the `_data` folder, you can use `
 
 Steps to follow to make data ready for inclusion in TAPscan:
 
+### Species Lettercode
+
+Make sure that each of your species has a unique (uppercase) lettercode. This lettercode must be consistent in the species information file, and the FASTA files.
+
 ### Sequence Files
-Create a fasta file per species, place it in the `_data/fasta` folder, named by their lettercode, e.g. `ACTCH.fa, ZYGCI.fa` etc.
+Create a fasta file per species, place it in the `_data/fasta` folder, named by their lettercode, e.g. `ACTCH.fa, ZYGCI.fa` etc. Every header inside the fasta file must also begin with the lettercode followed by an underscore, e.g. `>ACTCH_AA512007.0`. Everything after the underscore is assumed to be protein identifier, and will be used to search on PLAZA.
+
+In order to retain information about the organel/source of origin, a suffix (e.g. `_mt` for mitochondria) may be added to the FASTA headers, for example `>ACTCH_mt_AA512007.0`
+
+Valid suffixes are:
+
+```
+_mt : mitochondria
+_pl : plasmids
+_pt : plastids
+_hc : high conﬁdence proteins
+_chl : chloroplast
+_tr : transcriptome
+_lc : low conﬁdence proteins
+_org : organelle proteins (if the origin of the organelle proteins is not clear)
+```
 
 These are the fasta files you will run the TAPscan classify script on. The lettercode must match the species information file of the next step.
 
@@ -191,6 +212,7 @@ These are the fasta files you will run the TAPscan classify script on. The lette
 	- Semicolon (`;`) separated file
     - 8 columns: `lettercode;Kingiom/supergroup;phylum/clade; supergroup2;order;family;scientific name;NCBI TaxID`
     - First line assumed to be header line
+    - The lettercode should be a unique ID for your species, it must match the names of the fasta files.
 - Example: [TAPscanv4 Species file](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/_data/import-species/species_v4.csv)
 
 ### Rules
