@@ -18,7 +18,7 @@
         <p class="card-text">{{ Illuminate\Mail\Markdown::parse($new->content)}}</p>
       </div>
       <div class="card-footer text-muted">
-        {{$new->created_at}}
+        {{$new->updated_at}}
       </div>
     </div>
     <br>
