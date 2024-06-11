@@ -79,6 +79,8 @@
 
         </ul>
       </p>
+      <h5>Contact</h5>
+      For more information about tapscan, please send us an email at <a href="mailto:tapscan@plantco.de">tapscan@plantco.de</a>
     </div>
     <div class="card-footer text-muted text-center">
       Last updated 2024
