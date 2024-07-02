@@ -1,5 +1,6 @@
 clean:
 	./vendor/bin/sail artisan page-cache:clear
+	./vendor/bin/sail artisan route:clear
 
 configure:
 	./vendor/bin/sail up -d
@@ -7,7 +8,9 @@ configure:
 	./vendor/bin/sail composer update
 	./vendor/bin/sail artisan page-cache:clear
 	./vendor/bin/sail artisan cache:clear
+	./vendor/bin/sail artisan route:clear
 	./vendor/bin/sail artisan config:cache
+	./vendor/bin/sail artisan route:cache
 	./vendor/bin/sail artisan key:generate
 	./vendor/bin/sail artisan migrate:install
 	./vendor/bin/sail artisan migrate
@@ -28,7 +31,9 @@ configure-and-import:
 	./vendor/bin/sail composer update
 	./vendor/bin/sail artisan page-cache:clear
 	./vendor/bin/sail artisan cache:clear
+	./vendor/bin/sail artisan route:clear
 	./vendor/bin/sail artisan config:cache
+	./vendor/bin/sail artisan route:cache
 	./vendor/bin/sail artisan key:generate
 	./vendor/bin/sail artisan migrate:install
 	./vendor/bin/sail artisan migrate
