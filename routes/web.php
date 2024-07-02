@@ -47,13 +47,15 @@ Route::group(['middleware' => ['page-cache']], function () {
 
   Route::get('/speciestable/tap/{id}', [TapController::class, 'taptable'])->where('id', '.*')->name('taps.speciestable');
   Route::get('/speciestable/subtap/{id}', [TapController::class, 'subtaptable'])->where('id', '.*')->name('taps.subspeciestable');
+  Route::get('/about', function () {
+    return view('about.index');
+  });
+
 });
 
 
 Route::get('/search', [TapController::class, 'search'])->name('search');
-Route::get('/about', function () {
-  return view('about.index');
-});
+
 Route::get('/data', [TapController::class, 'circle_viz'])->name('data.index');
 
 # Admin tables
