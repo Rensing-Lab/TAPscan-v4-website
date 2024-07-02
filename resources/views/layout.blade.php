@@ -9,12 +9,12 @@
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
         <!-- Bootstrap Css -->
         <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="{{ asset('css/tap_row.css') }}" >
+        <link rel="stylesheet" type="text/css" href="/css/tap_row.css" >
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/instantsearch.css@7/themes/algolia-min.css" />
-        <link rel="icon" href="{{ asset('img/favicon.ico') }}">
+        <link rel="icon" href="/img/favicon.ico">
         <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <script defer data-domain="tapscan.plantcode.cup.uni-freiburg.de" src="http://tapscan.plantcode.cup.uni-freiburg.de:8001/js/plausible.js"></script>
+        <script defer data-domain="tapscan.plantcode.cup.uni-freiburg.de" src="https://tapscan.plantcode.cup.uni-freiburg.de:8001/js/plausible.js"></script>
     </head>
     <body>
         <div class="container">
