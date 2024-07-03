@@ -19,7 +19,7 @@
     <body>
         <div class="container">
             <div class="col-md-10 offset-md-1">
-                <img src="{{ asset('img/TAPscan_logo_v4.png') }}" class="img-fluid" alt="Responsive image">
+                <img src="/img/TAPscan_logo_v4.png" class="img-fluid" alt="Responsive image">
             </div>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                <a class="navbar-brand" href="/families">TAPscan</a>
