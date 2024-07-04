@@ -6,7 +6,7 @@ This repository contains the source code for the TAPscan v4 website: [tapscan.pl
 
 Below you will find some documentation about installation, configuration and data import
 
-1. Data Files  
+1. [Data Files](#data-files)  
 2. [Installation](#installation)
    - [Install Dependencies](#install-dependencies)
    - [Install TAPscan](#install-tapscan)
