@@ -6,13 +6,14 @@ This repository contains the source code for the TAPscan v4 website: [tapscan.pl
 
 Below you will find some documentation about installation, configuration and data import
 
-1. [Installation](#installation)
+1. [Data Files](#data-files)  
+2. [Installation](#installation)
    - [Install Dependencies](#install-dependencies)
    - [Install TAPscan](#install-tapscan)
    - [Configure web server](#configure-web-server)
    - [Populating the database](#populating-the-database)
    - [Deleting TAPscan](#deleting-tapscan)
-2. [Preparing data for upload](#preparing-data-for-upload)
+3. [Preparing your data for upload](#preparing-data-for-upload)
    - [Sequence Files](#sequence-files)
    - [Species Information](#species-information)
    - [Rules](#rules)
@@ -23,6 +24,19 @@ Below you will find some documentation about installation, configuration and dat
 
 
 TAPscan is written in the [Laravel PHP framework](https://laravel.com/), and everything (application and database) is run in [Docker](https://www.docker.com/) containers.
+
+## Data Files
+
+The data used withing the MAdLand TAPscan v4 website, is available from this repository. The `_data` folder contains the raw and processed data used to configure the website.
+
+The data is organized into a set of subfolders, each subfolder contains a `readme.md` file describing the contents.
+ - `import_domain`: contains the domain information, `domains_v4.csv` contains a table with domain names and PFAM domains. For the custom domains we used, the `.hmm` can be found in `import_domain/custom_hmms`
+ - `import_rules`: contains the domain rules for TAP families, 3 columns: TAP family, domain, rule (should or should not)
+ - `import_species`: tabular file listing all species including full taxonomy and NCBI TaxID
+ - `import_tap`: outputs of TAPscan analysis tool containing the TAP family classifications
+ - `import_tapinfo`: a file containing description and citations for each TAP family
+ - `trees`: this folder contains all trees included in the website
+ - `fasta`: this folder contains all sequences, organized by species
 
 
 ## Installation
