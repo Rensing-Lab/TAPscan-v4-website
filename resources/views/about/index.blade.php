@@ -79,6 +79,10 @@
 
         </ul>
       </p>
+      <h5>Licensing</h5>
+      <p>
+      The TAPscan v4 website and classification tool are licensed GPLv3; the underlying data (Genome Zoo) is licensed CC-BY-NC 4.0.
+      </p>
       <h5>Contact</h5>
       For more information about tapscan, please send us an email at <a href="mailto:tapscan@plantco.de">tapscan@plantco.de</a>
     </div>
