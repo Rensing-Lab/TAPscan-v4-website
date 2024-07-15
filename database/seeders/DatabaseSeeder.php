@@ -52,7 +52,7 @@ TAPscan v4 has also been made available as a Galaxy tool as part of the European
 <br><br>
 In addition, the TAP information derived from the recently published (updated) genomes of Takakia lepidozioides (Hu et al., 2023), Mesotaenium endlicherianum  (Dadras et al., 2023) and Zygnema circumcarinatum (Feng et al., 2023) is made available.
 <br><br>
-More information about the update will soon be available in the  TAPscan v4 publication.
+More information about the update is available in the <a href="https://www.biorxiv.org/content/10.1101/2024.07.13.602682v1" target="_blank">TAPscan v4 preprint</a>.
 
 See the <a href="/about">About page</a> for more information including version history and source code and data availability.
 ',
