@@ -27,7 +27,7 @@ TAPscan is written in the [Laravel PHP framework](https://laravel.com/), and eve
 
 ## Data Files
 
-The data used withing the MAdLand TAPscan v4 website, is available from this repository. The `_data` folder contains the raw and processed data used to configure the website.
+The data used within the MAdLand TAPscan v4 website, is available from this repository. The `_data` folder contains the raw and processed data used to configure the website.
 
 The data is organized into a set of subfolders, each subfolder contains a `readme.md` file describing the contents.
  - `import_domain`: contains the domain information, `domains_v4.csv` contains a table with domain names and PFAM domains. For the custom domains we used, the `.hmm` can be found in `import_domain/custom_hmms`
