@@ -1,0 +1,63 @@
+TAPscan 4 Family	SuperClass	Class
+ARID	Helix-turn-helix domains	ARID
+HMG	Helix-turn-helix domains	ARID
+E2F/DP	Helix-turn-helix domains 	Fork head / winged helix factors
+HSF	Helix-turn-helix domains	Heat shock factors
+DDT	Helix-turn-helix domains	Homeo domain factors
+HDZ	Helix-turn-helix domains	Homeo domain factors
+HD-LD	Helix-turn-helix domains	Homeo domain factors
+HD_PHD	Helix-turn-helix domains	Homeo domain factors
+HD_PINTOX	Helix-turn-helix domains	Homeo domain factors
+HD_PLINC	Helix-turn-helix domains	Homeo domain factors
+HD-SAWADEE	Helix-turn-helix domains	Homeo domain factors
+HD_TALE	Helix-turn-helix domains	Homeo domain factors
+HD_TALE_BEL	Helix-turn-helix domains	Homeo domain factors
+HD_TALE_KNOX1	Helix-turn-helix domains	Homeo domain factors
+HD_TALE_KNOX2	Helix-turn-helix domains	Homeo domain factors
+HD_WOX	Helix-turn-helix domains	Homeo domain factors
+LFY	Helix-turn-helix domains	LEAFY
+RWP-RK	Helix-turn-helix domains 	RWP-RK
+GARP_ARR-B	Helix-turn-helix domains	Tryptophan cluster factors
+GARP_G2-like	Helix-turn-helix domains	Tryptophan cluster factors
+MYB	Helix-turn-helix domains	Tryptophan cluster factors
+MYB:MYB-2R	Helix-turn-helix domains	Tryptophan cluster factors
+MYB:MYB-3R	Helix-turn-helix domains	Tryptophan cluster factors
+MYB:MYB-4R	Helix-turn-helix domains	Tryptophan cluster factors
+MYB-related	Helix-turn-helix domains	Tryptophan cluster factors
+MYB:MYB-related	Helix-turn-helix domains	Tryptophan cluster factors
+GeBP	Helix-turn-helix domains	Tryptophan cluster factors
+Trihelix	Helix-turn-helix domains	Tryptophan cluster factors
+AP2	Beta-hairpin exposed by an alpha/beta-scaffold	AP2/EREBP
+CAMTA	Beta-hairpin exposed by an alpha/beta-scaffold	GCM domain factors
+NAC	Beta-hairpin exposed by an alpha/beta-scaffold	GCM domain factors
+VOZ	Beta-hairpin exposed by an alpha/beta-scaffold	GCM domain factors
+WRKY	Beta-hairpin exposed by an alpha/beta-scaffold	GCM domain factors
+EIL	Other all-alpha-helical DNA-binding domains	EIL
+C2C2_CO-like	Other all-alpha-helical DNA-binding domains	Heteromeric CCAAT-binding factors
+NFY:NF-YB	Other all-alpha-helical DNA-binding domains	Heteromeric CCAAT-binding factors
+NFY:NF-YA	Other all-alpha-helical DNA-binding domains	Heteromeric CCAAT-binding factors
+C2C2_YABBY	Other all-alpha-helical DNA-binding domains	High-mobility group (HMG) domain factors
+DUF296 domain containing	Beta-sheet binding to DNA	A.T hook factors
+bHLH:bHLH_TCP	Beta-sheet binding to DNA	TCP
+C2H2	Zinc-coordinating DNA-binding domains	C2H2 zinc finger factors
+C2H2:C2H2_IDD	Zinc-coordinating DNA-binding domains	C2H2 zinc finger factors
+GRF	Zinc-coordinating DNA-binding domains	C3H zinc finger factors
+SBP	Zinc-coordinating DNA-binding domains	C3H(C),C2HC zinc fingers-like factors
+ALOG	Zinc-coordinating DNA-binding domains	HC3 zinc ribbon factors
+C2C2_GATA	Zinc-coordinating DNA-binding domains	Other C4 zinc finger-type factors
+tify	Zinc-coordinating DNA-binding domains	Other C4 zinc finger-type factors
+C2C2_Dof	Zinc-coordinating DNA-binding domains	Other C4 zinc finger-type factors
+LBD	Zinc-coordinating DNA-binding domains	Other C4 zinc finger-type factors
+ARF	Beta-barrel DNA-binding domains	B3
+ABI3/VP1	Beta-barrel DNA-binding domains	B3
+BES1	Basic domains	Basic helix-loop-helix factors (bHLH)
+bHLH	Basic domains	Basic helix-loop-helix factors (bHLH)
+bZIP	Basic domains	Basic leucine zipper factors (bZIP)
+MADS	Alpha-helices exposed by beta-structures	MADS box factors
+MADS_MIKC	Alpha-helices exposed by beta-structures	MADS box factors
+BBR/BPC	Yet undefined DNA-binding domains	BBR/BPC
+CPP	Yet undefined DNA-binding domains	CPP
+DBP	Yet undefined DNA-binding domains	DBP
+GRAS	Yet undefined DNA-binding domains	GRAS
+PLATZ	Yet undefined DNA-binding domains	PLATZ
+S1Fa-like	Yet undefined DNA-binding domains	S1Fa-like
