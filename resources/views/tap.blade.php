@@ -7,7 +7,11 @@
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-6">TAP @if($isSubtap) Subfamily: @else Family: @endif {{$id}}</h1>
-        <p class="lead">{{ $tap_info[0]->text ?? "Description missing"}}</p>
+        <p class="lead">{{ $tap_info[0]->text ?? "Description missing"}} </p>
+        @isset($structure_info[0])
+        <p class="lead">This TAP family belongs to the {{$structure_info[0]->structure_class}} structural class of the  {{$structure_info[0]->structure_superclass}} structural superclass, as defined in Plant-TFClass (Blanc-Mathieu et al. 2024) </p>
+        @endisset
+
         <hr class="my-1">
         <p>References:<br>
 
@@ -17,6 +21,12 @@
           <p>{!! Markdown::parse(preg_replace('/(http[\w\.\-\/:_]*)\"?$/', '[\1](\1)', $reference)) !!} </p>
         @endforeach
         @endif
+        @endisset
+
+        <!-- add reference for Plant-TFClass if relevant -->
+        @isset($structure_info[0])
+        <p>Blanc-Mathieu, Romain et al. 2024. Plant-TFClass: a structural classification for plant transcription factors. Trends in Plant Science, Volume 29, Issue 1, 40 - 51
+        </p>
         @endisset
 
       </div>

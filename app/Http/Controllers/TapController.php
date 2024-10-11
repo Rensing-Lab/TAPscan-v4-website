@@ -143,6 +143,8 @@ public function showtap(string $id, bool $isSubtap)
       }
       $tap_array = $tap_info[0]->reference ?? null;
       $domain_info = TapController::domain_info();
+      $structure_info = DB::table('structure')->where('family','=',$id)->get();
+
 
       return view('tap', ['tap_show' => $tap_show,
                           'tap_rules' => $tap_rules,
@@ -151,6 +153,7 @@ public function showtap(string $id, bool $isSubtap)
                           'tap_distribution' => $tap_distribution,
 		            	  'tap_info' => $tap_info,
 			              'domain_info' => $domain_info,
+                          'structure_info' =>$structure_info,
                           'isSubtap'  => $isSubtap,
                           'tap_count' => $tap_count]);
 }
@@ -221,6 +224,11 @@ public function tap_info($id)
 {
   $tap_info = DB::table('tap_infos')->where('tap', '=', $id)->get();
       return $tap_info;
+}
+
+public function structure_info($id){
+  $structure_info = DB::table('structure')->where('family','=',$id)->get();
+  return $structure_info;
 }
 
 public function domain_info()

@@ -12,6 +12,7 @@ use App\Imports\SpeciesImport;
 use App\Imports\TapImport;
 use App\Imports\TapInfoImport;
 use App\Imports\TapRulesImport;
+use App\Imports\StructureImport;
 
 use EllGreen\LaravelLoadFile\Laravel\Facades\LoadFile;
 
@@ -119,6 +120,16 @@ class ImportTAPscanData extends Command
       }
       Excel::import(new DomainImport(), $file);
       $this->info('Domain import completed successfully!');
+
+      // Structural INFO (mapping to Plant-TFclass study)
+      $file = '/data/import-structure/structure_v4.csv';
+      $this->info('Importing Structural classes from '.$file.' ...');
+      if (!file_exists($file)) {
+        $this->error('CSV file not found!'); return;
+      }
+      Excel::import(new StructureImport(), $file);
+      $this->info('Structure import completed successfully!');
+
 
 
       return 0;
