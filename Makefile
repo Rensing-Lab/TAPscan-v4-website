@@ -44,6 +44,9 @@ configure-and-import:
 	./vendor/bin/sail artisan import:tapscan_data
 	./vendor/bin/sail down
 
+permissions:
+	sudo chmod -R 775 public storage
+
 run:
 	docker-compose up -d
 stop:
@@ -53,9 +56,11 @@ restart:
 
 delete: # use with care, will delete everything, volumes (your database) and docker containers and images, everything!
 	./vendor/bin/sail down --rmi all -v
+	rm -rf bootstrap/cache/*.php
 
 wipe: # removes volumes (your database), keeps docker images
 	./vendor/bin/sail down -v
+	rm -rf bootstrap/cache/*.php
 
 rebuild: delete configure-and-import run #use with care, will delete everything and rebuild from scratch
 
