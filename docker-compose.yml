@@ -22,7 +22,7 @@ services:
         depends_on:
             - mysql.tapscan
         healthcheck:
-          test: ["CMD", 'curl', 'http://localhost:80']
+          test: ["CMD", 'curl', 'http://localhost:80/about']
 
     mysql.tapscan:
         image: mysql:8.0
