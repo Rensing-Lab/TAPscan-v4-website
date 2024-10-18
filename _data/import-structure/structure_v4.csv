@@ -20,11 +20,11 @@ RWP-RK	Helix-turn-helix domains 	RWP-RK
 GARP_ARR-B	Helix-turn-helix domains	Tryptophan cluster factors
 GARP_G2-like	Helix-turn-helix domains	Tryptophan cluster factors
 MYB	Helix-turn-helix domains	Tryptophan cluster factors
-MYB:MYB-2R	Helix-turn-helix domains	Tryptophan cluster factors
-MYB:MYB-3R	Helix-turn-helix domains	Tryptophan cluster factors
-MYB:MYB-4R	Helix-turn-helix domains	Tryptophan cluster factors
+MYB-2R	Helix-turn-helix domains	Tryptophan cluster factors
+MYB-3R	Helix-turn-helix domains	Tryptophan cluster factors
+MYB-4R	Helix-turn-helix domains	Tryptophan cluster factors
 MYB-related	Helix-turn-helix domains	Tryptophan cluster factors
-MYB:MYB-related	Helix-turn-helix domains	Tryptophan cluster factors
+MYB-related	Helix-turn-helix domains	Tryptophan cluster factors
 GeBP	Helix-turn-helix domains	Tryptophan cluster factors
 Trihelix	Helix-turn-helix domains	Tryptophan cluster factors
 AP2	Beta-hairpin exposed by an alpha/beta-scaffold	AP2/EREBP
@@ -34,13 +34,13 @@ VOZ	Beta-hairpin exposed by an alpha/beta-scaffold	GCM domain factors
 WRKY	Beta-hairpin exposed by an alpha/beta-scaffold	GCM domain factors
 EIL	Other all-alpha-helical DNA-binding domains	EIL
 C2C2_CO-like	Other all-alpha-helical DNA-binding domains	Heteromeric CCAAT-binding factors
-NFY:NF-YB	Other all-alpha-helical DNA-binding domains	Heteromeric CCAAT-binding factors
-NFY:NF-YA	Other all-alpha-helical DNA-binding domains	Heteromeric CCAAT-binding factors
+NF-YB	Other all-alpha-helical DNA-binding domains	Heteromeric CCAAT-binding factors
+NF-YA	Other all-alpha-helical DNA-binding domains	Heteromeric CCAAT-binding factors
 C2C2_YABBY	Other all-alpha-helical DNA-binding domains	High-mobility group (HMG) domain factors
 DUF296 domain containing	Beta-sheet binding to DNA	A.T hook factors
-bHLH:bHLH_TCP	Beta-sheet binding to DNA	TCP
+bHLH_TCP	Beta-sheet binding to DNA	TCP
 C2H2	Zinc-coordinating DNA-binding domains	C2H2 zinc finger factors
-C2H2:C2H2_IDD	Zinc-coordinating DNA-binding domains	C2H2 zinc finger factors
+C2H2_IDD	Zinc-coordinating DNA-binding domains	C2H2 zinc finger factors
 GRF	Zinc-coordinating DNA-binding domains	C3H zinc finger factors
 SBP	Zinc-coordinating DNA-binding domains	C3H(C),C2HC zinc fingers-like factors
 ALOG	Zinc-coordinating DNA-binding domains	HC3 zinc ribbon factors
