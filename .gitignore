@@ -5,6 +5,7 @@ public/page-cache/
 _data/fasta/
 storage/*.key
 storage/
+vendor/
 mysql-dump/
 meilisearch/
 .phpunit.result.cache
