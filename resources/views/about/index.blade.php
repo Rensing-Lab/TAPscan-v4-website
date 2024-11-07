@@ -72,10 +72,10 @@
       <p>
         All code and data used and referenced in this website is freely available from GitHub:
         <ul>
-          <li>TAPscan website: <a target="_blank" href="https://github.com/Rensing-Lab/TAPscan-v4-website">Rensing-Lab/TAPscan-v4-website </a> </li>
-          <li>TAPscan classifiation tool: <a target="_blank" href="https://github.com/Rensing-Lab/TAPscan-classify">Rensing-Lab/TAPscan-classify</a> </li>
+          <li>TAPscan website: <a target="_blank" href="https://github.com/Rensing-Lab/TAPscan-v4-website">Rensing-Lab/TAPscan-v4-website </a>  (<a href="https://github.com/Rensing-Lab/TAPscan-v4-website/releases">releases and changelog</a>) </li>
+          <li>TAPscan classifiation tool: <a target="_blank" href="https://github.com/Rensing-Lab/TAPscan-classify">Rensing-Lab/TAPscan-classify</a>  (<a href="https://github.com/Rensing-Lab/TAPscan-classify/releases">releases and changelog</a>) </li>
           <li>TAPscan Galaxy wrapper: <a target="_blank" href="https://github.com/bgruening/galaxytools/tree/master/tools/tapscan">bgruening/galaxytools</a> </li>
-          <li>Genome Zoo/MAdLandDB: <a target="_blank" href="https://github.com/Rensing-Lab/Genome-Zoo">Rensing-Lab/Genome-Zoo</a> </li>
+          <li>Genome Zoo/MAdLandDB: <a target="_blank" href="https://github.com/Rensing-Lab/Genome-Zoo">Rensing-Lab/Genome-Zoo</a> (<a href="https://github.com/Rensing-Lab/Genome-Zoo/releases">releases and changelog</a>)</li>
 
         </ul>
       </p>
