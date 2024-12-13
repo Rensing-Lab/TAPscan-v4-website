@@ -58,7 +58,7 @@
               <b>TAPscan v4</b>
             </td>
             <td>
-              TAPscan v4 is the latest version and was published in 2024 (<a href="https://www.biorxiv.org/content/10.1101/2024.07.13.602682v1" target="_blank">Petroll et al., preprint</a>) and enables the detection of 138 TAP families.
+              TAPscan v4 is the latest version and was published in December 2024 (<a href="http://doi.org/10.1111/tpj.17184" target="_blank">Petroll et al., <i>The Plant Journal</i></a>) and enables the detection of 138 TAP families.
               In addition, an updated web interface is available, making through the incorporation of the Genomezoo database
               even more TAP data available for the community. TAPscan v4 has also been made available as a Galaxy tool as
               part of the European Galaxy server (<a target="_blank" href="https://usegalaxy.eu">usegalaxy.eu</a>).
