@@ -36,7 +36,7 @@ While it is possible to update the data in TAPscan via the admin interface, it i
 
 ## adding news
 
-Do this via the database seeder, `database/seeders/DatabaseSeeder.php`
+Do this in `resources/views/news/index.blade.php`
 
 ## adding new database tables
 
