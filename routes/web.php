@@ -60,11 +60,13 @@ Route::get('/data', [TapController::class, 'circle_viz'])->name('data.index');
 
 # Admin tables
 Route::get('/news/table', [NewsController::class, 'table'])->middleware(['auth'])->name('news.table');
-Route::get('/species/table', [SpeciesController::class, 'table'])->middleware(['auth'])->name('species.table');
-Route::get('/taps/table', [TapController::class, 'table'])->middleware(['auth'])->name('taps.table');
-Route::get('/rules/table', [TapRulesController::class, 'table'])->middleware(['auth'])->name('rules.table');
-Route::get('/tapinfo/table', [TapInfoController::class, 'table'])->middleware(['auth'])->name('tapinfo.table');
-Route::get('/domain/table', [DomainController::class, 'table'])->middleware(['auth'])->name('domain.table');
+
+# Public tables
+Route::get('/species/table', [SpeciesController::class, 'table'])->name('species.table');
+Route::get('/taps/table', [TapController::class, 'table'])->name('taps.table');
+Route::get('/rules/table', [TapRulesController::class, 'table'])->name('rules.table');
+Route::get('/tapinfo/table', [TapInfoController::class, 'table'])->name('tapinfo.table');
+Route::get('/domain/table', [DomainController::class, 'table'])->name('domain.table');
 
 # Admin Import/Export pages
 Route::get('data-upload', [TapController::class, 'initialization'])->middleware(['auth'])->name('tap.data-upload');
