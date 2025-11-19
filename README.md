@@ -2,11 +2,11 @@
 
 # TAPscan v4
 
-This repository contains the source code for the TAPscan v4 website: [tapscan.plantcode.cup.uni-freiburg.de](http://tapscan.plantcode.cup.uni-freiburg.de)
+This repository contains the source code for the TAPscan v4 website: [tapscan.plantcode.cup.uni-freiburg.de](http://tapscan.plantcode.cup.uni-freiburg.de) ([Plausible Analytics](https://plausible.galaxyproject.eu/tapscan.plantcode.cup.uni-freiburg.de/))
 
 Below you will find some documentation about installation, configuration and data import
 
-1. [Data Files](#data-files)  
+1. [Data Files](#data-files)
 2. [Installation](#installation)
    - [Install Dependencies](#install-dependencies)
    - [Install TAPscan](#install-tapscan)
