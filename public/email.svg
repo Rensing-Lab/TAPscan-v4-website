@@ -1,0 +1,17 @@
+<svg viewBox="0 0 130 24" xmlns="http://www.w3.org/2000/svg">
+
+<style>
+
+text {
+	dominant-baseline: middle;
+    line-height: 1.2;
+    font-family: 'serif';
+	fill: #000;
+	font-size: 14px;
+	text-anchor: middle;
+}
+</style>
+
+<text x="50%" y="50%">stefan.rensing@cup.uni-freiburg.de</text>
+
+</svg>
