@@ -139,7 +139,7 @@
              <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                 <div class="text-center text-sm text-gray-500 sm:text-left">
                     <div class="flex items-center">
-                        <a href="https://plantcode.cup.uni-freiburg.de/tapscan/impressum-plain.php">Impressum & Datenschutzerklärung</a>
+                        <a href="/impressum.html">Impressum & Datenschutzerklärung</a>
                         <!--<a href="https://www.plantco.de/Datenschutz.php">Datenschutzerklärung</a>-->
                     </div>
                 </div>
