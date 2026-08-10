@@ -144,7 +144,8 @@
                     </div>
                 </div>
                 <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">
-                    All data and services offered on this site are © copyrighted. Distribution via internet or other media is prohibited.<br/>
+                    The data displayed on this website are licenced <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.en">CC-BY-NC</a> and available from the <a href="https://github.com/Rensing-Lab/Genome-Zoo">Genome Zoo</a>. </br>
+                    The TAPscan website code and infrastructure is licenced <a href="https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/LICENSE">GPLv3</a> and available from <a href="https://github.com/Rensing-Lab/TAPscan-v4-website/">GitHub</a> <br/>
                     TAPscan logo created by Debbie Maizels
                     <br><br>
                 </div>
