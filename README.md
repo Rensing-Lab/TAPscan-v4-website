@@ -4,6 +4,8 @@
 
 This repository contains the source code for the TAPscan v4 website: [tapscan.plantcode.cup.uni-freiburg.de](http://tapscan.plantcode.cup.uni-freiburg.de) ([Plausible Analytics](https://plausible.galaxyproject.eu/tapscan.plantcode.cup.uni-freiburg.de/))
 
+This code is licensed under [GPLv3](https://github.com/Rensing-Lab/TAPscan-v4-website/blob/main/LICENSE). The data displayed on the TAPscan v4 website is licensed [CC-BY-NC](https://github.com/Rensing-Lab/Genome-Zoo/blob/main/LICENSE.md), and can be obtained from [Genome Zoo](https://github.com/Rensing-Lab/Genome-Zoo/)
+
 Below you will find some documentation about installation, configuration and data import
 
 1. [Data Files](#data-files)
